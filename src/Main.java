@@ -2,9 +2,9 @@
 // To run: java -cp bin Main
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        Card card = new Card();
-        System.out.println("Hello");
+    public static void main(String[] args) {
+        Card app = new Card();
+        app.setVisible(true);
         
     }
 }
