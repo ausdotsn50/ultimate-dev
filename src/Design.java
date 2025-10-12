@@ -25,24 +25,24 @@ public class Design {
         }
     }
 
-    public static void topDesign(JPanel choicePanel, String leftStr) {
-        JLabel left = new JLabel(leftStr);
-        JLabel right = new JLabel("game.css");
+    public static void headerDesign(JPanel choicePanel, String leftHd) {
+        JLabel hLeft = new JLabel(leftHd);
+        JLabel hRight = new JLabel("game.css");
 
-        left.setFont(loadCustomFont(20));
-        left.setForeground(Color.WHITE);
+        hLeft.setFont(loadCustomFont(20));
+        hLeft.setForeground(Color.WHITE);
 
-        right.setFont(loadCustomFont(20));
-        right.setForeground(Color.WHITE);
+        hRight.setFont(loadCustomFont(20));
+        hRight.setForeground(Color.WHITE);
 
-        left.setHorizontalAlignment(SwingConstants.CENTER);
-        right.setHorizontalAlignment(SwingConstants.CENTER);
+        hLeft.setHorizontalAlignment(SwingConstants.CENTER);
+        hRight.setHorizontalAlignment(SwingConstants.CENTER);
 
-        left.setVerticalAlignment(SwingConstants.TOP);
-        right.setVerticalAlignment(SwingConstants.TOP);
+        hLeft.setVerticalAlignment(SwingConstants.TOP);
+        hRight.setVerticalAlignment(SwingConstants.TOP);
 
-        choicePanel.add(left);
-        choicePanel.add(right);
+        choicePanel.add(hLeft);
+        choicePanel.add(hRight);
     }
 
     //
@@ -85,16 +85,15 @@ public class Design {
 
     public static void centerDesign(JPanel choicePanel, String titleStr) {
         // Title label
-        JLabel title = new JLabel(titleStr);
+        JLabel title = new JLabel(titleStr,  JLabel.CENTER);
         title.setFont(Design.loadCustomFont(110));
         title.setForeground(new Color(0x00DAF6));
-
-        // Ensure text is centered *inside* the label(title)
-        title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setVerticalAlignment(SwingConstants.CENTER);
 
         startFadeEffect(title);
 
         choicePanel.add(title, BorderLayout.CENTER);
     }
+
+    // create universal footer design
+
 }
