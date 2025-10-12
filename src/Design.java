@@ -45,20 +45,56 @@ public class Design {
         choicePanel.add(right);
     }
 
+    //
+    public static void startFadeEffect(JLabel label) {
+        final float[] alpha = {1.0f};
+        final boolean[] fadingOut = {true};
+
+        Timer timer = new Timer(100, e -> {
+            // to fade out
+            if (fadingOut[0]) {
+                alpha[0] -= 0.05f;
+                // Capped at 0.1f transparency
+                if (alpha[0] <= 0.1f) {
+                    alpha[0] = 0.1f;
+                    fadingOut[0] = false;
+                }
+            } else { // to fade in
+                alpha[0] += 0.05f;
+                // Capped at original alpha level
+                if (alpha[0] >= 1.0f) {
+                    alpha[0] = 1.0f;
+                    fadingOut[0] = true;
+                }
+            }
+
+            // Apply alpha transparency
+            Color base = new Color(0x00DAF6);
+            label.setForeground(new Color(
+                    base.getRed(),
+                    base.getGreen(),
+                    base.getBlue(),
+                    (int) (alpha[0] * 255) // opacity
+            ));
+            label.repaint();
+        });
+
+        timer.setInitialDelay(0);
+        timer.start();
+    }
+
     public static void centerDesign(JPanel choicePanel, String titleStr) {
         // Title label
         JLabel title = new JLabel(titleStr);
-        title.setFont(Design.loadCustomFont(60));
-        title.setForeground(Color.WHITE);
+        title.setFont(Design.loadCustomFont(110));
+        title.setForeground(new Color(0x00DAF6));
 
         // Ensure text is centered *inside* the label(title)
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
 
+        startFadeEffect(title);
+
         choicePanel.add(title, BorderLayout.CENTER);
     }
-
-
-
-
 }

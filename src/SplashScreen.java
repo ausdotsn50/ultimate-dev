@@ -35,9 +35,6 @@ public class SplashScreen extends JPanel{
 
         bottomPanel.add(toStart, BorderLayout.NORTH);
 
-        topPanel.setBackground(Color.ORANGE);
-        centerPanel.setBackground(Color.BLUE);
-        bottomPanel.setBackground(Color.PINK);
 
         this.add(topPanel, BorderLayout.NORTH);
         this.add(centerPanel, BorderLayout.CENTER);
