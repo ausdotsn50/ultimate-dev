@@ -10,24 +10,38 @@ public class SplashScreen extends JPanel{
         this.setLayout(new BorderLayout());
 
         // Note on top and bottom panels
-        JPanel topPanel = new JPanel(new BorderLayout());
+        JPanel topPanel = new JPanel(new GridLayout(1,2));
+        JPanel centerPanel = new JPanel(new BorderLayout()); // This is for the label title
         JPanel bottomPanel = new JPanel();
 
         // Changed to a more dynamic panel placing
-        topPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.75) ));
-        topPanel.setBackground(Color.RED);
-        bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.25) ));
-        bottomPanel.setBackground(Color.BLUE);
+        topPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.15) ));
+        topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 
-        JLabel enter = new JLabel("Press 'Enter' to Start!");
-        enter.setFont(Design.loadCustomFont(20));
-        enter.setForeground(Color.WHITE);
+        centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.50) ));
+        bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.35) ));
 
-        bottomPanel.add(enter, BorderLayout.NORTH);
+        topPanel.setOpaque(false);
+        centerPanel.setOpaque(false);
+        bottomPanel.setOpaque(false);
+
+        Design.topDesign(topPanel, "splash.html");
+        Design.centerDesign(centerPanel, "ULTIMATE DEV");
+
+        // Instruction label
+        JLabel toStart = new JLabel("Press 'Enter' to Start!");
+        toStart.setFont(Design.loadCustomFont(20));
+        toStart.setForeground(Color.WHITE);
+
+        bottomPanel.add(toStart, BorderLayout.NORTH);
+
+        topPanel.setBackground(Color.ORANGE);
+        centerPanel.setBackground(Color.BLUE);
+        bottomPanel.setBackground(Color.PINK);
 
         this.add(topPanel, BorderLayout.NORTH);
-        this.add(bottomPanel, BorderLayout.CENTER);
-
+        this.add(centerPanel, BorderLayout.CENTER);
+        this.add(bottomPanel, BorderLayout.SOUTH);
     }
 
     @Override

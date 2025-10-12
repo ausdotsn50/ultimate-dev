@@ -1,4 +1,5 @@
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 import java.io.InputStream;
 
 public class Design {
@@ -23,4 +24,41 @@ public class Design {
             return new Font("SansSerif", Font.PLAIN, fontSize);
         }
     }
+
+    public static void topDesign(JPanel choicePanel, String leftStr) {
+        JLabel left = new JLabel(leftStr);
+        JLabel right = new JLabel("game.css");
+
+        left.setFont(loadCustomFont(20));
+        left.setForeground(Color.WHITE);
+
+        right.setFont(loadCustomFont(20));
+        right.setForeground(Color.WHITE);
+
+        left.setHorizontalAlignment(SwingConstants.CENTER);
+        right.setHorizontalAlignment(SwingConstants.CENTER);
+
+        left.setVerticalAlignment(SwingConstants.TOP);
+        right.setVerticalAlignment(SwingConstants.TOP);
+
+        choicePanel.add(left);
+        choicePanel.add(right);
+    }
+
+    public static void centerDesign(JPanel choicePanel, String titleStr) {
+        // Title label
+        JLabel title = new JLabel(titleStr);
+        title.setFont(Design.loadCustomFont(60));
+        title.setForeground(Color.WHITE);
+
+        // Ensure text is centered *inside* the label(title)
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setVerticalAlignment(SwingConstants.CENTER);
+
+        choicePanel.add(title, BorderLayout.CENTER);
+    }
+
+
+
+
 }
