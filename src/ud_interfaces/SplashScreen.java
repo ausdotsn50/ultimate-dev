@@ -4,17 +4,26 @@ import events.MouseEVHandler;
 import layout.Design;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
+
 import javax.swing.*;
 
 import java.util.Objects;
 
 public class SplashScreen extends JPanel{
     Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template.png"))).getImage();
-    MouseEVHandler mouseEVHandler = new MouseEVHandler();
+    private CardLayout cardLayout;
+    private JPanel container;
+    private MouseEVHandler mouseEVHandler;
 
-    public SplashScreen(){
+    public SplashScreen(CardLayout cardLayout, JPanel container){
         this.setLayout(new BorderLayout());
-
+        this.container = container;
+        this.cardLayout = cardLayout;
+        this.mouseEVHandler = new MouseEVHandler(cardLayout, container);
+        MouseEVHandler mouseEVHandler = new MouseEVHandler(cardLayout, container);
         displayTop();
         displayCenter();
         displayBottom();
@@ -38,6 +47,14 @@ public class SplashScreen extends JPanel{
         toStart.setForeground(Color.WHITE);
         toStart.addMouseListener(mouseEVHandler);
         buttonPanel.add(toStart);
+
+        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "startGame");
+        this.getActionMap().put("startGame", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SplashScreen.this.cardLayout.show(SplashScreen.this.container, "Menu");
+            }
+        });
 
         // Footer panel below instruction label
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
