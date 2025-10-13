@@ -1,3 +1,5 @@
+package layout;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
@@ -7,8 +9,8 @@ public class Design {
     static double res_factor = 0.60;
 
     // Immutable dimension size
-    protected static int screenWidth = (int)(1920 * res_factor);
-    protected static int screenHeight = (int)(1080 * res_factor);
+    public static int screenWidth = (int)(1920 * res_factor);
+    public static int screenHeight = (int)(1080 * res_factor);
 
     public static Font loadCustomFont(int fontSize) {
         try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {

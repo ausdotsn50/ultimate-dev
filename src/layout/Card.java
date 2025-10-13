@@ -1,4 +1,6 @@
-// awt components
+package layout;
+import ud_interfaces.SplashScreen;
+
 import java.awt.CardLayout;
 
 // swing components

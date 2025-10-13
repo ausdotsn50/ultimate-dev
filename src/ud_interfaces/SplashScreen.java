@@ -1,10 +1,17 @@
+package ud_interfaces;
+
+import events.MouseEVHandler;
+import layout.Design;
+
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import java.util.Objects;
 
 public class SplashScreen extends JPanel{
-    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("image/template.png"))).getImage();
+    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template.png"))).getImage();
+    MouseEVHandler mouseEVHandler = new MouseEVHandler();
 
     public SplashScreen(CardLayout cardLayout, JPanel container){
         this.setLayout(new BorderLayout());
@@ -21,10 +28,28 @@ public class SplashScreen extends JPanel{
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
         bottomPanel.setOpaque(false);
 
+        // Button panel for customization purposes
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(false);
+
         // Instruction label
-        JLabel toStart = new JLabel("Press 'Enter' to Start!", JLabel.CENTER);
+        JButton toStart = new JButton("Press 'Enter' to Start!");
+        toStart.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.30), 60));
         toStart.setFont(Design.loadCustomFont(20));
         toStart.setForeground(Color.WHITE);
+
+        toStart.setBackground(Color.PINK);
+        toStart.setOpaque(true);
+        toStart.setContentAreaFilled(true);
+        toStart.setBorderPainted(false);
+        toStart.setFocusPainted(false);
+
+        // Add custom border
+        toStart.setBorder(new LineBorder(Color.PINK, 20, true)); // 'true' = rounded corners
+
+        toStart.addMouseListener(mouseEVHandler);
+        buttonPanel.add(toStart);
+
 
         // Footer panel below instruction label
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
@@ -43,7 +68,7 @@ public class SplashScreen extends JPanel{
         footerPanel.setOpaque(false);
 
         // Bottom panel components
-        bottomPanel.add(toStart, BorderLayout.NORTH);
+        bottomPanel.add(buttonPanel, BorderLayout.NORTH);
         bottomPanel.add(footerPanel, BorderLayout.SOUTH);
 
         this.add(bottomPanel, BorderLayout.SOUTH);
