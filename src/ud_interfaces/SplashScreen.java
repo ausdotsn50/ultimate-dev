@@ -5,7 +5,6 @@ import layout.Design;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import java.util.Objects;
 
@@ -13,7 +12,7 @@ public class SplashScreen extends JPanel{
     Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template.png"))).getImage();
     MouseEVHandler mouseEVHandler = new MouseEVHandler();
 
-    public SplashScreen(CardLayout cardLayout, JPanel container){
+    public SplashScreen(){
         this.setLayout(new BorderLayout());
 
         displayTop();
@@ -30,26 +29,15 @@ public class SplashScreen extends JPanel{
 
         // Button panel for customization purposes
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setOpaque(false);
+         buttonPanel.setOpaque(false);
 
         // Instruction label
-        JButton toStart = new JButton("Press 'Enter' to Start!");
-        toStart.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.30), 60));
+        JLabel toStart = new JLabel("Press 'Enter' to Start!", JLabel.CENTER);
+        toStart.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.40), 60));
         toStart.setFont(Design.loadCustomFont(20));
         toStart.setForeground(Color.WHITE);
-
-        toStart.setBackground(Color.PINK);
-        toStart.setOpaque(true);
-        toStart.setContentAreaFilled(true);
-        toStart.setBorderPainted(false);
-        toStart.setFocusPainted(false);
-
-        // Add custom border
-        toStart.setBorder(new LineBorder(Color.PINK, 20, true)); // 'true' = rounded corners
-
         toStart.addMouseListener(mouseEVHandler);
         buttonPanel.add(toStart);
-
 
         // Footer panel below instruction label
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
@@ -78,6 +66,7 @@ public class SplashScreen extends JPanel{
         JPanel centerPanel = new JPanel(new BorderLayout()); // This is for the label title
 
         centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.50) ));
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
         centerPanel.setOpaque(false);
 
         Design.centerDesign(centerPanel, "ULTIMATE DEV");

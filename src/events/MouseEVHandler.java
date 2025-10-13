@@ -1,5 +1,7 @@
 package events;
 
+import layout.CustomButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -9,18 +11,21 @@ import java.util.Random;
 public class MouseEVHandler extends MouseAdapter {
     @Override
     public void mouseEntered(MouseEvent e) {
-        JButton src = (JButton) e.getSource();
-        Font ogFontSet = src.getFont();
+        JLabel src = (JLabel) e.getSource();
+        Font origFont = src.getFont();
 
         // Increase font size on hover
-        src.setFont(ogFontSet.deriveFont((float) (ogFontSet.getSize() + 10)));
+        src.setText("Nothing to click here");
+        src.setFont(origFont.deriveFont((float) (origFont.getSize() + 10)));
     }
 
     public void mouseExited(MouseEvent e) {
-        JButton src = (JButton) e.getSource();
-        Font modFontSet = src.getFont();
+        JLabel src = (JLabel) e.getSource();
+        Font modFont = src.getFont();
 
-        // Revert to orig font settings
-        src.setFont(modFontSet.deriveFont((float) (modFontSet.getSize() - 10)));
+        // Revert to orig text settings
+        src.setText("Press 'Enter' to Start");
+        src.setFont(modFont.deriveFont((float) (modFont.getSize() - 10)));
+
     }
 }

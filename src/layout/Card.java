@@ -27,7 +27,7 @@ public class Card extends JFrame {
         JPanel container = new JPanel(cardLayout);
 
         // Panels
-        SplashScreen splash = new SplashScreen(cardLayout, container);
+        SplashScreen splash = new SplashScreen();
         container.add(splash, "Splash");
 
         // Start with Splash
