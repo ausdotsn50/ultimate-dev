@@ -21,7 +21,7 @@ public class Menu extends JPanel{
     this.setLayout(new BorderLayout());
     this.cardLayout = cardLayout;
     this.container = container;
-    this.mouseEVHandler = new MouseEVHandler(cardLayout, container);
+    // this.mouseEVHandler = new MouseEVHandler(cardLayout, container);
 
 
     displayTop();

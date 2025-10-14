@@ -9,13 +9,6 @@ import java.awt.event.MouseEvent;
 import java.util.Random;
 
 public class MouseEVHandler extends MouseAdapter {
-    private CardLayout cardLayout;
-    private JPanel container;   
-    
-    public MouseEVHandler(CardLayout cardLayout, JPanel container) {
-        this.cardLayout = cardLayout;
-        this.container = container;
-    }
     @Override
     public void mouseEntered(MouseEvent e) {
         JLabel src = (JLabel) e.getSource();
@@ -42,6 +35,7 @@ public class MouseEVHandler extends MouseAdapter {
 
     }
 
+    /*
     @Override
     public void mouseClicked(MouseEvent e) {
         JLabel clickedLabel = (JLabel) e.getSource();
@@ -65,4 +59,5 @@ public class MouseEVHandler extends MouseAdapter {
                 break;
         }
     }
+     */
 }
