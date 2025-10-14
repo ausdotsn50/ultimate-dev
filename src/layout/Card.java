@@ -1,5 +1,6 @@
 package layout;
-import ud_interfaces.Menu;
+
+import ud_interfaces.MainMenu;
 import ud_interfaces.SplashScreen;
 
 import java.awt.CardLayout;
@@ -9,12 +10,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Card extends JFrame {
+    static CardLayout cardLayout = new CardLayout();
+    static JPanel container = new JPanel(cardLayout);
+
     public Card() {
         this.setTitle("Ultimate Dev");
         this.setSize(Design.screenWidth, Design.screenHeight);
         this.setResizable(false);
 
-        JPanel container = getJPanel(); // container as main JPanel
+        addPanels();
 
         this.add(container);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,20 +27,26 @@ public class Card extends JFrame {
     }
 
     // To do: Add threading
-    private static JPanel getJPanel() {
-        CardLayout cardLayout = new CardLayout();
-        JPanel container = new JPanel(cardLayout);
-
+    private static void addPanels() {
         // Panels
-        SplashScreen splash = new SplashScreen(cardLayout, container);
-        Menu menu = new Menu(cardLayout, container);
-        container.add(splash, "Splash");
-        container.add(menu, "Menu");
-        
-        // Start with Splash
-        cardLayout.show(container, "Splash");
-        
+        SplashScreen splashScreen = new SplashScreen();
+        container.add(splashScreen, "SplashScreen");
 
-        return container;
+        MainMenu mainMenu = new MainMenu();
+        container.add(mainMenu, "MainMenu");
+
+        // Start with Splash
+        cardLayout.show(container, "SplashScreen");
     }
+
+    public static void showMainMenu() {
+        cardLayout.show(container, "MainMenu");
+        System.out.println("Showing main menu...");
+    }
+
+    public static void showSplashScreen() {
+        cardLayout.show(container, "SplashScreen");
+        System.out.println("Showing splash screen...");
+    }
+
 }

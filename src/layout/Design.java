@@ -5,6 +5,8 @@ import java.awt.*;
 import java.io.InputStream;
 
 public class Design {
+    // prolly include bg image template here instead
+
     // 'static' - belongs to the class itself, not to any instance (object)
     static double res_factor = 0.60;
 

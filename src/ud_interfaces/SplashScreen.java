@@ -1,12 +1,10 @@
 package ud_interfaces;
 
+import events.KeyEVHandler;
 import events.MouseEVHandler;
 import layout.Design;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import javax.swing.KeyStroke;
 
 import javax.swing.*;
 
@@ -14,19 +12,18 @@ import java.util.Objects;
 
 public class SplashScreen extends JPanel{
     Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template.png"))).getImage();
-    private CardLayout cardLayout;
-    private JPanel container;
-    private MouseEVHandler mouseEVHandler;
+    MouseEVHandler mouseEVHandler = new MouseEVHandler();
+    KeyEVHandler keyEVHandler = new KeyEVHandler();
 
-    public SplashScreen(CardLayout cardLayout, JPanel container){
+    public SplashScreen(){
         this.setLayout(new BorderLayout());
-        this.container = container;
-        this.cardLayout = cardLayout;
-        this.mouseEVHandler = new MouseEVHandler(cardLayout, container);
-        MouseEVHandler mouseEVHandler = new MouseEVHandler(cardLayout, container);
+
         displayTop();
         displayCenter();
         displayBottom();
+
+        this.setFocusable(true);
+        this.addKeyListener(keyEVHandler);
     }
 
     public void displayBottom(){
@@ -38,7 +35,7 @@ public class SplashScreen extends JPanel{
 
         // Button panel for customization purposes
         JPanel buttonPanel = new JPanel();
-         buttonPanel.setOpaque(false);
+        buttonPanel.setOpaque(false);
 
         // Instruction label
         JLabel toStart = new JLabel("Press 'Enter' to Start!", JLabel.CENTER);
@@ -48,19 +45,11 @@ public class SplashScreen extends JPanel{
         toStart.addMouseListener(mouseEVHandler);
         buttonPanel.add(toStart);
 
-        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "startGame");
-        this.getActionMap().put("startGame", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SplashScreen.this.cardLayout.show(SplashScreen.this.container, "Menu");
-            }
-        });
-
         // Footer panel below instruction label
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
 
         JLabel fLeft = new JLabel("The Ultimate Dev Gameshow", JLabel.CENTER);
-        JLabel fRight = new JLabel("Points: ",  JLabel.CENTER);
+        JLabel fRight = new JLabel("(C) 2025 Group Pink",  JLabel.CENTER);
 
         fLeft.setFont(Design.loadCustomFont(20));
         fLeft.setForeground(Color.WHITE);
