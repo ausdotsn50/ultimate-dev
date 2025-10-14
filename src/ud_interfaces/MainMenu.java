@@ -1,6 +1,5 @@
 package ud_interfaces;
 
-import events.MouseEVHandler;
 import layout.Design;
 
 import java.awt.*;
@@ -8,26 +7,22 @@ import java.util.Objects;
 
 import javax.swing.*;
 
-public class Menu extends JPanel{
+public class MainMenu extends JPanel{
+    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_2.png"))).getImage();
+
     private JLabel play, howToPlay, settings, exit;
     private GridBagConstraints gbc = new GridBagConstraints();
     private CardLayout cardLayout;
     private JPanel container;
-    private MouseEVHandler mouseEVHandler;
-
-    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_2.png"))).getImage();
-
-    public Menu(CardLayout cardLayout, JPanel container){
-    this.setLayout(new BorderLayout());
-    this.cardLayout = cardLayout;
-    this.container = container;
-    // this.mouseEVHandler = new MouseEVHandler(cardLayout, container);
+    // private MouseEVHandler mouseEVHandler;
 
 
-    displayTop();
-    displayCenter();
-    displayBottom();
+    public MainMenu(){
+        this.setLayout(new BorderLayout());
 
+        displayTop();
+        displayCenter();
+        displayBottom();
     }
 
     public void displayTop(){
@@ -67,16 +62,16 @@ public class Menu extends JPanel{
             exit.setForeground(Color.RED);
         } catch (Exception e) {
             e.printStackTrace();
-            play.setFont(new Font("SansSerif", Font.PLAIN, 30)); 
-            howToPlay.setFont(new Font("SansSerif", Font.PLAIN, 30)); 
-            settings.setFont(new Font("SansSerif", Font.PLAIN, 30)); 
+            play.setFont(new Font("SansSerif", Font.PLAIN, 30));
+            howToPlay.setFont(new Font("SansSerif", Font.PLAIN, 30));
+            settings.setFont(new Font("SansSerif", Font.PLAIN, 30));
             exit.setFont(new Font("SansSerif", Font.PLAIN, 30));
         }
 
-        gbc.insets = new Insets(0, 0, 25, 500); 
+        gbc.insets = new Insets(0, 0, 25, 500);
 
         gbc.gridx = 0;
-        gbc.gridy = 0;  
+        gbc.gridy = 0;
         centerPanel.add(play, gbc);
 
         gbc.insets = new Insets(10, 0, 25, 500);
@@ -92,7 +87,7 @@ public class Menu extends JPanel{
         gbc.gridy = 3;
         centerPanel.add(exit, gbc);
 
-        play.addMouseListener(mouseEVHandler);
+        // play.addMouseListener(mouseEVHandler);
 
         this.add(centerPanel, BorderLayout.CENTER);
 
@@ -128,7 +123,6 @@ public class Menu extends JPanel{
 
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
-
 
     @Override
     public void paintComponent(Graphics g) {

@@ -1,12 +1,10 @@
 package ud_interfaces;
 
+import events.KeyEVHandler;
 import events.MouseEVHandler;
 import layout.Design;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import javax.swing.KeyStroke;
 
 import javax.swing.*;
 
@@ -15,13 +13,17 @@ import java.util.Objects;
 public class SplashScreen extends JPanel{
     Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template.png"))).getImage();
     MouseEVHandler mouseEVHandler = new MouseEVHandler();
+    KeyEVHandler keyEVHandler = new KeyEVHandler();
 
-    public SplashScreen(CardLayout cardLayout, JPanel container){
+    public SplashScreen(){
         this.setLayout(new BorderLayout());
 
         displayTop();
         displayCenter();
         displayBottom();
+
+        this.setFocusable(true);
+        this.addKeyListener(keyEVHandler);
     }
 
     public void displayBottom(){
@@ -42,16 +44,6 @@ public class SplashScreen extends JPanel{
         toStart.setForeground(Color.WHITE);
         toStart.addMouseListener(mouseEVHandler);
         buttonPanel.add(toStart);
-
-        /*
-        this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "startGame");
-        this.getActionMap().put("startGame", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // SplashScreen.this.cardLayout.show(SplashScreen.this.container, "Menu");
-            }
-        });
-        */
 
         // Footer panel below instruction label
         JPanel footerPanel = new JPanel(new GridLayout(1,2));

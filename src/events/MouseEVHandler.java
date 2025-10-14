@@ -32,7 +32,6 @@ public class MouseEVHandler extends MouseAdapter {
         // Revert to orig text settings
         src.setText("Press 'Enter' to Start");
         src.setFont(modFont.deriveFont((float) (modFont.getSize() - 10)));
-
     }
 
     /*
