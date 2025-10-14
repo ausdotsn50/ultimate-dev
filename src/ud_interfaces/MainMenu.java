@@ -8,13 +8,10 @@ import java.util.Objects;
 import javax.swing.*;
 
 public class MainMenu extends JPanel{
-    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_2.png"))).getImage();
+    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_v2.png"))).getImage();
 
     JLabel play, howToPlay, settings, exit;
     GridBagConstraints gbc = new GridBagConstraints();
-    CardLayout cardLayout;
-    JPanel container;
-    // private MouseEVHandler mouseEVHandler;
 
     public MainMenu(){
         this.setLayout(new BorderLayout());
@@ -27,7 +24,8 @@ public class MainMenu extends JPanel{
     public void displayTop(){
         Design.headerDesign(this, "menu.html");
     }
-
+    
+    // To do: refactor code
     public void displayCenter(){
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setOpaque(false);
@@ -81,38 +79,10 @@ public class MainMenu extends JPanel{
         // play.addMouseListener(mouseEVHandler);
 
         this.add(centerPanel, BorderLayout.CENTER);
-
     }
 
     public void displayBottom() {
-        JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.40), 60));
-        bottomPanel.setBorder(BorderFactory.createLineBorder(Color.PINK, 2));
-        bottomPanel.setOpaque(false);
-
-        // Add top padding to push the text upward
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-
-        // Create footer panel
-        JPanel footerPanel = new JPanel(new GridLayout(1, 2));
-        footerPanel.setOpaque(false);
-
-        JLabel fLeft = new JLabel("The Ultimate Dev Gameshow", JLabel.CENTER);
-        JLabel fRight = new JLabel("Points: ", JLabel.CENTER);
-
-        fLeft.setFont(Design.loadCustomFont(20));
-        fLeft.setForeground(Color.WHITE);
-
-        fRight.setFont(Design.loadCustomFont(20));
-        fRight.setForeground(Color.WHITE);
-
-        footerPanel.add(fLeft);
-        footerPanel.add(fRight);
-
-        // Add footer panel near the bottom
-        bottomPanel.add(footerPanel, BorderLayout.CENTER);
-
-        this.add(bottomPanel, BorderLayout.SOUTH);
+        Design.footerDesign(this, "The Ultimate Dev Gameshow", "Points: 0");
     }
 
     @Override

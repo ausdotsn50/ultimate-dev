@@ -1,5 +1,7 @@
 package layout;
 
+import events.MouseEVHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
@@ -13,6 +15,9 @@ public class Design {
     // Immutable dimension size
     public static int screenWidth = (int)(1920 * res_factor);
     public static int screenHeight = (int)(1080 * res_factor);
+
+    // Mouse event design handler...
+    public static MouseEVHandler mouseEVHandler = new MouseEVHandler();
 
     public static Font loadCustomFont(int fontSize) {
         try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
@@ -58,7 +63,14 @@ public class Design {
         mainPanel.add(headerPanel, BorderLayout.NORTH);
     }
 
-    public static void footerDesign(JPanel choicePanel, String leftFt, String rightFt) {
+    // General footer design
+    public static void footerDesign(JPanel mainPanel, String leftFt, String rightFt) {
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+
+        bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.15) ));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+        bottomPanel.setOpaque(false);
+
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
 
         JLabel fLeft = new JLabel(leftFt, JLabel.CENTER);
@@ -75,7 +87,9 @@ public class Design {
         footerPanel.setOpaque(false);
 
         // Bottom panel components
-        choicePanel.add(footerPanel, BorderLayout.SOUTH);
+        bottomPanel.add(footerPanel, BorderLayout.SOUTH);
+
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
     // fade fx
