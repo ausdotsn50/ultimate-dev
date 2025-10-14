@@ -10,12 +10,11 @@ import javax.swing.*;
 public class MainMenu extends JPanel{
     Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_2.png"))).getImage();
 
-    private JLabel play, howToPlay, settings, exit;
-    private GridBagConstraints gbc = new GridBagConstraints();
-    private CardLayout cardLayout;
-    private JPanel container;
+    JLabel play, howToPlay, settings, exit;
+    GridBagConstraints gbc = new GridBagConstraints();
+    CardLayout cardLayout;
+    JPanel container;
     // private MouseEVHandler mouseEVHandler;
-
 
     public MainMenu(){
         this.setLayout(new BorderLayout());
@@ -26,15 +25,7 @@ public class MainMenu extends JPanel{
     }
 
     public void displayTop(){
-        JPanel topPanel = new JPanel(new GridLayout(1,2));
-
-        // Changed to a more dynamic panel placing
-        topPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.15) ));
-        topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
-        topPanel.setOpaque(false);
-
-        Design.headerDesign(topPanel, "menu.html");
-        this.add(topPanel, BorderLayout.NORTH);
+        Design.headerDesign(this, "menu.html");
     }
 
     public void displayCenter(){
@@ -42,7 +33,7 @@ public class MainMenu extends JPanel{
         centerPanel.setOpaque(false);
 
         centerPanel.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.40), 20));
-        //centerPanel.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 0, Color.CYAN));
+        // centerPanel.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 0, Color.CYAN));
         //centerPanel.setBorder(BorderFactory.createLineBorder(Color.CYAN, 2));
 
         play = new JLabel("Play");
@@ -61,7 +52,7 @@ public class MainMenu extends JPanel{
             settings.setForeground(Color.GREEN);
             exit.setForeground(Color.RED);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             play.setFont(new Font("SansSerif", Font.PLAIN, 30));
             howToPlay.setFont(new Font("SansSerif", Font.PLAIN, 30));
             settings.setFont(new Font("SansSerif", Font.PLAIN, 30));
