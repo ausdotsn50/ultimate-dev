@@ -1,4 +1,5 @@
 package layout;
+import ud_interfaces.Menu;
 import ud_interfaces.SplashScreen;
 
 import java.awt.CardLayout;
@@ -27,11 +28,14 @@ public class Card extends JFrame {
         JPanel container = new JPanel(cardLayout);
 
         // Panels
-        SplashScreen splash = new SplashScreen();
+        SplashScreen splash = new SplashScreen(cardLayout, container);
+        Menu menu = new Menu(cardLayout, container);
         container.add(splash, "Splash");
-
+        container.add(menu, "Menu");
+        
         // Start with Splash
         cardLayout.show(container, "Splash");
+        
 
         return container;
     }
