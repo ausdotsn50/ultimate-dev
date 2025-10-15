@@ -19,6 +19,7 @@ public class Design {
     // Mouse event design handler...
     public static MouseEVHandler mouseEVHandler = new MouseEVHandler();
 
+    // Review method
     public static Font loadCustomFont(int fontSize) {
         try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
             if (is == null) {

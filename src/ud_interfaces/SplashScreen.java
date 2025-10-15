@@ -2,7 +2,6 @@ package ud_interfaces;
 
 import events.KeyEVHandler;
 import events.MouseEVHandler;
-import layout.Design;
 import layout.DesignSplash;
 
 import java.awt.*;
@@ -11,7 +10,7 @@ import javax.swing.*;
 
 import java.util.Objects;
 
-public class SplashScreen extends JPanel{
+public class SplashScreen extends UltDevScreen {
     Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_v1.png"))).getImage();
     MouseEVHandler mouseEVHandler = new MouseEVHandler();
     KeyEVHandler keyEVHandler = new KeyEVHandler();
@@ -19,24 +18,16 @@ public class SplashScreen extends JPanel{
     public SplashScreen(){
         this.setLayout(new BorderLayout());
 
-        displayTop();
+        displayTop(this, "splash.html");
         displayCenter();
-        displayBottom();
+        displayBottom(this, "The Ultimate Dev Gameshow", "(c) Group Pink 2025");
 
         this.setFocusable(true);
         this.addKeyListener(keyEVHandler);
     }
 
-    public void displayBottom(){
-        Design.footerDesign(this, "The Ultimate Dev Gameshow", "(c) Group Pink 2025");
-    }
-
     public void displayCenter() {
         DesignSplash.titleDesign(this, "ULTIMATE DEV", "/* Think you've got what it takes? */", "Press 'Enter' to Start!");
-    }
-
-    public void displayTop() {
-        Design.headerDesign(this, "splash.html");
     }
 
     @Override

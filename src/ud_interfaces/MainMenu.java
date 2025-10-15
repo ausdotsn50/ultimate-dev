@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import javax.swing.*;
 
-public class MainMenu extends JPanel{
+public class MainMenu extends UltDevScreen {
     Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_v2.png"))).getImage();
 
     JLabel play, howToPlay, settings, exit;
@@ -16,15 +16,11 @@ public class MainMenu extends JPanel{
     public MainMenu(){
         this.setLayout(new BorderLayout());
 
-        displayTop();
+        displayTop(this, "menu.html");
         displayCenter();
-        displayBottom();
+        displayBottom(this, "The Ultimate Dev Gameshow", "Points: 0");
     }
 
-    public void displayTop(){
-        Design.headerDesign(this, "menu.html");
-    }
-    
     // To do: refactor code
     public void displayCenter(){
         JPanel centerPanel = new JPanel(new GridBagLayout());
@@ -79,10 +75,6 @@ public class MainMenu extends JPanel{
         // play.addMouseListener(mouseEVHandler);
 
         this.add(centerPanel, BorderLayout.CENTER);
-    }
-
-    public void displayBottom() {
-        Design.footerDesign(this, "The Ultimate Dev Gameshow", "Points: 0");
     }
 
     @Override

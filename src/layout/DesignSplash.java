@@ -1,7 +1,5 @@
 package layout;
 
-import events.MouseEVHandler;
-
 import javax.swing.*;
 import java.awt.*;
 
