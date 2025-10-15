@@ -2,7 +2,7 @@ package ud_interfaces;
 
 import events.KeyEVHandler;
 import events.MouseEVHandler;
-import layout.Design;
+import layout.DesignSplash;
 
 import java.awt.*;
 
@@ -10,86 +10,24 @@ import javax.swing.*;
 
 import java.util.Objects;
 
-public class SplashScreen extends JPanel{
-    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template.png"))).getImage();
+public class SplashScreen extends UltDevScreen {
+    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_v1.png"))).getImage();
     MouseEVHandler mouseEVHandler = new MouseEVHandler();
     KeyEVHandler keyEVHandler = new KeyEVHandler();
 
     public SplashScreen(){
         this.setLayout(new BorderLayout());
 
-        displayTop();
+        displayTop(this, "splash.html");
         displayCenter();
-        displayBottom();
+        displayBottom(this, "The Ultimate Dev Gameshow", "(c) Group Pink 2025");
 
         this.setFocusable(true);
         this.addKeyListener(keyEVHandler);
     }
 
-    public void displayBottom(){
-        JPanel bottomPanel = new JPanel(new BorderLayout());
-
-        bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.35) ));
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
-        bottomPanel.setOpaque(false);
-
-        // Button panel for customization purposes
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setOpaque(false);
-
-        // Instruction label
-        JLabel toStart = new JLabel("Press 'Enter' to Start!", JLabel.CENTER);
-        toStart.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.40), 60));
-        toStart.setFont(Design.loadCustomFont(20));
-        toStart.setForeground(Color.WHITE);
-        toStart.addMouseListener(mouseEVHandler);
-        buttonPanel.add(toStart);
-
-        // Footer panel below instruction label
-        JPanel footerPanel = new JPanel(new GridLayout(1,2));
-
-        JLabel fLeft = new JLabel("The Ultimate Dev Gameshow", JLabel.CENTER);
-        JLabel fRight = new JLabel("(C) 2025 Group Pink",  JLabel.CENTER);
-
-        fLeft.setFont(Design.loadCustomFont(20));
-        fLeft.setForeground(Color.WHITE);
-
-        fRight.setFont(Design.loadCustomFont(20));
-        fRight.setForeground(Color.WHITE);
-
-        footerPanel.add(fLeft);
-        footerPanel.add(fRight);
-        footerPanel.setOpaque(false);
-
-        // Bottom panel components
-        bottomPanel.add(buttonPanel, BorderLayout.NORTH);
-        bottomPanel.add(footerPanel, BorderLayout.SOUTH);
-
-        this.add(bottomPanel, BorderLayout.SOUTH);
-    }
-
     public void displayCenter() {
-        JPanel centerPanel = new JPanel(new BorderLayout()); // This is for the label title
-
-        centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.50) ));
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
-        centerPanel.setOpaque(false);
-
-        Design.centerDesign(centerPanel, "ULTIMATE DEV");
-        this.add(centerPanel, BorderLayout.CENTER);
-    }
-
-    public void displayTop() {
-        // Note on top and bottom panels
-        JPanel topPanel = new JPanel(new GridLayout(1,2));
-
-        // Changed to a more dynamic panel placing
-        topPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.15) ));
-        topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
-        topPanel.setOpaque(false);
-
-        Design.headerDesign(topPanel, "splash.html");
-        this.add(topPanel, BorderLayout.NORTH);
+        DesignSplash.titleDesign(this, "ULTIMATE DEV", "/* Think you've got what it takes? */", "Press 'Enter' to Start!");
     }
 
     @Override

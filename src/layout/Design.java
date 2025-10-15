@@ -1,5 +1,7 @@
 package layout;
 
+import events.MouseEVHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
@@ -14,6 +16,10 @@ public class Design {
     public static int screenWidth = (int)(1920 * res_factor);
     public static int screenHeight = (int)(1080 * res_factor);
 
+    // Mouse event design handler...
+    public static MouseEVHandler mouseEVHandler = new MouseEVHandler();
+
+    // Review method
     public static Font loadCustomFont(int fontSize) {
         try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
             if (is == null) {
@@ -29,15 +35,22 @@ public class Design {
         }
     }
 
-    public static void headerDesign(JPanel choicePanel, String leftHd) {
+    public static void headerDesign(JPanel mainPanel, String leftHd) {
+        JPanel headerPanel = new JPanel(new GridLayout(1,2));
+
+        // Changed to a more dynamic panel placing
+        headerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.10) ));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        headerPanel.setOpaque(false);
+
         JLabel hLeft = new JLabel(leftHd);
         JLabel hRight = new JLabel("game.css");
 
         hLeft.setFont(loadCustomFont(20));
-        hLeft.setForeground(Color.WHITE);
+        hLeft.setForeground(UDColors.udWhite);
 
         hRight.setFont(loadCustomFont(20));
-        hRight.setForeground(Color.WHITE);
+        hRight.setForeground(UDColors.udWhite);
 
         hLeft.setHorizontalAlignment(SwingConstants.CENTER);
         hRight.setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,11 +58,42 @@ public class Design {
         hLeft.setVerticalAlignment(SwingConstants.TOP);
         hRight.setVerticalAlignment(SwingConstants.TOP);
 
-        choicePanel.add(hLeft);
-        choicePanel.add(hRight);
+        headerPanel.add(hLeft);
+        headerPanel.add(hRight);
+
+        mainPanel.add(headerPanel, BorderLayout.NORTH);
     }
 
-    //
+    // General footer design
+    public static void footerDesign(JPanel mainPanel, String leftFt, String rightFt) {
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+
+        bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.10) ));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+        bottomPanel.setOpaque(false);
+
+        JPanel footerPanel = new JPanel(new GridLayout(1,2));
+
+        JLabel fLeft = new JLabel(leftFt, JLabel.CENTER);
+        JLabel fRight = new JLabel(rightFt,  JLabel.CENTER);
+
+        fLeft.setFont(Design.loadCustomFont(20));
+        fLeft.setForeground(Color.WHITE);
+
+        fRight.setFont(Design.loadCustomFont(20));
+        fRight.setForeground(Color.WHITE);
+
+        footerPanel.add(fLeft);
+        footerPanel.add(fRight);
+        footerPanel.setOpaque(false);
+
+        // Bottom panel components
+        bottomPanel.add(footerPanel, BorderLayout.SOUTH);
+
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    // fade fx
     public static void startFadeEffect(JLabel label) {
         final float[] alpha = {1.0f};
         final boolean[] fadingOut = {true};
@@ -73,7 +117,7 @@ public class Design {
             }
 
             // Apply alpha transparency
-            Color base = new Color(0x00DAF6);
+            Color base = UDColors.udCyan;
             label.setForeground(new Color(
                     base.getRed(),
                     base.getGreen(),
@@ -86,18 +130,4 @@ public class Design {
         timer.setInitialDelay(0);
         timer.start();
     }
-
-    public static void centerDesign(JPanel choicePanel, String titleStr) {
-        // Title label
-        JLabel title = new JLabel(titleStr,  JLabel.CENTER);
-        title.setFont(Design.loadCustomFont(110));
-        title.setForeground(new Color(0x00DAF6));
-
-        startFadeEffect(title);
-
-        choicePanel.add(title, BorderLayout.CENTER);
-    }
-
-    // create universal footer design
-
 }

@@ -1,48 +1,39 @@
 package ud_interfaces;
 
 import layout.Design;
+import layout.DesignMenu;
 
 import java.awt.*;
 import java.util.Objects;
 
 import javax.swing.*;
 
-public class MainMenu extends JPanel{
-    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_2.png"))).getImage();
+public class MainMenu extends UltDevScreen {
+    Image backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/template_v2.png"))).getImage();
 
-    private JLabel play, howToPlay, settings, exit;
-    private GridBagConstraints gbc = new GridBagConstraints();
-    private CardLayout cardLayout;
-    private JPanel container;
-    // private MouseEVHandler mouseEVHandler;
-
+    JLabel play, howToPlay, settings, exit;
+    GridBagConstraints gbc = new GridBagConstraints();
 
     public MainMenu(){
         this.setLayout(new BorderLayout());
 
-        displayTop();
+        displayTop(this, "menu.html");
         displayCenter();
-        displayBottom();
+        displayBottom(this, "The Ultimate Dev Gameshow", "Points: 0");
     }
 
-    public void displayTop(){
-        JPanel topPanel = new JPanel(new GridLayout(1,2));
-
-        // Changed to a more dynamic panel placing
-        topPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.15) ));
-        topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
-        topPanel.setOpaque(false);
-
-        Design.headerDesign(topPanel, "menu.html");
-        this.add(topPanel, BorderLayout.NORTH);
+    public void displayCenter(){
+        DesignMenu.optionsDesign(this);
     }
 
+    /*
+    // To do: refactor code
     public void displayCenter(){
         JPanel centerPanel = new JPanel(new GridBagLayout());
         centerPanel.setOpaque(false);
 
         centerPanel.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.40), 20));
-        //centerPanel.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 0, Color.CYAN));
+        // centerPanel.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 0, Color.CYAN));
         //centerPanel.setBorder(BorderFactory.createLineBorder(Color.CYAN, 2));
 
         play = new JLabel("Play");
@@ -61,7 +52,7 @@ public class MainMenu extends JPanel{
             settings.setForeground(Color.GREEN);
             exit.setForeground(Color.RED);
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
             play.setFont(new Font("SansSerif", Font.PLAIN, 30));
             howToPlay.setFont(new Font("SansSerif", Font.PLAIN, 30));
             settings.setFont(new Font("SansSerif", Font.PLAIN, 30));
@@ -90,39 +81,8 @@ public class MainMenu extends JPanel{
         // play.addMouseListener(mouseEVHandler);
 
         this.add(centerPanel, BorderLayout.CENTER);
-
     }
-
-    public void displayBottom() {
-        JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.40), 60));
-        bottomPanel.setBorder(BorderFactory.createLineBorder(Color.PINK, 2));
-        bottomPanel.setOpaque(false);
-
-        // Add top padding to push the text upward
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-
-        // Create footer panel
-        JPanel footerPanel = new JPanel(new GridLayout(1, 2));
-        footerPanel.setOpaque(false);
-
-        JLabel fLeft = new JLabel("The Ultimate Dev Gameshow", JLabel.CENTER);
-        JLabel fRight = new JLabel("Points: ", JLabel.CENTER);
-
-        fLeft.setFont(Design.loadCustomFont(20));
-        fLeft.setForeground(Color.WHITE);
-
-        fRight.setFont(Design.loadCustomFont(20));
-        fRight.setForeground(Color.WHITE);
-
-        footerPanel.add(fLeft);
-        footerPanel.add(fRight);
-
-        // Add footer panel near the bottom
-        bottomPanel.add(footerPanel, BorderLayout.CENTER);
-
-        this.add(bottomPanel, BorderLayout.SOUTH);
-    }
+    */
 
     @Override
     public void paintComponent(Graphics g) {
