@@ -1,6 +1,7 @@
 package ud_interfaces;
 
 import layout.Design;
+import layout.DesignMenu;
 
 import java.awt.*;
 import java.util.Objects;
@@ -21,6 +22,11 @@ public class MainMenu extends UltDevScreen {
         displayBottom(this, "The Ultimate Dev Gameshow", "Points: 0");
     }
 
+    public void displayCenter(){
+        DesignMenu.optionsDesign(this);
+    }
+
+    /*
     // To do: refactor code
     public void displayCenter(){
         JPanel centerPanel = new JPanel(new GridBagLayout());
@@ -76,6 +82,7 @@ public class MainMenu extends UltDevScreen {
 
         this.add(centerPanel, BorderLayout.CENTER);
     }
+    */
 
     @Override
     public void paintComponent(Graphics g) {

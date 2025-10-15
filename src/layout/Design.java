@@ -39,7 +39,7 @@ public class Design {
         JPanel headerPanel = new JPanel(new GridLayout(1,2));
 
         // Changed to a more dynamic panel placing
-        headerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.15) ));
+        headerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.10) ));
         headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         headerPanel.setOpaque(false);
 
@@ -68,7 +68,7 @@ public class Design {
     public static void footerDesign(JPanel mainPanel, String leftFt, String rightFt) {
         JPanel bottomPanel = new JPanel(new BorderLayout());
 
-        bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.15) ));
+        bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.10) ));
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
         bottomPanel.setOpaque(false);
 
@@ -130,10 +130,4 @@ public class Design {
         timer.setInitialDelay(0);
         timer.start();
     }
-
-    // create universal footer design
-    public static void footerDesign(JPanel panel) {
-
-    }
-
 }
