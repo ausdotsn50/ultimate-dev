@@ -10,7 +10,7 @@ public class DesignMenu {
         mainGbc.gridy = 0;
 
         JPanel textPanel = new JPanel(new GridBagLayout());
-        EmptyBorder border = new EmptyBorder(0, 0, 50, 0);
+        EmptyBorder border = new EmptyBorder(0, 0, 25, 0);
         textPanel.setBorder(border);
 
         GridBagConstraints gbcText = new GridBagConstraints();
@@ -35,9 +35,10 @@ public class DesignMenu {
 
         buttonPanel.setOpaque(false);
 
-        addPlayButton(buttonPanel, gbcButton);
-        addHowButton(buttonPanel, gbcButton);
-        addSettingsButton(buttonPanel, gbcButton);
+        addButton(buttonPanel, "Play", gbcButton, 0);
+        addButton(buttonPanel, "How to Play", gbcButton, 1);
+        addButton(buttonPanel, "Settings", gbcButton, 2);
+        addButton(buttonPanel, "Quit", gbcButton, 3);
 
         centerPanel.add(buttonPanel, mainGbc);
 
@@ -62,28 +63,16 @@ public class DesignMenu {
         textPanel.add(subtitle, gbc);
     }
 
-    private static void addPlayButton(JPanel buttonPanel, GridBagConstraints gbc) {
-        CustomButton play = new CustomButton("Play", 10, 10);
-        play.setFont(Design.loadCustomFont(20));
+    private static void addButton(JPanel buttonPanel, String buttonStr, GridBagConstraints gbc, int gridYCoord) {
+        int fontsize = 20;
 
-        buttonPanel.add(play, gbc);
+        CustomButton button = new CustomButton(buttonStr, 10, 10);
+        button.setPreferredSize(new Dimension(250, fontsize * 2));
+        button.setFont(Design.loadCustomFont(fontsize));
+
+        gbc.gridy = gridYCoord;
+
+        buttonPanel.add(button, gbc);
     }
 
-    private static void addHowButton(JPanel buttonPanel, GridBagConstraints gbc) {
-        CustomButton how = new CustomButton("How to Play", 10, 10);
-        how.setFont(Design.loadCustomFont(20));
-
-        gbc.gridy = 1;
-
-        buttonPanel.add(how, gbc);
-    }
-
-    private static void addSettingsButton(JPanel buttonPanel, GridBagConstraints gbc) {
-        CustomButton settings = new CustomButton("Settings", 10, 10);
-        settings.setFont(Design.loadCustomFont(20));
-
-        gbc.gridy = 2;
-
-        buttonPanel.add(settings, gbc);
-    }
 }

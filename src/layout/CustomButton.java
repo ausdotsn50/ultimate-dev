@@ -12,7 +12,7 @@ public class CustomButton extends JButton {
         this.arcWidth = arcWidth;
         this.arcHeight = arcHeight;
 
-        setContentAreaFilled(false);
+        // setContentAreaFilled(false);
         setFocusPainted(false);
         setBorderPainted(false);
         setOpaque(false);
