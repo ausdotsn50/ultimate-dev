@@ -11,11 +11,8 @@ public class UltDevScreen extends JPanel implements UltDevInterface{
     }
 
     @Override
-    public void displayCenter() {
-    }
+    public void displayCenter() { }
 
     @Override
-    public void displayBottom(JPanel mainPanel, String leftHd, String rightHd) {
-        Design.footerDesign(mainPanel, leftHd, rightHd);
-    }
+    public void displayBottom(JPanel mainPanel, String leftHd, String rightHd) { Design.footerDesign(mainPanel, leftHd, rightHd); }
 }

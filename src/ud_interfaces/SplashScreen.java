@@ -2,6 +2,7 @@ package ud_interfaces;
 
 import events.KeyEVHandler;
 import events.MouseEVHandler;
+import layout.Design;
 import layout.DesignSplash;
 
 import java.awt.*;
@@ -26,8 +27,12 @@ public class SplashScreen extends UltDevScreen {
         this.addKeyListener(keyEVHandler);
     }
 
+    @Override
     public void displayCenter() {
-        DesignSplash.titleDesign(this, "ULTIMATE DEV", "/* Think you've got what it takes? */", "Press 'Enter' to Start!");
+        JPanel centerPanel = new JPanel(new BorderLayout());
+
+        Design.centerDefault(this, centerPanel);
+        DesignSplash.titleDesign(centerPanel, "ULTIMATE DEV", "/* Think you've got what it takes? */", "Press 'Enter' to Start!");
     }
 
     @Override
