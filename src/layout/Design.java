@@ -93,6 +93,15 @@ public class Design {
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    // default design for center-part, 80 percent cover
+    public static void centerDefault(JPanel mainPanel, JPanel centerPanel) {
+        centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.80) ));
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
+        centerPanel.setOpaque(false);
+
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+    }
+
     // fade fx
     public static void startFadeEffect(JLabel label) {
         final float[] alpha = {1.0f};

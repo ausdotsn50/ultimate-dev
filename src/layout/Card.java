@@ -36,7 +36,7 @@ public class Card extends JFrame {
         container.add(mainMenu, "MainMenu");
 
         // Start with Splash
-        cardLayout.show(container, "SplashScreen");
+        cardLayout.show(container, "MainMenu");
     }
 
     public static void showMainMenu() {
@@ -47,6 +47,10 @@ public class Card extends JFrame {
     public static void showSplashScreen() {
         cardLayout.show(container, "SplashScreen");
         System.out.println("Showing splash screen...");
+    }
+
+    public static void menuQuit() {
+        System.exit(0);
     }
 
 }

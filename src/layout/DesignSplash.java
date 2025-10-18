@@ -4,13 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DesignSplash {
-    public static void titleDesign(JPanel mainPanel, String titleStr, String subStr, String instruc) {
-        JPanel centerPanel = new JPanel(new BorderLayout()); // This is for the label title
-
-        centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.80) ));
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
-        centerPanel.setOpaque(false);
-
+    public static void titleDesign(JPanel centerPanel, String titleStr, String subStr, String instruc) {
         // Title label
         JPanel titlePanel = new JPanel(new GridBagLayout());
         titlePanel.setOpaque(false);
@@ -26,7 +20,6 @@ public class DesignSplash {
         displayInstrucText(titlePanel, gbc, instruc);
 
         centerPanel.add(titlePanel, BorderLayout.CENTER);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     private static void displayTitleText(JPanel titlePanel, GridBagConstraints gbc, String titleStr) {
