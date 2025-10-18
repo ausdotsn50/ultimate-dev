@@ -12,8 +12,6 @@ public class MouseEVHandler extends MouseAdapter {
         Font origFont = src.getFont();
         String text = src.getText();
 
-        if (text.equals("Play")) return;
-
         // Increase font size on hover
         src.setText("Nothing to click here");
         src.setFont(origFont.deriveFont((float) (origFont.getSize() + 10)));
@@ -25,37 +23,9 @@ public class MouseEVHandler extends MouseAdapter {
         Font modFont = src.getFont();
         String text = src.getText();
 
-        if (text.equals("Play")) return;
-
         // Revert to orig text settings
         src.setText("Press 'Enter' to Start");
         src.setFont(modFont.deriveFont((float) (modFont.getSize() - 10)));
 
     }
-
-    /*
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        JLabel clickedLabel = (JLabel) e.getSource();
-        String text = clickedLabel.getText();
-
-        switch (text) {
-            case "Play":
-                cardLayout.show(container, "Splash"); //for testing only
-                break;
-            case "Settings":
-                //cardLayout.show(container, "Settings");
-                break;
-            case "How to Play":
-                //cardLayout.show(container, "HowToPlay");
-                break;
-            case "Exit":
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Clicked: " + text);
-                break;
-        }
-    }
-     */
 }

@@ -14,7 +14,7 @@ public class CustomButton extends JButton {
 
         // setContentAreaFilled(false);
         setFocusPainted(false);
-        setBorderPainted(false);
+        // setBorderPainted(false);
         setOpaque(false);
     }
 

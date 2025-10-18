@@ -49,4 +49,8 @@ public class Card extends JFrame {
         System.out.println("Showing splash screen...");
     }
 
+    public static void menuQuit() {
+        System.exit(0);
+    }
+
 }
