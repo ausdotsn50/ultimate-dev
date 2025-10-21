@@ -8,8 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class DesignMenu {
-    public static SwitchScreenBehavior switchScreen = new SwitchScreenBehavior();
-    public static MouseEVHandler mouseEVHandler = new MouseEVHandler(switchScreen);
+    static MouseEVHandler mouseEVHandler = new MouseEVHandler(new SwitchScreenBehavior(), null);
 
     public static void optionsDesign(JPanel mainPanel, JPanel centerPanel, GridBagConstraints mainGbc) {
         mainGbc.gridx = 0;
@@ -79,7 +78,11 @@ public class DesignMenu {
         gbc.gridy = gridYCoord;
 
         buttonPanel.add(button, gbc);
+
+        /*
+            Each button in MainMenu is given the CustomButton look
+            and SwitchScreen behavior
+         */
         button.addMouseListener(mouseEVHandler);
     }
-
 }

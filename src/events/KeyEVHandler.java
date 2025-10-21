@@ -8,10 +8,16 @@ import java.awt.event.KeyEvent;
 public class KeyEVHandler extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
-        int keyCode = e.getKeyCode();
-
-        if (keyCode == 10) {
-
+        switch (e.getKeyCode()) {
+            // add cases here
+            case 10:
+                Card.screenChoice("Main Menu");
+                break;
+            case 1:
+                System.out.println("hi");
+                break;
+            default:
+                break;
         }
 
     }

@@ -29,10 +29,10 @@ public class Card extends JFrame {
     private static void addPanels() {
         // Panels
         SplashScreen splashScreen = new SplashScreen();
-        container.add(splashScreen, "SplashScreen");
+        container.add(splashScreen, "Splash Screen");
 
         MainMenu mainMenu = new MainMenu();
-        container.add(mainMenu, "MainMenu");
+        container.add(mainMenu, "Main Menu");
 
         Play play = new Play();
         container.add(play, "Play");
@@ -44,11 +44,10 @@ public class Card extends JFrame {
         container.add(settings, "Settings");
 
         // Start with Splash
-        cardLayout.show(container, "MainMenu");
+        cardLayout.show(container, "Splash Screen");
     }
 
     public static void screenChoice(String cardPage) {
         cardLayout.show(container, cardPage);
     }
-
 }

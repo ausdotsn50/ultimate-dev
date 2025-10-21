@@ -1,21 +1,10 @@
 package events;
 
 import layout.Card;
-import layout.CustomButton;
 
 import javax.swing.*;
 
-public class SwitchScreenBehavior implements MouseBehavior {
-    @Override
-    public void onEnter(JLabel label) {
-
-    }
-
-    @Override
-    public void onExit(JLabel label) {
-
-    }
-
+public class SwitchScreenBehavior implements ButtonBehavior {
     @Override
     public void onClick(JButton button) {
         final String play = "Play", how = "How To Play", setting = "Settings", quit = "Quit";
@@ -37,5 +26,4 @@ public class SwitchScreenBehavior implements MouseBehavior {
                 break;
         }
     }
-
 }

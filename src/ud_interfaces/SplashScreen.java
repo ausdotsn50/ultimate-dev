@@ -1,5 +1,6 @@
 package ud_interfaces;
 
+import events.KeyEVHandler;
 import layout.Design;
 import layout.DesignSplash;
 
@@ -8,6 +9,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class SplashScreen extends UltDevScreen {
+    KeyEVHandler keyEVHandler = new KeyEVHandler();
     public SplashScreen(){
         this.setLayout(new BorderLayout());
 
@@ -16,7 +18,7 @@ public class SplashScreen extends UltDevScreen {
         displayBottom(this, "The Ultimate Dev Gameshow", "(c) Group Pink 2025");
 
         this.setFocusable(true);
-        // this.addKeyListener(keyEVHandler);
+        this.addKeyListener(keyEVHandler);
     }
 
     @Override
