@@ -1,10 +1,16 @@
 package layout;
 
+import events.MouseEVHandler;
+import events.SwitchScreenBehavior;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class DesignMenu {
+    public static SwitchScreenBehavior switchScreen = new SwitchScreenBehavior();
+    public static MouseEVHandler mouseEVHandler = new MouseEVHandler(switchScreen);
+
     public static void optionsDesign(JPanel mainPanel, JPanel centerPanel, GridBagConstraints mainGbc) {
         mainGbc.gridx = 0;
         mainGbc.gridy = 0;
@@ -36,7 +42,7 @@ public class DesignMenu {
         buttonPanel.setOpaque(false);
 
         addButton(buttonPanel, "Play", gbcButton, 0);
-        addButton(buttonPanel, "How to Play", gbcButton, 1);
+        addButton(buttonPanel, "How To Play", gbcButton, 1);
         addButton(buttonPanel, "Settings", gbcButton, 2);
         addButton(buttonPanel, "Quit", gbcButton, 3);
 
@@ -73,6 +79,7 @@ public class DesignMenu {
         gbc.gridy = gridYCoord;
 
         buttonPanel.add(button, gbc);
+        button.addMouseListener(mouseEVHandler);
     }
 
 }

@@ -53,7 +53,7 @@ public class DesignSplash {
         // add fade effect for instruction label
         Design.startFadeEffect(instruction);
 
-        instruction.addMouseListener(Design.mouseEVHandler);
+        instruction.addMouseListener(DesignMenu.mouseEVHandler);
         buttonPanel.add(instruction);
 
         gbc.insets.top = 75;

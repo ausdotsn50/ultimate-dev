@@ -1,11 +1,25 @@
 package events;
 
+import layout.CustomButton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MouseEVHandler extends MouseAdapter {
+    private final MouseBehavior behavior;
+
+    public MouseEVHandler(MouseBehavior behavior) {
+        this.behavior = behavior;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        behavior.onClick((JButton) e.getSource());
+    }
+
+    /*
     @Override
     public void mouseEntered(MouseEvent e) {
         JLabel src = (JLabel) e.getSource();
@@ -28,4 +42,5 @@ public class MouseEVHandler extends MouseAdapter {
         src.setFont(modFont.deriveFont((float) (modFont.getSize() - 10)));
 
     }
+     */
 }

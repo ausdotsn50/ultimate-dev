@@ -11,7 +11,7 @@ public class KeyEVHandler extends KeyAdapter {
         int keyCode = e.getKeyCode();
 
         if (keyCode == 10) {
-            Card.showMainMenu();
+
         }
 
     }

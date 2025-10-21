@@ -1,13 +1,14 @@
 package layout;
 
-import events.MouseEVHandler;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
+import java.util.Objects;
 
 public class Design {
     // prolly include bg image template here instead
+    public static Image bgId1 = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/template_v1.png"))).getImage();
+    public static Image bgId2 = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/template_v2.png"))).getImage();
 
     // 'static' - belongs to the class itself, not to any instance (object)
     static double res_factor = 0.60;
@@ -15,9 +16,6 @@ public class Design {
     // Immutable dimension size
     public static int screenWidth = (int)(1920 * res_factor);
     public static int screenHeight = (int)(1080 * res_factor);
-
-    // Mouse event design handler...
-    public static MouseEVHandler mouseEVHandler = new MouseEVHandler();
 
     // Review method
     public static Font loadCustomFont(int fontSize) {

@@ -1,7 +1,6 @@
 package layout;
 
-import ud_interfaces.MainMenu;
-import ud_interfaces.SplashScreen;
+import ud_interfaces.*;
 
 import java.awt.CardLayout;
 
@@ -35,22 +34,21 @@ public class Card extends JFrame {
         MainMenu mainMenu = new MainMenu();
         container.add(mainMenu, "MainMenu");
 
+        Play play = new Play();
+        container.add(play, "Play");
+
+        HowToPlay howToPlay = new HowToPlay();
+        container.add(howToPlay, "How To Play");
+
+        Settings settings = new Settings();
+        container.add(settings, "Settings");
+
         // Start with Splash
         cardLayout.show(container, "MainMenu");
     }
 
-    public static void showMainMenu() {
-        cardLayout.show(container, "MainMenu");
-        System.out.println("Showing main menu...");
-    }
-
-    public static void showSplashScreen() {
-        cardLayout.show(container, "SplashScreen");
-        System.out.println("Showing splash screen...");
-    }
-
-    public static void menuQuit() {
-        System.exit(0);
+    public static void screenChoice(String cardPage) {
+        cardLayout.show(container, cardPage);
     }
 
 }
