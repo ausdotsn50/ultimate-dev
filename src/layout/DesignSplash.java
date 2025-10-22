@@ -1,9 +1,14 @@
 package layout;
 
+import events.GrowReplaceBehavior;
+import events.MouseEVHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class DesignSplash {
+    static MouseEVHandler mouseEVHandler = new MouseEVHandler(null, new GrowReplaceBehavior(10));
+
     public static void titleDesign(JPanel centerPanel, String titleStr, String subStr, String instruc) {
         // Title label
         JPanel titlePanel = new JPanel(new GridBagLayout());
@@ -50,10 +55,15 @@ public class DesignSplash {
         instruction.setFont(Design.loadCustomFont(20));
         instruction.setForeground(UDColors.udCyan);
 
+        // Adding client property (hidden key-value pairing) to tailor to GrowReplaceBehavior
+        instruction.putClientProperty("hoverText", "Nothing to click here");
+        instruction.putClientProperty("exitText", "Press 'Enter' to Start!");
+
         // add fade effect for instruction label
         Design.startFadeEffect(instruction);
 
-        instruction.addMouseListener(Design.mouseEVHandler);
+        // To do: Add a specific handler here
+        instruction.addMouseListener(mouseEVHandler);
         buttonPanel.add(instruction);
 
         gbc.insets.top = 75;

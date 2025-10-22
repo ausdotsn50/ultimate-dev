@@ -6,11 +6,11 @@ import layout.UDImages;
 import javax.swing.*;
 import java.awt.*;
 
-public class Play extends UltDevScreen{
-    public Play(){
+public class HowToPlay extends UltDevScreen{
+    public HowToPlay(){
         this.setLayout(new BorderLayout());
 
-        displayTop(this, "play.html");
+        displayTop(this, "how_to_play.html");
         displayCenter();
         displayBottom(this, "The Ultimate Dev Gameshow", null);
     }

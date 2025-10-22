@@ -1,7 +1,6 @@
 package layout;
 
-import ud_interfaces.MainMenu;
-import ud_interfaces.SplashScreen;
+import ud_interfaces.*;
 
 import java.awt.CardLayout;
 
@@ -12,6 +11,8 @@ import javax.swing.JPanel;
 public class Card extends JFrame {
     static CardLayout cardLayout = new CardLayout();
     static JPanel container = new JPanel(cardLayout);
+
+    public static String currentPage = "";
 
     public Card() {
         this.setTitle("Ultimate Dev");
@@ -30,27 +31,32 @@ public class Card extends JFrame {
     private static void addPanels() {
         // Panels
         SplashScreen splashScreen = new SplashScreen();
-        container.add(splashScreen, "SplashScreen");
+        container.add(splashScreen, "Splash Screen");
 
         MainMenu mainMenu = new MainMenu();
-        container.add(mainMenu, "MainMenu");
+        container.add(mainMenu, "Main Menu");
+
+        Play play = new Play();
+        container.add(play, "Play");
+
+        HowToPlay howToPlay = new HowToPlay();
+        container.add(howToPlay, "How To Play");
+
+        Settings settings = new Settings();
+        container.add(settings, "Settings");
 
         // Start with Splash
-        cardLayout.show(container, "MainMenu");
+        currentPage = "Splash Screen";
+        cardLayout.show(container, currentPage);
     }
 
-    public static void showMainMenu() {
-        cardLayout.show(container, "MainMenu");
-        System.out.println("Showing main menu...");
-    }
+    public static void screenChoice(String cardPage) {
+        System.out.println("Trying to switch from " + currentPage + " to " + cardPage);
 
-    public static void showSplashScreen() {
-        cardLayout.show(container, "SplashScreen");
-        System.out.println("Showing splash screen...");
+        if(cardPage == null || cardPage.isEmpty() || cardPage.equals(currentPage)) {
+            // return early
+            return;
+        }
+        cardLayout.show(container, cardPage);
     }
-
-    public static void menuQuit() {
-        System.exit(0);
-    }
-
 }

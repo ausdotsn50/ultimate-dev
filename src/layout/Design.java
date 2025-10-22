@@ -1,13 +1,23 @@
 package layout;
 
+import events.GrowSwitchBehavior;
 import events.MouseEVHandler;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
+import java.util.Objects;
 
 public class Design {
-    // prolly include bg image template here instead
+    static MouseEVHandler mouseEVHandler = new MouseEVHandler(null, new GrowSwitchBehavior(10));
+
+    // Icon path in Design
+    public final static String[] iconPath =  new String[] {
+            "/Main Menu.png",
+            "/How To Play.png",
+            "/Settings.png",
+            "/Quit.png",
+    };
 
     // 'static' - belongs to the class itself, not to any instance (object)
     static double res_factor = 0.60;
@@ -15,25 +25,6 @@ public class Design {
     // Immutable dimension size
     public static int screenWidth = (int)(1920 * res_factor);
     public static int screenHeight = (int)(1080 * res_factor);
-
-    // Mouse event design handler...
-    public static MouseEVHandler mouseEVHandler = new MouseEVHandler();
-
-    // Review method
-    public static Font loadCustomFont(int fontSize) {
-        try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
-            if (is == null) {
-                throw new RuntimeException("Font file not found!");
-            }
-
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, is);
-            return customFont.deriveFont(Font.PLAIN, fontSize);
-
-        } catch (Exception e) {
-            // Add catch statement
-            return new Font("SansSerif", Font.PLAIN, fontSize);
-        }
-    }
 
     public static void headerDesign(JPanel mainPanel, String leftHd) {
         JPanel headerPanel = new JPanel(new GridLayout(1,2));
@@ -73,35 +64,63 @@ public class Design {
         bottomPanel.setOpaque(false);
 
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
+        footerCol(footerPanel, leftFt);
 
-        JLabel fLeft = new JLabel(leftFt, JLabel.CENTER);
-        JLabel fRight = new JLabel(rightFt,  JLabel.CENTER);
+        if(rightFt != null) {
+            footerCol(footerPanel, rightFt);
+        } else {
+            footerIcons(footerPanel, "Some str");
+        }
 
-        fLeft.setFont(Design.loadCustomFont(20));
-        fLeft.setForeground(Color.WHITE);
-
-        fRight.setFont(Design.loadCustomFont(20));
-        fRight.setForeground(Color.WHITE);
-
-        footerPanel.add(fLeft);
-        footerPanel.add(fRight);
         footerPanel.setOpaque(false);
 
         // Bottom panel components
         bottomPanel.add(footerPanel, BorderLayout.SOUTH);
-
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    public static void footerCol(JPanel footerPanel, String myStr) {
+        JLabel fRight = new JLabel(myStr,  JLabel.CENTER);
+        fRight.setFont(Design.loadCustomFont(20));
+        fRight.setForeground(Color.WHITE);
+        footerPanel.add(fRight);
+    }
+
+    public static void footerIcons(JPanel footerPanel, String someStr) {
+        JPanel fRightIcons = new JPanel(new GridLayout(1,4));
+        fRightIcons.setOpaque(false);
+
+        // To do: Add looping of icons here
+        for (String s : iconPath) {
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons" + s)));
+
+            // Extract Image from ImageIcon and --scale smooth--
+            Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+
+            JLabel iconHolder = new JLabel(new ImageIcon(iconScaled));
+            iconHolder.putClientProperty("path", s);
+
+            iconHolder.setHorizontalAlignment(SwingConstants.CENTER);
+            iconHolder.setPreferredSize(new Dimension(40, 40));
+
+            iconHolder.addMouseListener(mouseEVHandler);
+
+            fRightIcons.add(iconHolder);
+        }
+
+        footerPanel.add(fRightIcons);
     }
 
     // default design for center-part, 80 percent cover
     public static void centerDefault(JPanel mainPanel, JPanel centerPanel) {
-        centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.80) ));
+        centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80)));
         centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
         centerPanel.setOpaque(false);
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
+    // --- Abstracting away fx/design methods ---
     // fade fx
     public static void startFadeEffect(JLabel label) {
         final float[] alpha = {1.0f};
@@ -138,5 +157,21 @@ public class Design {
 
         timer.setInitialDelay(0);
         timer.start();
+    }
+
+    // Review method
+    public static Font loadCustomFont(int fontSize) {
+        try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
+            if (is == null) {
+                throw new RuntimeException("Font file not found!");
+            }
+
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, is);
+            return customFont.deriveFont(Font.PLAIN, fontSize);
+
+        } catch (Exception e) {
+            // Add catch statement
+            return new Font("SansSerif", Font.PLAIN, fontSize);
+        }
     }
 }
