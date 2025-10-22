@@ -3,6 +3,7 @@ package ud_interfaces;
 import events.KeyEVHandler;
 import layout.Design;
 import layout.DesignSplash;
+import layout.UDImages;
 
 import java.awt.*;
 
@@ -33,6 +34,6 @@ public class SplashScreen extends UltDevScreen {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        g2d.drawImage(Design.bgId1, 0, 0, getWidth(), getHeight(), this);
+        g2d.drawImage(UDImages.bgId1, 0, 0, getWidth(), getHeight(), this);
     }
 }

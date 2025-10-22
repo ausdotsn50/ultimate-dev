@@ -2,6 +2,7 @@ package ud_interfaces;
 
 import layout.Design;
 import layout.DesignMenu;
+import layout.UDImages;
 
 import java.awt.*;
 import java.util.Objects;
@@ -29,6 +30,6 @@ public class MainMenu extends UltDevScreen {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        g2d.drawImage(Design.bgId2, 0, 0, getWidth(), getHeight(), this);
+        g2d.drawImage(UDImages.bgId2, 0, 0, getWidth(), getHeight(), this);
     }
 }

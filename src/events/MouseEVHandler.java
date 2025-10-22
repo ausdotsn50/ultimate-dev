@@ -20,6 +20,9 @@ public class MouseEVHandler extends MouseAdapter {
         if(e.getSource() instanceof JButton) {
             buttonBehavior.onClick((JButton) e.getSource());
         }
+        else if(e.getSource() instanceof JLabel) {
+            labelBehavior.onClick((JLabel) e.getSource());
+        }
     }
 
     public void mouseEntered(MouseEvent e) {

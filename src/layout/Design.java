@@ -1,31 +1,22 @@
 package layout;
 
-import javax.imageio.ImageIO;
+import events.GrowSwitchBehavior;
+import events.MouseEVHandler;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
 public class Design {
-    // prolly include bg image template here instead
-    public static Image bgId1;
-    public static Image bgId2;
+    static MouseEVHandler mouseEVHandler = new MouseEVHandler(null, new GrowSwitchBehavior(10));
 
-    static {
-        try {
-            bgId1 = ImageIO.read(Objects.requireNonNull(Design.class.getResource("/image/template_v1.png")));
-            bgId2 = ImageIO.read(Objects.requireNonNull(Design.class.getResource("/image/template_v2.png")));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    static String[] iconPath =  new String[]{
-            "/home.png",
-            "/info.png",
-            "/settings.png",
-            "/shutdown.png",
+    // Icon path in Design
+    public final static String[] iconPath =  new String[] {
+            "/Main Menu.png",
+            "/How To Play.png",
+            "/Settings.png",
+            "/Quit.png",
     };
 
     // 'static' - belongs to the class itself, not to any instance (object)
@@ -107,7 +98,12 @@ public class Design {
             Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
 
             JLabel iconHolder = new JLabel(new ImageIcon(iconScaled));
-            iconHolder.setPreferredSize(new Dimension(20, 20));
+            iconHolder.putClientProperty("path", s);
+
+            iconHolder.setHorizontalAlignment(SwingConstants.CENTER);
+            iconHolder.setPreferredSize(new Dimension(40, 40));
+
+            iconHolder.addMouseListener(mouseEVHandler);
 
             fRightIcons.add(iconHolder);
         }

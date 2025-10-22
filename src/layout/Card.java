@@ -12,6 +12,8 @@ public class Card extends JFrame {
     static CardLayout cardLayout = new CardLayout();
     static JPanel container = new JPanel(cardLayout);
 
+    public static String currentPage = "";
+
     public Card() {
         this.setTitle("Ultimate Dev");
         this.setSize(Design.screenWidth, Design.screenHeight);
@@ -44,10 +46,17 @@ public class Card extends JFrame {
         container.add(settings, "Settings");
 
         // Start with Splash
-        cardLayout.show(container, "Play");
+        currentPage = "Splash Screen";
+        cardLayout.show(container, currentPage);
     }
 
     public static void screenChoice(String cardPage) {
+        System.out.println("Trying to switch from " + currentPage + " to " + cardPage);
+
+        if(cardPage == null || cardPage.isEmpty() || cardPage.equals(currentPage)) {
+            // return early
+            return;
+        }
         cardLayout.show(container, cardPage);
     }
 }

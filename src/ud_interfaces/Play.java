@@ -1,6 +1,7 @@
 package ud_interfaces;
 
 import layout.Design;
+import layout.UDImages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,6 @@ public class Play extends UltDevScreen{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create();
-        g2d.drawImage(Design.bgId1, 0, 0, getWidth(), getHeight(), this);
+        g2d.drawImage(UDImages.bgId1, 0, 0, getWidth(), getHeight(), this);
     }
 }

@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GrowReplaceBehavior implements LabelBehavior {
-    public int fontIncrease;
+    public int sizeIncrease;
 
-    public GrowReplaceBehavior(int fontIncrease) {
-        this.fontIncrease = fontIncrease;
+    public GrowReplaceBehavior(int sizeIncrease) {
+        this.sizeIncrease = sizeIncrease;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class GrowReplaceBehavior implements LabelBehavior {
         if (hoverText != null)
             label.setText(hoverText);
 
-        label.setFont(origFont.deriveFont((float) (origFont.getSize() + fontIncrease)));
+        label.setFont(origFont.deriveFont((float) (origFont.getSize() + sizeIncrease)));
     }
 
     @Override
@@ -29,6 +29,11 @@ public class GrowReplaceBehavior implements LabelBehavior {
         if (exitText != null)
             label.setText(exitText);
 
-        label.setFont(modFont.deriveFont((float) (modFont.getSize() - fontIncrease)));
+        label.setFont(modFont.deriveFont((float) (modFont.getSize() - sizeIncrease)));
+    }
+
+    @Override
+    public void onClick(JLabel label) {
+        // Do NADA
     }
 }

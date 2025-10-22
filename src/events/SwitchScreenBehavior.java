@@ -12,15 +12,17 @@ public class SwitchScreenBehavior implements ButtonBehavior {
         switch (button.getText()) {
             case play:
                 Card.screenChoice(play);
+                Card.currentPage = play;
                 break;
             case how:
                 Card.screenChoice(how);
+                Card.currentPage = how;
                 break;
             case setting:
                 Card.screenChoice(setting);
+                Card.currentPage = setting;
                 break;
             case quit:
-                Card.screenChoice(quit);
                 System.exit(0);
             default:
                 break;
