@@ -11,7 +11,7 @@ public class Play extends UltDevScreen{
 
         displayTop(this, "play.html");
         displayCenter();
-        displayBottom(this, "The Ultimate Dev Gameshow", "Points: 0");
+        displayBottom(this, "The Ultimate Dev Gameshow", null);
     }
 
     public void displayCenter(){

@@ -15,7 +15,7 @@ public class SplashScreen extends UltDevScreen {
 
         displayTop(this, "splash.html");
         displayCenter();
-        displayBottom(this, "The Ultimate Dev Gameshow", "(c) Group Pink 2025");
+        displayBottom(this, "The Ultimate Dev Gameshow", "(c) Group Pink");
 
         this.setFocusable(true);
         this.addKeyListener(keyEVHandler);

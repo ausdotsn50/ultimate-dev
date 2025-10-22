@@ -44,7 +44,7 @@ public class Card extends JFrame {
         container.add(settings, "Settings");
 
         // Start with Splash
-        cardLayout.show(container, "Splash Screen");
+        cardLayout.show(container, "Play");
     }
 
     public static void screenChoice(String cardPage) {

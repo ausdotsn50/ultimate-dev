@@ -16,7 +16,7 @@ public class MouseEVHandler extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        // 'Event filtering'
+        // 'Event filtering' by using 'instanceof keyword'
         if(e.getSource() instanceof JButton) {
             buttonBehavior.onClick((JButton) e.getSource());
         }
