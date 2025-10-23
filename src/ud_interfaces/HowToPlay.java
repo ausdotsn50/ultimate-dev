@@ -1,6 +1,7 @@
 package ud_interfaces;
 
 import layout.Design;
+import layout.DesignHowToPlay;
 import layout.UDImages;
 
 import javax.swing.*;
@@ -17,9 +18,10 @@ public class HowToPlay extends UltDevScreen{
 
     public void displayCenter(){
         JPanel centerPanel = new JPanel();
+        GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-        // DesignMenu.optionsDesign(this, centerPanel, gbc);
+        DesignHowToPlay.displayIns(this, centerPanel, gbc);
     }
 
     @Override
