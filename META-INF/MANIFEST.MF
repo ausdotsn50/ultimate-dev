@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Main-Class: Main
-SplashScreen-Image: image/splash.gif
+SplashScreen-Image: image/splash-inverted.gif
 

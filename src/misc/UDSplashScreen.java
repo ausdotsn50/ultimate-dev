@@ -36,6 +36,8 @@
 
 package misc;
 
+import layout.UDColors;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -45,7 +47,7 @@ public class UDSplashScreen extends Frame implements ActionListener {
         g.setComposite(AlphaComposite.Clear);
         g.fillRect(120,175,200,40);
         g.setPaintMode();
-        g.setColor(Color.BLACK);
+        g.setColor(UDColors.udWhite);
         g.drawString("Loading "+comps[(frame/5)%3]+"...", 120, 185);
     }
     public UDSplashScreen() {
