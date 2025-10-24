@@ -1,7 +1,6 @@
 package layout;
 
 import ud_interfaces.*;
-import ud_interfaces.SplashScreen;
 
 import java.awt.*;
 
@@ -31,9 +30,6 @@ public class Card extends JFrame {
     // To do: Add threading
     private static void addPanels() {
         // Panels
-        SplashScreen splashScreen = new SplashScreen();
-        container.add(splashScreen, "Splash Screen");
-
         LoadScreen loadScreen = new LoadScreen();
         container.add(loadScreen, "Load Screen");
 
@@ -48,20 +44,6 @@ public class Card extends JFrame {
 
         Settings settings = new Settings();
         container.add(settings, "Settings");
-
-        // Start with SplashScreen
-        currentPage = "Splash Screen";
-        cardLayout.show(container, currentPage);
-
-        new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException _) {
-                // Catch statement here
-            }
-            currentPage = "Load Screen";
-            cardLayout.show(container, currentPage);
-        }).start();
     }
 
     public static void screenChoice(String cardPage) {
