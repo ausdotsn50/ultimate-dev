@@ -5,15 +5,18 @@ import layout.Design;
 import layout.DesignLoading;
 import layout.UDImages;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class SplashScreen extends UltDevScreen{
+import javax.swing.*;
+
+public class LoadScreen extends UltDevScreen {
     KeyEVHandler keyEVHandler = new KeyEVHandler();
-    public SplashScreen(){
+    public LoadScreen(){
         this.setLayout(new BorderLayout());
 
+        displayTop(this, "load.html");
         displayCenter();
+        displayBottom(this, "The Ultimate Dev Gameshow", "(c) Group Pink");
 
         this.setFocusable(true);
         this.addKeyListener(keyEVHandler);
@@ -21,7 +24,10 @@ public class SplashScreen extends UltDevScreen{
 
     @Override
     public void displayCenter() {
-        // To do: Add logo here
+        JPanel centerPanel = new JPanel(new BorderLayout());
+
+        Design.centerDefault(this, centerPanel);
+        DesignLoading.titleDesign(centerPanel, "ULTIMATE DEV", "/* Think you've got what it takes? */", "Press 'Enter' to Start!");
     }
 
     @Override

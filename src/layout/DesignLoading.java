@@ -6,7 +6,7 @@ import events.MouseEVHandler;
 import javax.swing.*;
 import java.awt.*;
 
-public class DesignSplash {
+public class DesignLoading {
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(null, new GrowReplaceBehavior(10));
 
     public static void titleDesign(JPanel centerPanel, String titleStr, String subStr, String instruc) {
@@ -34,6 +34,7 @@ public class DesignSplash {
 
         titlePanel.add(title, gbc);
     }
+
 
     private static void displaySubText(JPanel titlePanel, GridBagConstraints gbc, String subStr) {
         JLabel subtitle = new JLabel(subStr, JLabel.CENTER);
