@@ -3,7 +3,7 @@ package ud_interfaces;
 import events.KeyEVHandler;
 import layout.Design;
 import layout.DesignLoading;
-import layout.UDImages;
+import layout.constants.UDImages;
 
 import java.awt.*;
 

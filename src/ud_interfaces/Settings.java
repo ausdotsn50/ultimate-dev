@@ -2,7 +2,7 @@ package ud_interfaces;
 
 import layout.Design;
 import layout.DesignSettings;
-import layout.UDImages;
+import layout.constants.UDImages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +17,7 @@ public class Settings extends UltDevScreen{
     }
 
     public void displayCenter(){
+        // Choose your custom layout
         JPanel centerPanel = new JPanel();
         GridBagConstraints gbc = new GridBagConstraints();
 

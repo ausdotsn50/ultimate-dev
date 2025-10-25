@@ -30,6 +30,7 @@ public class Card extends JFrame {
     // To do: Add threading
     private static void addPanels() {
         // Panels
+        // Note: first added - first one to shows
         LoadScreen loadScreen = new LoadScreen();
         container.add(loadScreen, "Load Screen");
 
@@ -44,6 +45,8 @@ public class Card extends JFrame {
 
         Settings settings = new Settings();
         container.add(settings, "Settings");
+
+        cardLayout.show(container, "Settings");
     }
 
     public static void screenChoice(String cardPage) {

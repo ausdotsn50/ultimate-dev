@@ -2,6 +2,7 @@ package layout;
 
 import events.GrowSwitchBehavior;
 import events.MouseEVHandler;
+import layout.constants.UDColors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -114,7 +115,9 @@ public class Design {
     // default design for center-part, 80 percent cover
     public static void centerDefault(JPanel mainPanel, JPanel centerPanel) {
         centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80)));
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
+
+        // Note on this constant border
+        // centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
         centerPanel.setOpaque(false);
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);

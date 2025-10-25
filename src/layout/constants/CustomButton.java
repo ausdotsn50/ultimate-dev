@@ -1,4 +1,4 @@
-package layout;
+package layout.constants;
 
 import javax.swing.*;
 import java.awt.*;

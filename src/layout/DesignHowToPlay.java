@@ -1,18 +1,20 @@
 package layout;
 
+import layout.constants.RoundedPanel;
+import layout.constants.UDColors;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 public class DesignHowToPlay {
-
     public static void displayIns(JPanel mainPanel, JPanel centerPanel, GridBagConstraints mainGbc) {
         centerPanel.setLayout(new GridBagLayout());
         centerPanel.setOpaque(false);
 
-        Color cardBg = Color.decode("#2d2d30");
-        Color headerColor = new Color(200, 255, 230);
-        Color textColor = new Color(255, 255, 255);
+        Color cardBg = UDColors.udGrayDark;
+        Color headerColor = UDColors.udMint;
+        Color textColor = UDColors.udWhite;
 
         JPanel cardsPanel = new JPanel(new GridLayout(1, 3, 25, 0));
         cardsPanel.setOpaque(false);
@@ -103,26 +105,5 @@ public class DesignHowToPlay {
         panel.add(rulesText, BorderLayout.CENTER);
 
         return panel;
-    }
-
-    static class RoundedPanel extends JPanel {
-        private final int cornerRadius;
-
-        public RoundedPanel(int radius) {
-            super();
-            this.cornerRadius = radius;
-            setOpaque(false);
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            Graphics2D g2 = (Graphics2D) g.create();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            Shape round = new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
-            g2.setColor(getBackground());
-            g2.fill(round);
-            g2.dispose();
-            super.paintComponent(g);
-        }
     }
 }

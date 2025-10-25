@@ -36,7 +36,7 @@
 
 package misc;
 
-import layout.UDColors;
+import layout.constants.UDColors;
 
 import java.awt.*;
 import java.awt.event.*;

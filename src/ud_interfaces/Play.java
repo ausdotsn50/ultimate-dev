@@ -1,12 +1,19 @@
 package ud_interfaces;
 
 import layout.Design;
-import layout.UDImages;
+import layout.DesignMenu;
+import layout.DesignSettings;
+import layout.constants.RoundedPanel;
+import layout.constants.UDImages;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Play extends UltDevScreen{
+    // Temporary conditions for showing screens
+    boolean cond1 =  true;
+    boolean cond2 = false;
+
     public Play(){
         this.setLayout(new BorderLayout());
 
@@ -15,10 +22,21 @@ public class Play extends UltDevScreen{
         displayBottom(this, "The Ultimate Dev Gameshow", null);
     }
 
+    // To do: Implement a changing displayCenter() for Play page
     public void displayCenter(){
-        JPanel centerPanel = new JPanel();
+        JPanel centerPanel = new JPanel(new GridLayout(3, 2));
 
         Design.centerDefault(this, centerPanel);
+
+        if(cond1){
+            for(int i = 0; i < 7; i++){
+                RoundedPanel rp = new RoundedPanel(20);
+                centerPanel.add(rp);
+            }
+        }
+        else if(cond2){
+
+        }
         // DesignMenu.optionsDesign(this, centerPanel, gbc);
     }
 

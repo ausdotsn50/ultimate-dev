@@ -2,6 +2,8 @@ package layout;
 
 import events.MouseEVHandler;
 import events.SwitchScreenBehavior;
+import layout.constants.CustomButton;
+import layout.constants.UDColors;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -14,12 +16,13 @@ public class DesignMenu {
         mainGbc.gridx = 0;
         mainGbc.gridy = 0;
 
+        int topPad = 25, botPad = topPad - 5;
         JPanel textPanel = new JPanel(new GridBagLayout());
-        EmptyBorder border = new EmptyBorder(0, 0, 25, 0);
+        EmptyBorder border = new EmptyBorder(topPad, 0, botPad, 0);
         textPanel.setBorder(border);
 
         GridBagConstraints gbcText = new GridBagConstraints();
-        gbcText.insets = new Insets(0, 0, 20, 0);
+        gbcText.insets = new Insets(0, 0, botPad, 0);
         gbcText.gridx = 0;
         gbcText.gridy = 0;
 
@@ -34,7 +37,7 @@ public class DesignMenu {
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbcButton = new GridBagConstraints();
 
-        gbcButton.insets = new Insets(0, 0, 20, 0);
+        gbcButton.insets = new Insets(0, 0, botPad, 0);
         gbcButton.gridx = 0;
         gbcButton.gridy = 0;
 
