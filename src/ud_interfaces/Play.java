@@ -3,17 +3,16 @@ package ud_interfaces;
 import layout.design.Design;
 import layout.design.DesignCategory;
 import layout.constants.UDImages;
+import layout.design.DesignQuiz;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Play extends UltDevScreen{
     // Temporary conditions for showing screens
+    boolean categorySelect =  true;
+
     public static int categoryCnt = 7;
-
-    boolean cond1 =  true;
-    boolean cond2 = false;
-
     public Play(){
         this.setLayout(new BorderLayout());
 
@@ -29,11 +28,14 @@ public class Play extends UltDevScreen{
 
         Design.centerDefault(this, centerPanel);
 
-        if(cond1){
+        int categoryIndex;
+        if(categorySelect){
             DesignCategory.showCategories(centerPanel, gbc);
         }
-        else if(cond2){
-            // Do this
+        else {
+            // Else if not selecting a category --> go to the interface you're going to go
+            // Parsing the appropriate TOML file
+            DesignQuiz.showQuiz(centerPanel, gbc);
         }
     }
 

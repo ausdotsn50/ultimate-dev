@@ -1,5 +1,7 @@
 package layout.design;
 
+import events.MouseEVHandler;
+import events.button.GoToCategBehavior;
 import layout.constants.CustomButton;
 import layout.constants.UDColors;
 import ud_interfaces.Play;
@@ -8,13 +10,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DesignCategory {
-    static String[] categories = {
+    public static String[] categories = {
             "Introduction to the Paradigms", "Procedural Programming",
             "Functional Programming", "Object-Oriented Programming",
             "Imperative vs Declarative", "Event-Driven Programming",
             "Component Mappings between Paradigms",
-
     };
+
+    static MouseEVHandler mouseEVHandler = new MouseEVHandler(new GoToCategBehavior(), null);
     public static void showCategories(JPanel centerPanel, GridBagConstraints gbc) {
         int tbInsets = 20;
 
@@ -53,7 +56,7 @@ public class DesignCategory {
         for (int i = 0; i < Play.categoryCnt; i++) {
             buttonGbc.gridx += 1;
 
-            if(i%3==0){
+            if(i % 3 == 0){
                 if(i == 6) { buttonGbc.gridx = 1; }
                 else { buttonGbc.gridx = 0; }
                 buttonGbc.gridy += 1;
@@ -62,8 +65,9 @@ public class DesignCategory {
             // Replace with custom buttons
             CustomButton category = new CustomButton(categories[i], 10, 10);
             category.doLayout();
-
             category.setFont(Design.loadCustomFont(fontsize));
+            category.addMouseListener(mouseEVHandler);
+
             buttonPanel.add(category, buttonGbc);
         }
     }

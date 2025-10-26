@@ -73,11 +73,8 @@ public class Design {
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
         footerCol(footerPanel, leftFt);
 
-        if(rightFt != null) {
-            footerCol(footerPanel, rightFt);
-        } else {
-            footerIcons(footerPanel, "Some str");
-        }
+        if(rightFt != null) { footerCol(footerPanel, rightFt); }
+        else { footerIcons(footerPanel, "Some str"); }
 
         footerPanel.setOpaque(false);
 
@@ -100,21 +97,16 @@ public class Design {
         // To do: Add looping of icons here
         for (String s : iconPath) {
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons" + s)));
-
-            // Extract Image from ImageIcon and --scale smooth--
-            Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Extract Image from ImageIcon and --scale smooth--
 
             JLabel iconHolder = new JLabel(new ImageIcon(iconScaled));
             iconHolder.putClientProperty("path", s);
-
             iconHolder.setHorizontalAlignment(SwingConstants.CENTER);
             iconHolder.setPreferredSize(new Dimension(40, 40));
-
             iconHolder.addMouseListener(mouseEVHandler);
 
             fRightIcons.add(iconHolder);
         }
-
         footerPanel.add(fRightIcons);
     }
 

@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class DesignMenu {
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(new SwitchScreenBehavior(), null);
-    static String[] buttons = {
+    public static String[] buttons = {
             "Play",
             "How To Play",
             "Settings",
