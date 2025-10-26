@@ -9,23 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public class GoToCategBehavior implements ButtonBehavior {
-    /*
-    // Get the list of question tables
-    List<Map<String, Object>> questions = toml.getList("questions");
-
-            for (Map<String, Object> q : questions) {
-        System.out.println("Question: " + q.get("question"));
-        System.out.println("Answer: " + q.get("answer"));
-        System.out.println("Alternatives: " + q.get("alternatives"));
-        System.out.println("--------------------------------------");
-    }
-     */
-
     @Override
     public void onClick(JButton button) {
-        System.out.println(button.getText());
+        String[] buttonName = button.getText().split(" ");
+        String file = buttonName[0].substring(0, 1).toLowerCase() + buttonName[0].substring(1);
+        System.out.println(file);
 
-        Toml toml = new Toml().read(getTomlFile());
+        Toml qDotTOML = new Toml().read(getTomlFile(file));
         /*
             - Click button
             - Activate parser
@@ -33,7 +23,8 @@ public class GoToCategBehavior implements ButtonBehavior {
             - Pick item via randomizer
             - Check DS if empty or not
          */
-        List<Map<String, Object>> questions = toml.getList("questions");
+        // return toml
+        List<Map<String, Object>> questions = qDotTOML.getList("questions");
 
         for (Map<String, Object> q : questions) {
             System.out.println("Question: " + q.get("question"));
@@ -43,8 +34,8 @@ public class GoToCategBehavior implements ButtonBehavior {
         }
     }
 
-    private Toml getTomlFile() {
-        try (InputStream input = getClass().getResourceAsStream("/questions/introduction.toml")) {
+    private Toml getTomlFile(String file) {
+        try (InputStream input = getClass().getResourceAsStream("/questions/" + file + ".toml")) {
             // Checker if InputStream is null
             if (input == null) {
                 throw new FileNotFoundException("TOML file not found");
