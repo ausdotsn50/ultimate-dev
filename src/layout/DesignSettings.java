@@ -5,12 +5,9 @@ import layout.constants.UDColors;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
 
 public class DesignSettings {
-    public static void centerDesign(JPanel mainPanel, JPanel centerPanel, GridBagConstraints mainGbc) {
-        centerPanel.setLayout(new GridBagLayout());
-
+    public static void centerDesign(JPanel centerPanel, GridBagConstraints mainGbc) {
         mainGbc.gridx = 0;
 
         // Hex color string replaced with constant color
@@ -24,8 +21,6 @@ public class DesignSettings {
         mainGbc.gridy = 1;
         mainGbc.insets = new Insets(0, 0, botPad, 0);
         centerPanel.add(sfxPanel, mainGbc);
-
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     // Creates settings card

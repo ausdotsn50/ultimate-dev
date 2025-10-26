@@ -18,11 +18,11 @@ public class Settings extends UltDevScreen{
 
     public void displayCenter(){
         // Choose your custom layout
-        JPanel centerPanel = new JPanel();
+        JPanel centerPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-        DesignSettings.centerDesign(this, centerPanel, gbc);
+        DesignSettings.centerDesign(centerPanel, gbc);
     }
 
     @Override

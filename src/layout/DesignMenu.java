@@ -54,7 +54,6 @@ public class DesignMenu {
         }
 
         centerPanel.add(buttonPanel, mainGbc);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     private static void addTitle(JPanel textPanel, GridBagConstraints gbc) {

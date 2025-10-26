@@ -46,9 +46,6 @@ public class DesignHowToPlay {
         gbc.gridy = 1;
         gbc.insets = new Insets(gap, gap, gap, gap);
         centerPanel.add(rulesPanel, gbc);
-
-        mainPanel.setBackground(cardBg);
-        mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
     private static JPanel createInfoCard(String title, String description, Color bgColor, Color textColor, Color accentColor) {
