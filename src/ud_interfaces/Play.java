@@ -1,7 +1,7 @@
 package ud_interfaces;
 
-import layout.Design;
-import layout.DesignCategory;
+import layout.design.Design;
+import layout.design.DesignCategory;
 import layout.constants.UDImages;
 
 import javax.swing.*;
@@ -33,7 +33,7 @@ public class Play extends UltDevScreen{
             DesignCategory.showCategories(centerPanel, gbc);
         }
         else if(cond2){
-
+            // Do this
         }
     }
 

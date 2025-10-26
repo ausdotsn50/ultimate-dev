@@ -1,4 +1,4 @@
-package layout;
+package layout.design;
 
 import layout.constants.RoundedPanel;
 import layout.constants.UDColors;

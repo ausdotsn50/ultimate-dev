@@ -68,7 +68,7 @@ public class UDSplashScreen extends Frame implements ActionListener {
             try {
                 Thread.sleep(90);
             }
-            catch(InterruptedException _) {
+            catch(InterruptedException e) {
                 // Catch statement
             }
         }

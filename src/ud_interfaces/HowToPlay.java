@@ -1,7 +1,7 @@
 package ud_interfaces;
 
-import layout.Design;
-import layout.DesignHowToPlay;
+import layout.design.Design;
+import layout.design.DesignHowToPlay;
 import layout.constants.UDImages;
 
 import javax.swing.*;

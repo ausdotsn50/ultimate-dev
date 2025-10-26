@@ -1,4 +1,4 @@
-package events;
+package events.label;
 
 import javax.swing.*;
 

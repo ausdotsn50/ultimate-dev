@@ -1,7 +1,7 @@
 package ud_interfaces;
 
-import layout.Design;
-import layout.DesignSettings;
+import layout.design.Design;
+import layout.design.DesignSettings;
 import layout.constants.UDImages;
 
 import javax.swing.*;

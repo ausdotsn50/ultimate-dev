@@ -1,6 +1,6 @@
-package layout;
+package layout.design;
 
-import events.GrowSwitchBehavior;
+import events.label.GrowSwitchBehavior;
 import events.MouseEVHandler;
 import layout.constants.UDColors;
 

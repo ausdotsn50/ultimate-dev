@@ -1,7 +1,7 @@
-package layout;
+package layout.design;
 
 import events.MouseEVHandler;
-import events.SwitchScreenBehavior;
+import events.button.SwitchScreenBehavior;
 import layout.constants.CustomButton;
 import layout.constants.UDColors;
 

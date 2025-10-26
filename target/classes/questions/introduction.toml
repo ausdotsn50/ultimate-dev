@@ -1,0 +1,11 @@
+[[questions]]
+question = "Which of the following best describes a programming paradigm?"
+answer = "A style or approach to programming"
+alternatives = ["A method of debugging programs", "A program’s syntax", "A compiler structure"]
+
+[[questions]]
+question = "The imperative paradigm focuses on..."
+answer = "Describing how to perform operations step-by-step"
+alternatives = ["Describing what result should be obtained",
+    "Describing relationships among facts", "Avoiding mutable data"]
+

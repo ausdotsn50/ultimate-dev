@@ -1,5 +1,6 @@
 package layout;
 
+import layout.design.Design;
 import ud_interfaces.*;
 
 import java.awt.*;
@@ -46,7 +47,7 @@ public class Card extends JFrame {
         Settings settings = new Settings();
         container.add(settings, "Settings");
 
-        cardLayout.show(container, "Play");
+        // cardLayout.show(container, "Play");
     }
 
     public static void screenChoice(String cardPage) {

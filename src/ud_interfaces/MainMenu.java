@@ -1,7 +1,7 @@
 package ud_interfaces;
 
-import layout.Design;
-import layout.DesignMenu;
+import layout.design.Design;
+import layout.design.DesignMenu;
 import layout.constants.UDImages;
 
 import java.awt.*;

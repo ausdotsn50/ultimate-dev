@@ -1,4 +1,4 @@
-package layout;
+package layout.design;
 
 import layout.constants.RoundedPanel;
 import layout.constants.UDColors;
@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class DesignHowToPlay {
     public static void displayIns(JPanel mainPanel, JPanel centerPanel, GridBagConstraints gbc) {
+        /*
         gbc.gridx = 0;
 
         Color cardBg = UDColors.udGrayDark;
@@ -46,8 +47,12 @@ public class DesignHowToPlay {
         gbc.gridy = 1;
         gbc.insets = new Insets(gap, gap, gap, gap);
         centerPanel.add(rulesPanel, gbc);
+
+         */
     }
 
+
+    /*
     private static JPanel createInfoCard(String title, String description, Color bgColor, Color textColor, Color accentColor) {
         RoundedPanel card = new RoundedPanel();
         card.setBackground(bgColor);
@@ -122,4 +127,5 @@ public class DesignHowToPlay {
         rulesText.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25));
         return rulesText;
     }
+     */
 }

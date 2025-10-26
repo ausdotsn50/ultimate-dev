@@ -1,6 +1,6 @@
 package layout.constants;
 
-import layout.Design;
+import layout.design.Design;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
