@@ -15,50 +15,61 @@ public class DesignCategory {
             "Component Mappings between Paradigms",
 
     };
-    public static void showCategories(JPanel mainPanel, JPanel centerPanel, GridBagConstraints gbc) {
-        int tbInsets = 20, lrInsets = 30;
+    public static void showCategories(JPanel centerPanel, GridBagConstraints gbc) {
+        int tbInsets = 20;
 
         gbc.gridx = 0; gbc.gridy = 0;
         gbc.insets = new Insets(tbInsets / 2, 0, tbInsets / 2, 0);
 
         // Dedicated panel for the text
-        JPanel textPanel = new JPanel();
-        textPanel.setOpaque(false);
+        JPanel titlePanel = new JPanel();
+        titlePanel.setOpaque(false);
 
+        addTitle(titlePanel);
+        centerPanel.add(titlePanel, gbc);
+
+        GridBagConstraints buttonGbc = new GridBagConstraints(); // gbc for buttons
+        buttonGbc.insets = new Insets(tbInsets, 0, tbInsets, 0);
+        buttonGbc.gridx = 0; buttonGbc.gridy = 0;
+
+        gbc.gridy = 1;
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        buttonPanel.setOpaque(false);
+
+        addCategoryButtons(buttonPanel, buttonGbc);
+        centerPanel.add(buttonPanel, gbc);
+    }
+
+    public static void addTitle(JPanel titlePanel) {
         JLabel titleLabel = new JLabel("{ Choose a category }");
         titleLabel.setFont(Design.loadCustomFont(Design.titleSize));
         titleLabel.setForeground(UDColors.udWhite);
 
-        textPanel.add(titleLabel);
-        centerPanel.add(textPanel, gbc);
+        titlePanel.add(titleLabel);
+    }
 
-        JPanel buttonPanel = new JPanel(new GridBagLayout());
-        buttonPanel.setOpaque(false);
-
-        GridBagConstraints buttonGbc = new GridBagConstraints(); // gbc for buttons
-        buttonGbc.insets = new Insets(tbInsets, 0, tbInsets, lrInsets);
-        buttonGbc.gridx = 0;
-        buttonGbc.gridy = 0;
-
+    public static void addCategoryButtons(JPanel buttonPanel, GridBagConstraints buttonGbc) {
         int fontsize = Design.regularSize;
         for (int i = 0; i < Play.categoryCnt; i++) {
             buttonGbc.gridx += 1;
 
             if(i%3==0){
-                buttonGbc.gridx = 0;
+                if(i == 6) {
+                    buttonGbc.gridx = 1;
+                }
+                else {
+                    buttonGbc.gridx = 0;
+                }
                 buttonGbc.gridy += 1;
             }
 
             // Replace with custom buttons
             CustomButton category = new CustomButton(categories[i], 10, 10);
-            category.setPreferredSize(new Dimension(250, fontsize * 3));
+            category.doLayout();
 
             category.setFont(Design.loadCustomFont(fontsize));
             buttonPanel.add(category, buttonGbc);
         }
-
-        gbc.gridy = 1;
-        centerPanel.add(buttonPanel, gbc);
-
     }
+
 }

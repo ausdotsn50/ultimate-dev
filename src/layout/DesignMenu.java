@@ -18,7 +18,7 @@ public class DesignMenu {
             "Quit",
     };
 
-    public static void optionsDesign(JPanel mainPanel, JPanel centerPanel, GridBagConstraints mainGbc) {
+    public static void optionsDesign(JPanel centerPanel, GridBagConstraints mainGbc) {
         mainGbc.gridx = 0;
         mainGbc.gridy = 0;
 
@@ -76,10 +76,12 @@ public class DesignMenu {
     }
 
     private static void addButton(JPanel buttonPanel, String buttonStr, GridBagConstraints gbc, int gridYCoord) {
+        int fontSize = Design.subTitleSize;
+
         // Main menu buttons customizations
         CustomButton button = new CustomButton(buttonStr, 10, 10);
-        button.setPreferredSize(new Dimension(250, Design.subTitleSize * 2));
-        button.setFont(Design.loadCustomFont(Design.subTitleSize));
+        button.setPreferredSize(new Dimension(250, fontSize * 2));
+        button.setFont(Design.loadCustomFont(fontSize));
 
         gbc.gridy = gridYCoord;
         buttonPanel.add(button, gbc);

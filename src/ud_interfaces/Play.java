@@ -2,7 +2,6 @@ package ud_interfaces;
 
 import layout.Design;
 import layout.DesignCategory;
-import layout.constants.CustomButton;
 import layout.constants.UDImages;
 
 import javax.swing.*;
@@ -31,7 +30,7 @@ public class Play extends UltDevScreen{
         Design.centerDefault(this, centerPanel);
 
         if(cond1){
-            DesignCategory.showCategories(this, centerPanel, gbc);
+            DesignCategory.showCategories(centerPanel, gbc);
         }
         else if(cond2){
 

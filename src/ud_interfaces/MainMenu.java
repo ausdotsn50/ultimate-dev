@@ -22,7 +22,7 @@ public class MainMenu extends UltDevScreen {
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-        DesignMenu.optionsDesign(this, centerPanel, gbc);
+        DesignMenu.optionsDesign(centerPanel, gbc);
     }
 
     @Override
