@@ -11,7 +11,12 @@ import java.awt.*;
 
 public class DesignMenu {
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(new SwitchScreenBehavior(), null);
-
+    static String[] buttons = {
+            "Play",
+            "How To Play",
+            "Settings",
+            "Quit",
+    };
     public static void optionsDesign(JPanel mainPanel, JPanel centerPanel, GridBagConstraints mainGbc) {
         mainGbc.gridx = 0;
         mainGbc.gridy = 0;
@@ -43,13 +48,12 @@ public class DesignMenu {
 
         buttonPanel.setOpaque(false);
 
-        addButton(buttonPanel, "Play", gbcButton, 0);
-        addButton(buttonPanel, "How To Play", gbcButton, 1);
-        addButton(buttonPanel, "Settings", gbcButton, 2);
-        addButton(buttonPanel, "Quit", gbcButton, 3);
+        // replace w/ loop
+        for (int i = 0; i < buttons.length; i++) {
+            addButton(buttonPanel, buttons[i], gbcButton, i);
+        }
 
         centerPanel.add(buttonPanel, mainGbc);
-
         mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
@@ -79,7 +83,6 @@ public class DesignMenu {
         button.setFont(Design.loadCustomFont(fontsize));
 
         gbc.gridy = gridYCoord;
-
         buttonPanel.add(button, gbc);
 
         /*

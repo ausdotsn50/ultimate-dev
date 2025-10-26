@@ -17,7 +17,7 @@ public class HowToPlay extends UltDevScreen{
     }
 
     public void displayCenter(){
-        JPanel centerPanel = new JPanel();
+        JPanel centerPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);

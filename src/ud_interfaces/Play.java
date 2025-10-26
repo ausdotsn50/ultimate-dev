@@ -1,9 +1,7 @@
 package ud_interfaces;
 
 import layout.Design;
-import layout.DesignMenu;
-import layout.DesignSettings;
-import layout.constants.RoundedPanel;
+import layout.constants.CustomButton;
 import layout.constants.UDImages;
 
 import javax.swing.*;
@@ -13,6 +11,8 @@ public class Play extends UltDevScreen{
     // Temporary conditions for showing screens
     boolean cond1 =  true;
     boolean cond2 = false;
+
+    int categoryCnt = 7;
 
     public Play(){
         this.setLayout(new BorderLayout());
@@ -24,14 +24,25 @@ public class Play extends UltDevScreen{
 
     // To do: Implement a changing displayCenter() for Play page
     public void displayCenter(){
-        JPanel centerPanel = new JPanel(new GridLayout(3, 2));
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(0, 20, 0, 20);
+        gbc.gridy = 0;
+
+        JPanel titlePanel = new JPanel(new GridBagLayout());
 
         Design.centerDefault(this, centerPanel);
 
+        int fontsize = 20;
         if(cond1){
-            for(int i = 0; i < 7; i++){
-                RoundedPanel rp = new RoundedPanel(20);
-                centerPanel.add(rp);
+            for(int i = 0; i < categoryCnt; i++){
+                gbc.gridx = i;
+                // Replace with custom buttons
+                CustomButton category = new CustomButton("Text", 10,10);
+                category.setPreferredSize(new Dimension(250, fontsize * 2));
+
+                category.setFont(Design.loadCustomFont(fontsize));
+                centerPanel.add(category, gbc);
             }
         }
         else if(cond2){
