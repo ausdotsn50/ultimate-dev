@@ -32,8 +32,9 @@ public record GrowSwitchBehavior(int sizeIncrease) implements LabelBehavior {
     public void onClick(JLabel label) {
         String path = (String) label.getClientProperty("path");
         switch (path) {
-            case "/Main Menu.png", "/How To Play.png", "/Settings.png":
-                String screen = path.replace(".png", "").replace("/", "");
+            case "/Main_Menu.png", "/How_To_Play.png", "/Settings.png":
+                String screen = path.replace(".png", "").replace("_", " ")
+                        .replace("/", "");
                 Card.screenChoice(screen);
                 Card.currentPage = screen;
                 break;

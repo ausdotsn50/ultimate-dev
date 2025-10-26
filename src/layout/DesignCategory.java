@@ -54,12 +54,8 @@ public class DesignCategory {
             buttonGbc.gridx += 1;
 
             if(i%3==0){
-                if(i == 6) {
-                    buttonGbc.gridx = 1;
-                }
-                else {
-                    buttonGbc.gridx = 0;
-                }
+                if(i == 6) { buttonGbc.gridx = 1; }
+                else { buttonGbc.gridx = 0; }
                 buttonGbc.gridy += 1;
             }
 
@@ -71,5 +67,4 @@ public class DesignCategory {
             buttonPanel.add(category, buttonGbc);
         }
     }
-
 }

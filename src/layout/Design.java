@@ -20,8 +20,8 @@ public class Design {
 
     // Icon path in Design
     public final static String[] iconPath =  new String[] {
-            "/Main Menu.png",
-            "/How To Play.png",
+            "/Main_Menu.png",
+            "/How_To_Play.png",
             "/Settings.png",
             "/Quit.png",
     };
