@@ -44,11 +44,11 @@ public class DesignSettings {
         textPanel.setAlignmentX(Component.LEFT_ALIGNMENT); 
 
         JLabel titleLabel = new JLabel(title);
-        titleLabel.setFont(Design.loadCustomFont(20));
+        titleLabel.setFont(Design.loadCustomFont(Design.subTitleSize));
         titleLabel.setForeground(UDColors.udMint);
 
         JLabel subtitleLabel = new JLabel("// " + subtitle);
-        subtitleLabel.setFont(new Font("Consolas", Font.PLAIN, 14));
+        subtitleLabel.setFont(new Font("Consolas", Font.PLAIN, Design.regularSize));
         subtitleLabel.setForeground(UDColors.udGrayLight);
 
         textPanel.add(titleLabel);

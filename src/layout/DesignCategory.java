@@ -1,37 +1,64 @@
 package layout;
 
 import layout.constants.CustomButton;
+import layout.constants.UDColors;
+import ud_interfaces.Play;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class DesignCategory {
-    public static void showCategories() {
-        /*
-        gbc.insets = new Insets(0, 20, 0, 20);
-        gbc.gridy = 0;
+    static String[] categories = {
+            "Introduction to the Paradigms", "Procedural Programming",
+            "Functional Programming", "Object-Oriented Programming",
+            "Imperative vs Declarative", "Event-Driven Programming",
+            "Component Mappings between Paradigms",
 
-        JPanel titlePanel = new JPanel(new GridBagLayout());
+    };
+    public static void showCategories(JPanel mainPanel, JPanel centerPanel, GridBagConstraints gbc) {
+        int tbInsets = 20, lrInsets = 30;
 
-        Design.centerDefault(this, centerPanel);
+        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.insets = new Insets(tbInsets / 2, 0, tbInsets / 2, 0);
 
-        int fontsize = 20;
-        if(cond1){
-            for(int i = 0; i < categoryCnt; i++){
-                gbc.gridx = i;
-                // Replace with custom buttons
-                CustomButton category = new CustomButton("Text", 10,10);
-                category.setPreferredSize(new Dimension(250, fontsize * 2));
+        // Dedicated panel for the text
+        JPanel textPanel = new JPanel();
+        textPanel.setOpaque(false);
 
-                category.setFont(Design.loadCustomFont(fontsize));
-                centerPanel.add(category, gbc);
+        JLabel titleLabel = new JLabel("{ Choose a category }");
+        titleLabel.setFont(Design.loadCustomFont(Design.titleSize));
+        titleLabel.setForeground(UDColors.udWhite);
+
+        textPanel.add(titleLabel);
+        centerPanel.add(textPanel, gbc);
+
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        buttonPanel.setOpaque(false);
+
+        GridBagConstraints buttonGbc = new GridBagConstraints(); // gbc for buttons
+        buttonGbc.insets = new Insets(tbInsets, 0, tbInsets, lrInsets);
+        buttonGbc.gridx = 0;
+        buttonGbc.gridy = 0;
+
+        int fontsize = Design.regularSize;
+        for (int i = 0; i < Play.categoryCnt; i++) {
+            buttonGbc.gridx += 1;
+
+            if(i%3==0){
+                buttonGbc.gridx = 0;
+                buttonGbc.gridy += 1;
             }
-        }
-        else if(cond2){
 
+            // Replace with custom buttons
+            CustomButton category = new CustomButton(categories[i], 10, 10);
+            category.setPreferredSize(new Dimension(250, fontsize * 3));
+
+            category.setFont(Design.loadCustomFont(fontsize));
+            buttonPanel.add(category, buttonGbc);
         }
 
-         */
-        // DesignMenu.optionsDesign(this, centerPanel, gbc);
+        gbc.gridy = 1;
+        centerPanel.add(buttonPanel, gbc);
+
     }
 }

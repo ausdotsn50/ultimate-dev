@@ -17,6 +17,7 @@ public class DesignMenu {
             "Settings",
             "Quit",
     };
+
     public static void optionsDesign(JPanel mainPanel, JPanel centerPanel, GridBagConstraints mainGbc) {
         mainGbc.gridx = 0;
         mainGbc.gridy = 0;
@@ -58,7 +59,7 @@ public class DesignMenu {
 
     private static void addTitle(JPanel textPanel, GridBagConstraints gbc) {
         JLabel title = new JLabel("{ Ultimate Dev }");
-        title.setFont(Design.loadCustomFont(50));
+        title.setFont(Design.loadCustomFont(Design.titleSize));
         title.setForeground(UDColors.udWhite);
 
         textPanel.add(title, gbc);
@@ -66,7 +67,7 @@ public class DesignMenu {
 
     private static void addSubtitle(JPanel textPanel, GridBagConstraints gbc) {
         JLabel subtitle = new JLabel("/* Select an option to continue */");
-        subtitle.setFont(Design.loadCustomFont(20));
+        subtitle.setFont(Design.loadCustomFont(Design.subTitleSize));
         subtitle.setForeground(UDColors.udGreen);
 
         gbc.gridy = 1;
@@ -75,11 +76,10 @@ public class DesignMenu {
     }
 
     private static void addButton(JPanel buttonPanel, String buttonStr, GridBagConstraints gbc, int gridYCoord) {
-        int fontsize = 20;
-
+        // Main menu buttons customizations
         CustomButton button = new CustomButton(buttonStr, 10, 10);
-        button.setPreferredSize(new Dimension(250, fontsize * 2));
-        button.setFont(Design.loadCustomFont(fontsize));
+        button.setPreferredSize(new Dimension(250, Design.subTitleSize * 2));
+        button.setFont(Design.loadCustomFont(Design.subTitleSize));
 
         gbc.gridy = gridYCoord;
         buttonPanel.add(button, gbc);

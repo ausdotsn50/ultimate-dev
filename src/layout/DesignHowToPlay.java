@@ -64,7 +64,7 @@ public class DesignHowToPlay {
         // Title
         gbc.gridy = 0;
         JLabel titleLabel = new JLabel(title);
-        titleLabel.setFont(Design.loadCustomFont(20));
+        titleLabel.setFont(Design.loadCustomFont(Design.subTitleSize));
         titleLabel.setForeground(accentColor);
         card.add(titleLabel, gbc);
 
@@ -94,9 +94,9 @@ public class DesignHowToPlay {
         card.setBackground(bgColor);
 
         JLabel title = new JLabel("Game Rules");
-        title.setFont(Design.loadCustomFont(20));
+        title.setFont(Design.loadCustomFont(Design.subTitleSize));
         title.setForeground(titleColor);
-        title.setBorder(BorderFactory.createEmptyBorder(15, 20, 5, 0));
+        title.setBorder(BorderFactory.createEmptyBorder(15, 20, 5, 0)); // To recheck
 
         JTextArea rulesText = getJTextArea(textColor);
 

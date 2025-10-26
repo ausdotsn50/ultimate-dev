@@ -1,6 +1,7 @@
 package ud_interfaces;
 
 import layout.Design;
+import layout.DesignCategory;
 import layout.constants.CustomButton;
 import layout.constants.UDImages;
 
@@ -9,10 +10,10 @@ import java.awt.*;
 
 public class Play extends UltDevScreen{
     // Temporary conditions for showing screens
+    public static int categoryCnt = 7;
+
     boolean cond1 =  true;
     boolean cond2 = false;
-
-    int categoryCnt = 7;
 
     public Play(){
         this.setLayout(new BorderLayout());
@@ -29,6 +30,12 @@ public class Play extends UltDevScreen{
 
         Design.centerDefault(this, centerPanel);
 
+        if(cond1){
+            DesignCategory.showCategories(this, centerPanel, gbc);
+        }
+        else if(cond2){
+
+        }
     }
 
     @Override

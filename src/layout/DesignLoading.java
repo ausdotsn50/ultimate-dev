@@ -30,7 +30,7 @@ public class DesignLoading {
 
     private static void displayTitleText(JPanel titlePanel, GridBagConstraints gbc, String titleStr) {
         JLabel title = new JLabel(titleStr,  JLabel.CENTER);
-        title.setFont(Design.loadCustomFont(100));
+        title.setFont(Design.loadCustomFont(Design.mainTitleSize));
         title.setForeground(UDColors.udCyan);
 
         titlePanel.add(title, gbc);
@@ -39,7 +39,7 @@ public class DesignLoading {
 
     private static void displaySubText(JPanel titlePanel, GridBagConstraints gbc, String subStr) {
         JLabel subtitle = new JLabel(subStr, JLabel.CENTER);
-        subtitle.setFont(Design.loadCustomFont(20));
+        subtitle.setFont(Design.loadCustomFont(Design.subTitleSize));
         subtitle.setForeground(UDColors.udGray);
 
         gbc.gridy = 1;
@@ -54,7 +54,7 @@ public class DesignLoading {
         JLabel instruction = new JLabel(instruc, JLabel.CENTER);
         instruction.setBackground(UDColors.udWhite);
         instruction.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.40), 60));
-        instruction.setFont(Design.loadCustomFont(20));
+        instruction.setFont(Design.loadCustomFont(Design.subTitleSize));
         instruction.setForeground(UDColors.udCyan);
 
         // Adding client property (hidden key-value pairing) to tailor to GrowReplaceBehavior

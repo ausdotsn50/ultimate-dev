@@ -12,6 +12,12 @@ import java.util.Objects;
 public class Design {
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(null, new GrowSwitchBehavior(10));
 
+    // Font size constants
+    public static int mainTitleSize = 100;
+    public static int titleSize = 50;
+    public static int subTitleSize = 20;
+    public static int regularSize = subTitleSize - 5;
+
     // Icon path in Design
     public final static String[] iconPath =  new String[] {
             "/Main Menu.png",
