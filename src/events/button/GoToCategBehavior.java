@@ -1,37 +1,49 @@
+/*
+    - Click button
+    - Activate parser
+    - Place parsed data into chosen DS
+    - Pick item via randomizer
+    - Check DS if empty or not
+*/
 package events.button;
-
 import com.moandjiezana.toml.Toml;
+import ud_interfaces.Play;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
 
 public class GoToCategBehavior implements ButtonBehavior {
     @Override
     public void onClick(JButton button) {
+        Play.categorySelect = false;
+
         String[] buttonName = button.getText().split(" ");
         String file = buttonName[0].substring(0, 1).toLowerCase() + buttonName[0].substring(1);
         System.out.println(file);
 
-        Toml qDotTOML = new Toml().read(getTomlFile(file));
-        /*
-            - Click button
-            - Activate parser
-            - Place parsed data into chosen DS
-            - Pick item via randomizer
-            - Check DS if empty or not
-         */
-        // return toml
-        List<Map<String, Object>> questions = qDotTOML.getList("questions");
+        // Pass the toml file to Play page, because Play page accesses DesignQuiz page
+        Play.toml = new Toml().read(getTomlFile(file));
 
-        for (Map<String, Object> q : questions) {
-            System.out.println("Question: " + q.get("question"));
-            System.out.println("Answer: " + q.get("answer"));
-            System.out.println("Alternatives: " + q.get("alternatives"));
-            System.out.println("--------------------------------------");
+        // Access the parent component of the 'button clicked'
+        Container parent = button.getParent();
+        Play playScreen = null;
+
+        // Loop up the component tree until we find the 'Play' panel
+        while (parent != null) {
+            // Instance of checker
+            if (parent instanceof Play) {
+                playScreen = (Play) parent;
+                break;
+            }
+            parent = parent.getParent();
         }
+
+        // Calling the refresh method that was 'generated'
+        if (playScreen != null) { playScreen.refreshCenter(); }
+        // Checker in case the component hierarchy changes
+        else { System.err.println("Error: Could not find Play panel to refresh."); }
     }
 
     private Toml getTomlFile(String file) {

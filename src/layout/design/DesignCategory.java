@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DesignCategory {
+
     public static String[] categories = {
             "Introduction to the Paradigms", "Procedural Programming",
             "Functional Programming", "Object-Oriented Programming",
