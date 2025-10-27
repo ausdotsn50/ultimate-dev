@@ -5,42 +5,72 @@ import layout.constants.UDColors;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.swing.Timer;   // Use swing timer instead of util timer
+
+import java.awt.event.ActionListener;
 
 public class DesignQuiz {
-    // Indices for manipulation
-    // String mapped to an Array object(e.g. alternatives)
     static List<Map<String, Object>> questions;
     static Random rand = new Random();
+    static Timer timer;
 
-    // From category page, designing quiz, parsing the TOML that fits the selected category
+    static JPanel questionPanel;
     public static void showQuiz(JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
-        JPanel questionPanel = new JPanel();
+        questionPanel = new JPanel();
         questionPanel.setOpaque(false);
-        gbc.gridx = 0;
 
-        questions = new ArrayList<>(qDotTOML.getList("questions")); // Extracts questions table from TOML file
-        while(!questions.isEmpty()) {
-            int randIndex =  rand.nextInt(questions.size());
+        questions = new ArrayList<>(qDotTOML.getList("questions"));
 
-            Map<String, Object> randQ = questions.get(randIndex);
-            Object questionObj = randQ.get("question");
+        ActionListener taskPerformer = evt -> displayQuestion(); // Defining the action that will be performed by the timer
 
-            String questionString = "";
-            if (questionObj instanceof String) {
-                 questionString = (String) questionObj;
-                // System.out.println(questionString);
-            }
+        int delay = 5000;
+        timer = new Timer(delay, taskPerformer); timer.setRepeats(true);
 
-            JLabel questionLabel = new JLabel(questionString);
-            questionLabel.setFont(Design.loadCustomFont(Design.regularSize));
-            questionLabel.setForeground(UDColors.udWhite);
-
-            questionPanel.add(questionLabel);
-
-            questions.remove(randQ);
-        }
+        displayQuestion(); // Displays the first question
         centerPanel.add(questionPanel, gbc);
+        timer.start();
+    }
+
+    public static void displayQuestion() {
+        // When the questions ArrayList that was parsed from TOML is empty
+        if(questions.isEmpty()) {
+            if(timer != null) { timer.stop(); }
+            System.out.println("This round has ended.");
+            clearPanel();
+            return;
+        }
+
+        // Generate a random number within the current size of 'questions'
+        int randIndex =  rand.nextInt(questions.size());
+        Map<String, Object> randQ = questions.get(randIndex); // Extracting a Map
+        Object questionObj = randQ.get("question"); // Get question object from map
+
+        // Check for String instance
+        String questionString = "";
+        if (questionObj instanceof String) {
+            questionString = (String) questionObj;
+        }
+
+        // Label dedicated for question display
+        JLabel questionLabel = new JLabel(questionString);
+        questionLabel.setFont(Design.loadCustomFont(Design.regularSize));
+        questionLabel.setForeground(UDColors.udWhite);
+        questionLabel.setHorizontalAlignment(SwingConstants.CENTER); // JLabel.CENTER
+
+        // Update the panel after extracting question
+        clearPanel();
+        questionPanel.add(questionLabel);
+        questions.remove(randQ); // Remove Map from the List
+    }
+
+    public static void clearPanel() {
+        questionPanel.removeAll();
+        questionPanel.revalidate();
+        questionPanel.repaint();
     }
 }
