@@ -1,8 +1,9 @@
 package layout;
 
+import layout.design.Design;
 import ud_interfaces.*;
 
-import java.awt.CardLayout;
+import java.awt.*;
 
 // swing components
 import javax.swing.JFrame;
@@ -30,8 +31,9 @@ public class Card extends JFrame {
     // To do: Add threading
     private static void addPanels() {
         // Panels
-        SplashScreen splashScreen = new SplashScreen();
-        container.add(splashScreen, "Splash Screen");
+        // Note: first added - first one to shows
+        LoadScreen loadScreen = new LoadScreen();
+        container.add(loadScreen, "Load Screen");
 
         MainMenu mainMenu = new MainMenu();
         container.add(mainMenu, "Main Menu");
@@ -45,9 +47,7 @@ public class Card extends JFrame {
         Settings settings = new Settings();
         container.add(settings, "Settings");
 
-        // Start with Splash
-        currentPage = "Splash Screen";
-        cardLayout.show(container, currentPage);
+        cardLayout.show(container, "Play");
     }
 
     public static void screenChoice(String cardPage) {

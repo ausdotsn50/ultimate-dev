@@ -1,0 +1,12 @@
+# Item 1
+[[questions]]
+question = "The procedural paradigm is characterized by:"
+answer = "Step-by-step instructions and functions"
+alternatives = ["The use of classes and inheritance", "Fact-based logical reasoning", "Data hiding and encapsulation"]
+
+# Item 2
+[[questions]]
+question = "A procedure is best described as:"
+answer = "A group of instructions that perform a specific task"
+alternatives = ["A global constant", "A reserved keyword", "A static data structure"]
+

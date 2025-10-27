@@ -1,6 +1,6 @@
 package ud_interfaces;
 
-import layout.Design;
+import layout.design.Design;
 
 import javax.swing.*;
 

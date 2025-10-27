@@ -1,7 +1,8 @@
 package ud_interfaces;
 
-import layout.Design;
-import layout.UDImages;
+import layout.design.Design;
+import layout.design.DesignSettings;
+import layout.constants.UDImages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,10 +17,12 @@ public class Settings extends UltDevScreen{
     }
 
     public void displayCenter(){
-        JPanel centerPanel = new JPanel();
+        // Choose your custom layout
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-        // DesignMenu.optionsDesign(this, centerPanel, gbc);
+        DesignSettings.centerDesign(centerPanel, gbc);
     }
 
     @Override
