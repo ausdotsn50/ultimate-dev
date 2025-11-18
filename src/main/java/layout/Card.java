@@ -47,7 +47,7 @@ public class Card extends JFrame {
         Settings settings = new Settings();
         container.add(settings, "Settings");
 
-        cardLayout.show(container, "Play");
+        cardLayout.show(container, "Load Screen");
     }
 
     public static void screenChoice(String cardPage) {

@@ -36,6 +36,7 @@
 
 package misc;
 
+import layout.Card;
 import layout.constants.UDColors;
 
 import java.awt.*;
@@ -87,5 +88,8 @@ public class UDSplashScreen extends Frame implements ActionListener {
 
     public static void main (String args[]) {
         UDSplashScreen udSplashScreen = new UDSplashScreen();
+
+        Card app = new Card();
+        app.setVisible(true);
     }
 }

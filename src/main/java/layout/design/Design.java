@@ -7,6 +7,7 @@ import layout.constants.UDColors;
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Objects;
 
 public class Design {
@@ -20,10 +21,10 @@ public class Design {
 
     // Icon path in Design
     public final static String[] iconPath =  new String[] {
-            "/Main_Menu.png",
-            "/How_To_Play.png",
-            "/Settings.png",
-            "/Quit.png",
+            "Main_Menu.png",
+            "How_To_Play.png",
+            "Settings.png",
+            "Quit.png",
     };
 
     // 'static' - belongs to the class itself, not to any instance (object)
@@ -96,7 +97,10 @@ public class Design {
 
         // To do: Add looping of icons here
         for (String s : iconPath) {
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons" + s)));
+            System.out.println(s);
+            URL test = Design.class.getResource("/image/icons/Main_Menu.png");
+            System.out.println("Icon path: " + test);
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons/" + s)));
             Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Extract Image from ImageIcon and --scale smooth--
 
             JLabel iconHolder = new JLabel(new ImageIcon(iconScaled));

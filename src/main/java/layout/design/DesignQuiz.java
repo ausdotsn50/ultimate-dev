@@ -2,30 +2,35 @@ package layout.design;
 
 import com.moandjiezana.toml.Toml;
 import layout.constants.UDColors;
+import misc.Question;
+import misc.ReadCSV;
 
+// Use swing timer instead of util timer
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import javax.swing.Timer;   // Use swing timer instead of util timer
-
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class DesignQuiz {
     static List<Map<String, Object>> questions;
     static Random rand = new Random();
     static Timer timer;
+    static URL url = DesignQuiz.class.getClassLoader().getResource("questions/introduction.csv");    
+    static ReadCSV readCSV = new ReadCSV(url);
 
     static JPanel questionPanel;
     public static void showQuiz(JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
         questionPanel = new JPanel();
         questionPanel.setOpaque(false);
-
+        
         questions = new ArrayList<>(qDotTOML.getList("questions"));
-
+        List<Question> questionsCSV = readCSV.loadQuestions();
+        Question question1 = questionsCSV.get(0);
+        System.out.println(question1);
         ActionListener taskPerformer = evt -> displayQuestion(); // Defining the action that will be performed by the timer
 
         int delay = 5000;
