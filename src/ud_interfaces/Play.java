@@ -36,7 +36,7 @@ public class Play extends UltDevScreen{
         else {
             // Else if not selecting a category --> show quiz questions
             // Parsing the appropriate TOML file
-            DesignQuiz.showQuiz(centerPanel, gbc, toml);
+            DesignQuiz.showQuiz(centerPanel, toml);
         }
     }
 
