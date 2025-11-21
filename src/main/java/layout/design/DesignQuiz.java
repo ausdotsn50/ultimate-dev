@@ -3,21 +3,36 @@ package layout.design;
 import com.moandjiezana.toml.Toml;
 import layout.constants.CustomButton;
 import layout.constants.UDColors;
+import misc.Question;
+import misc.ReadCSV;
 
+// Use swing timer instead of util timer
 import javax.swing.*;
 import java.awt.*;
+<<<<<<< HEAD:src/layout/design/DesignQuiz.java
 import java.util.*;
 
 import javax.swing.Timer;   // Use swing timer instead of util timer
 
 import java.awt.event.ActionListener;
 import java.util.List;
+=======
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.awt.event.ActionListener;
+import java.net.URL;
+>>>>>>> 7c0259e7630a1e5d0fa39d6a878aa0a43286265f:src/main/java/layout/design/DesignQuiz.java
 
 public class DesignQuiz {
     static Random rand = new Random();
     static Timer timer;
+    static URL url = DesignQuiz.class.getClassLoader().getResource("questions/introduction.csv");    
+    static ReadCSV readCSV = new ReadCSV(url);
 
     static JPanel questionPanel;
+<<<<<<< HEAD:src/layout/design/DesignQuiz.java
     static JPanel choicesPanel;
 
     static List<Map<String, Object>> questions;
@@ -27,6 +42,16 @@ public class DesignQuiz {
         choicesPanel = new JPanel(); choicesPanel.setOpaque(false);
 
         questions = new ArrayList<>(qDotTOML.getList("questions"));
+=======
+    public static void showQuiz(JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
+        questionPanel = new JPanel();
+        questionPanel.setOpaque(false);
+        
+        questions = new ArrayList<>(qDotTOML.getList("questions"));
+        List<Question> questionsCSV = readCSV.loadQuestions();
+        Question question1 = questionsCSV.get(0);
+        System.out.println(question1);
+>>>>>>> 7c0259e7630a1e5d0fa39d6a878aa0a43286265f:src/main/java/layout/design/DesignQuiz.java
         ActionListener taskPerformer = evt -> displayQuestion(); // Defining the action that will be performed by the timer
 
         // Question panel update for every 'delay' ms
