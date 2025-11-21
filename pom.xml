@@ -25,13 +25,10 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src</sourceDirectory>    
         <resources>
-            <!-- Include everything in resources folder -->
             <resource>
                 <directory>resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
             </resource>
         </resources>
 
@@ -56,7 +53,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>ud_interfaces.Main</mainClass>
+                            <mainClass>misc.UDSplashScreen</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

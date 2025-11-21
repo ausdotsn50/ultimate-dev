@@ -96,7 +96,7 @@ public class Design {
 
         // To do: Add looping of icons here
         for (String s : iconPath) {
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons" + s)));
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons/" + s)));
             Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Extract Image from ImageIcon and --scale smooth--
 
             JLabel iconHolder = new JLabel(new ImageIcon(iconScaled));
