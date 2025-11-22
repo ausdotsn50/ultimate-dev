@@ -15,6 +15,10 @@ public class Play extends UltDevScreen{
     public static boolean categorySelect = true;
     public static Toml toml;
 
+    // Might move this
+    public static int currPoints = 30;
+    public static int save = 1;
+    public static int copy = 1;
     public Play(){
         this.setLayout(new BorderLayout());
 
@@ -36,9 +40,20 @@ public class Play extends UltDevScreen{
         else {
             // Else if not selecting a category --> show quiz questions
             // Parsing the appropriate TOML file
-            DesignQuiz.showQuiz(centerPanel, gbc, toml);
+
+            // Addition: recommended to pass a reference of Play
+            DesignQuiz.showQuiz(this, centerPanel, gbc, toml);
         }
     }
+
+    @Override
+    public void displayBottom(JPanel mainPanel, String leftHd, String rightHd) {
+        Design.footerDesign(mainPanel, "CoDev Calls: Copy [" + copy + "]" +
+                " | Save [" + save + "]", "Points: " + currPoints);
+    }
+
+    // Override displayBottom
+
 
     @Override
     public void paintComponent(Graphics g) {

@@ -2,15 +2,14 @@ package layout.design;
 
 import com.moandjiezana.toml.Toml;
 import layout.constants.ChoicesButton;
-import layout.constants.CustomButton;
+import ud_interfaces.Play;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class DesignQuiz {
     static Random rand = new Random();
@@ -19,10 +18,16 @@ public class DesignQuiz {
     static JPanel questionPanel;
     static JPanel choicesPanel;
 
+    // Note that this are static objects
+    static boolean parsedTOML = false;
     static List<Map<String, Object>> questions;
     static List<String> combinedChoices = new ArrayList<>();
 
-    public static void showQuiz(JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
+    static String answer;
+    static Play playScreen; // reference to Play
+    public static void showQuiz(Play play, JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
+        playScreen = play;
+
         // Question panel setup
         questionPanel = new JPanel();
         // questionPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80 * 0.60)));
@@ -37,10 +42,12 @@ public class DesignQuiz {
         choicesPanel.setLayout(new GridLayout(2, 2, 20, 20));
 
         // Parse questions table to ArrayList
-        questions = new ArrayList<>(qDotTOML.getList("questions"));
+        if(!parsedTOML) {
+            questions = new ArrayList<>(qDotTOML.getList("questions"));
+        }
 
         ActionListener taskPerformer = evt -> displayQuestion();
-        int delay = 2000;
+        int delay = 5000;
         timer = new Timer(delay, taskPerformer);
         timer.setRepeats(true);
 
@@ -61,7 +68,8 @@ public class DesignQuiz {
         if(questions.isEmpty()) {
             if(timer != null) { timer.stop(); }
             System.out.println("This round has ended.");
-            clearPanel();
+            endQuizAndReturn();
+            // clearPanel();
             return;
         }
 
@@ -78,7 +86,9 @@ public class DesignQuiz {
                 combinedChoices.add(alt.toString());
             }
         }
-        combinedChoices.add(randQ.get("answer").toString());
+
+        answer = randQ.get("answer").toString();
+        combinedChoices.add(answer);
         java.util.Collections.shuffle(combinedChoices);
 
         String questionString = (questionObj instanceof String) ? (String) questionObj : "";
@@ -115,7 +125,7 @@ public class DesignQuiz {
         questionLabel.setFont(Design.loadCustomFont(Design.regularSize));
         questionLabel.setForeground(UDColors.udWhite);
         questionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-         */
+        */
 
         // UI update
         clearPanel();
@@ -129,6 +139,18 @@ public class DesignQuiz {
         for(String choiceText : combinedChoices) {
             ChoicesButton choiceBtn = new ChoicesButton(choiceText, 10, 10);
             choiceBtn.setPreferredSize(new Dimension(500, choiceBtn.getPreferredSize().height));
+
+            // anonymous class [?]
+            choiceBtn.addActionListener(e -> {
+                if(Objects.equals(answer, choiceBtn.getUnformattedText())) {
+                    // Show a different card layout
+                    // This different card layout has a 'continue button'
+                    System.out.println("Correct!");
+                    timer.stop();
+                    endQuizAndReturn();
+                };
+            });
+
             choicesPanel.add(choiceBtn);
         }
     }
@@ -146,4 +168,21 @@ public class DesignQuiz {
         choicesPanel.revalidate();
         choicesPanel.repaint();
     }
+
+    // 5. New Helper Method to handle the switch
+    // This code should be cleaned and replaced with a "results" section
+    private static void endQuizAndReturn() {
+        Play.categorySelect = true; // Update the boolean
+
+        // Crucial: Tell the Play screen to rebuild itself!
+        if (playScreen != null) {
+            playScreen.refreshCenter();
+        }
+
+        // Cleanup static variables so they don't mess up the next round
+        questions.clear();
+        combinedChoices.clear();
+        parsedTOML = false;
+    }
+
 }
