@@ -27,14 +27,14 @@ public class DesignQuiz {
         questionPanel = new JPanel();
         // questionPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80 * 0.60)));
         questionPanel.setBackground(Color.red);
-        questionPanel.setOpaque(true);
+        questionPanel.setOpaque(false);
 
         // Choices panel setup
         choicesPanel = new JPanel();
         choicesPanel.setOpaque(false);
 
         // 2 row, 2 col button display layout
-        choicesPanel.setLayout(new GridLayout(2, 2, 10, 10));
+        choicesPanel.setLayout(new GridLayout(2, 2, 20, 20));
 
         // Parse questions table to ArrayList
         questions = new ArrayList<>(qDotTOML.getList("questions"));
@@ -47,6 +47,7 @@ public class DesignQuiz {
         // GridBag config
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10);
         centerPanel.add(questionPanel, gbc);
 
         gbc.gridy = 1;
@@ -127,6 +128,7 @@ public class DesignQuiz {
     public static void displayChoices() {
         for(String choiceText : combinedChoices) {
             ChoicesButton choiceBtn = new ChoicesButton(choiceText, 10, 10);
+            choiceBtn.setPreferredSize(new Dimension(500, choiceBtn.getPreferredSize().height));
             choicesPanel.add(choiceBtn);
         }
     }

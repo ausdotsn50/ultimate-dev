@@ -116,7 +116,7 @@ public class Design {
 
         // Note on this constant border
         // centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
-        centerPanel.setOpaque(true);
+        centerPanel.setOpaque(false);
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
     }

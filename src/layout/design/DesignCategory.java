@@ -53,7 +53,7 @@ public class DesignCategory {
     }
 
     public static void addCategoryButtons(JPanel buttonPanel, GridBagConstraints buttonGbc) {
-        int fontSize = Design.regularSize;
+        int fontSize = Design.regularSize + 2;
         for (int i = 0; i < Play.categoryCnt; i++) {
             buttonGbc.gridx += 1;
 
@@ -65,7 +65,7 @@ public class DesignCategory {
 
             // Replace with custom buttons
             CustomButton category = new CustomButton(categories[i], 10, 10);
-            category.setPreferredSize(new Dimension(300, fontSize  * 3));
+            category.setPreferredSize(new Dimension(320, fontSize  * 3));
             category.doLayout();
             category.setFont(Design.loadCustomFont(fontSize - 3));
             category.addMouseListener(mouseEVHandler);
