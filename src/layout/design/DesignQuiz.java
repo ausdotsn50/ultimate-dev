@@ -31,7 +31,6 @@ public class DesignQuiz {
 
     // Quiz navigation
     public static boolean isCorrect; // isCorrect -> manipulates DesignResult.showResult screen
-
     public static void showQuiz(Play play, JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
         playScreen = play;
 
@@ -84,9 +83,7 @@ public class DesignQuiz {
             if(timer != null) { timer.stop(); }
             System.out.println("This round has ended.");
 
-            endQuizAndReturn();
-            clearPanel();
-            return;
+            endQuizAndReturn(); clearPanel(); return;
         }
 
         // Extract random question

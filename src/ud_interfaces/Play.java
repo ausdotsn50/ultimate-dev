@@ -37,7 +37,6 @@ public class Play extends UltDevScreen{
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-
         if(categorySelect && !showResult){
             DesignCategory.showCategories(centerPanel, gbc);
         }

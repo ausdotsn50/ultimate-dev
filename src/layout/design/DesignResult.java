@@ -12,6 +12,7 @@ public class DesignResult {
     static Random rand = new Random();
     // Reference to play here
     public static void showResult(JPanel centerPanel, GridBagConstraints gbc) {
+        // Pool of words to choose from
         String[] correctPool = {
                 "Correct! Keep the streak going!",
                 "Nice one! You’re on a roll!",
@@ -28,16 +29,20 @@ public class DesignResult {
 
         String responseStr = "";
         Color txtColor;
+        // Choosing correct/incorrect response
         if(DesignQuiz.isCorrect) {
              responseStr = correctPool[rand.nextInt(correctPool.length)];
              txtColor = UDColors.udCorrect;
+        } else if(Play.attemptsLeft == 0) {
+            gameOver(centerPanel, gbc);
+            return;
         } else {
             responseStr = wrongPool[rand.nextInt(wrongPool.length)];
             txtColor = UDColors.udIncorrect;
             Play.attemptsLeft--;
         }
 
-        // Fix text options
+        // JLabel
         JLabel response = new JLabel(responseStr);
         response.setFont(Design.loadCustomFont(Design.subTitleSize + 10));
         response.setForeground(txtColor);
@@ -60,5 +65,15 @@ public class DesignResult {
 
         // Incorrect
         DesignQuiz.isCorrect = false;
+    }
+
+    public static void gameOver(JPanel centerPanel, GridBagConstraints gbc) {
+        JLabel gameOverMsg = new JLabel("Game Over!");
+        gameOverMsg.setFont(Design.loadCustomFont(Design.subTitleSize + 10));
+        centerPanel.add(gameOverMsg, gbc);
+    }
+
+    public static void gameWon(JPanel centerPanel, GridBagConstraints gbc) {
+        // Game won screen here
     }
 }
