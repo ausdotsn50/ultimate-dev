@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class DesignResult {
     static Random rand = new Random();
+    // Reference to play here
+
     public static void showResult(JPanel centerPanel, GridBagConstraints gbc) {
         String[] correctPool = {
                 "Correct! Keep the streak going!",
@@ -38,6 +40,12 @@ public class DesignResult {
 
         gbc.gridy = 1;
         JButton nextButton = new JButton("This is the next button");
+        nextButton.addActionListener(e -> {
+            Play.showResult = false;
+            DesignQuiz.playScreen.refreshCenter();
+        });
+
+
         centerPanel.add(nextButton, gbc);
 
         // Incorrect

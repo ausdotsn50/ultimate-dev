@@ -27,7 +27,7 @@ public class DesignQuiz {
     static String answer;
 
     // reference to the original PlayScreen
-    static Play playScreen; // reference to Play
+    public static Play playScreen; // reference to Play
 
     // Quiz navigation
     public static boolean isCorrect; // isCorrect -> manipulates DesignResult.showResult screen
@@ -51,6 +51,7 @@ public class DesignQuiz {
         // Parse questions table to ArrayList
         if(!parsedTOML) {
             questions = new ArrayList<>(qDotTOML.getList("questions"));
+            parsedTOML = true;
         }
 
         // Timer logic
@@ -75,7 +76,7 @@ public class DesignQuiz {
     public static void displayQuestion() {
         if(questions.isEmpty()) {
             if(timer != null) { timer.stop(); }
-            // System.out.println("This round has ended.");
+            System.out.println("This round has ended.");
             endQuizAndReturn(); clearPanel(); return;
         }
 
@@ -86,7 +87,7 @@ public class DesignQuiz {
         String questionString = (questionObj instanceof String) ? (String) questionObj : "";
 
         // Populate choices
-        // combinedChoices.clear(); // Clean before populating
+        combinedChoices.clear(); // Clean before populating
         Object alternativesObj = randQ.get("alternatives");
         if (alternativesObj instanceof List<?> alts) {
             for (Object alt : alts) {
@@ -106,10 +107,10 @@ public class DesignQuiz {
 
         // UI update: clear, display stuff, refresh, remove what needs be
         clearPanel();
+        questions.remove(randQ);
         questionPanel.add(questionPane);
         displayChoices();
         refreshPanels();
-        questions.remove(randQ);
     }
 
     private static JTextPane getJTextPane(Font myFont, int questionFSize, String questionString) {
@@ -141,7 +142,6 @@ public class DesignQuiz {
                 timer.stop(); // Stop timer
                 showCorrespondingResult();
             });
-
             choicesPanel.add(choiceBtn);
         }
     }
@@ -166,23 +166,16 @@ public class DesignQuiz {
         if(playScreen != null) {
             playScreen.refreshCenter();
         }
-
-        combinedChoices.clear();
     }
 
     // Helper method for screen switching
     private static void endQuizAndReturn() {
-        Play.categorySelect = false; // Update the boolean
+        Play.categorySelect = true; // Update the boolean
 
         // Crucial: Tell the Play screen to rebuild itself!
         if (playScreen != null) {
             playScreen.refreshCenter();
         }
-
-        // Cleanup static variables so they don't mess up the next round
-        questions.clear();
-        combinedChoices.clear();
-        parsedTOML = false;
     }
 
 }
