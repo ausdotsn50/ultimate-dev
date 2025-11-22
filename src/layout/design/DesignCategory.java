@@ -33,7 +33,7 @@ public class DesignCategory {
         centerPanel.add(titlePanel, gbc);
 
         GridBagConstraints buttonGbc = new GridBagConstraints(); // gbc for buttons
-        buttonGbc.insets = new Insets(tbInsets, 0, tbInsets, 0);
+        buttonGbc.insets = new Insets(tbInsets, tbInsets, tbInsets, tbInsets);
         buttonGbc.gridx = 0; buttonGbc.gridy = 0;
 
         gbc.gridy = 1;
@@ -53,7 +53,7 @@ public class DesignCategory {
     }
 
     public static void addCategoryButtons(JPanel buttonPanel, GridBagConstraints buttonGbc) {
-        int fontsize = Design.regularSize;
+        int fontSize = Design.regularSize;
         for (int i = 0; i < Play.categoryCnt; i++) {
             buttonGbc.gridx += 1;
 
@@ -65,8 +65,9 @@ public class DesignCategory {
 
             // Replace with custom buttons
             CustomButton category = new CustomButton(categories[i], 10, 10);
+            category.setPreferredSize(new Dimension(300, fontSize  * 3));
             category.doLayout();
-            category.setFont(Design.loadCustomFont(fontsize));
+            category.setFont(Design.loadCustomFont(fontSize - 3));
             category.addMouseListener(mouseEVHandler);
 
             buttonPanel.add(category, buttonGbc);
