@@ -1,5 +1,7 @@
 package layout.constants;
 
+import layout.design.Design;
+
 import javax.swing.*;
 import java.awt.*;
 

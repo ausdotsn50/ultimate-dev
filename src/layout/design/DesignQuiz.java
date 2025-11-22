@@ -1,8 +1,8 @@
 package layout.design;
 
 import com.moandjiezana.toml.Toml;
+import layout.constants.ChoicesButton;
 import layout.constants.CustomButton;
-import layout.constants.UDColors;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +25,9 @@ public class DesignQuiz {
     public static void showQuiz(JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
         // Question panel setup
         questionPanel = new JPanel();
-        questionPanel.setOpaque(false);
+        // questionPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80 * 0.60)));
+        questionPanel.setBackground(Color.red);
+        questionPanel.setOpaque(true);
 
         // Choices panel setup
         choicesPanel = new JPanel();
@@ -38,7 +40,7 @@ public class DesignQuiz {
         questions = new ArrayList<>(qDotTOML.getList("questions"));
 
         ActionListener taskPerformer = evt -> displayQuestion();
-        int delay = 5000;
+        int delay = 2000;
         timer = new Timer(delay, taskPerformer);
         timer.setRepeats(true);
 
@@ -80,14 +82,43 @@ public class DesignQuiz {
 
         String questionString = (questionObj instanceof String) ? (String) questionObj : "";
 
+        // Load the font object using existing method
+        int questionFSize = Design.subTitleSize; // int choicesFSize = Design.regularSize;
+        Font myFont = Design.loadCustomFont(questionFSize);
+
+        // 2. REGISTER the font with the OS/JVM so HTML can "see" it
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(myFont);
+
+        // 3. Get the actual internal name (likely "Fira Code")
+        String fontName = myFont.getFamily();
+
+        // 4. Create the JTextPane
+        JTextPane questionPane = new JTextPane();
+        questionPane.setContentType("text/html");
+        questionPane.setEditable(false);
+        questionPane.setOpaque(false);
+        questionPane.setFocusable(false);
+
+        // 5. Inject the variable 'fontName' into the HTML CSS
+        // Note the single quotes around the font name in CSS: font-family: 'Fira Code';
+        // Assuming questionFSize is an int (e.g., 14)
+        // System.out.print(fontName);
+        String formattedText = "<html><body style='font-family: \"" + fontName + "\"; color: white; font-size: " + questionFSize + "px;'>"
+                + questionString
+                + "</body></html>";
+        questionPane.setText(formattedText);
+
+        /*
         JLabel questionLabel = new JLabel(questionString);
         questionLabel.setFont(Design.loadCustomFont(Design.regularSize));
         questionLabel.setForeground(UDColors.udWhite);
         questionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+         */
 
         // UI update
         clearPanel();
-        questionPanel.add(questionLabel);
+        questionPanel.add(questionPane);
         displayChoices();
         refreshPanels();
         questions.remove(randQ);
@@ -95,7 +126,7 @@ public class DesignQuiz {
 
     public static void displayChoices() {
         for(String choiceText : combinedChoices) {
-            CustomButton choiceBtn = new CustomButton(choiceText, 10, 10);
+            ChoicesButton choiceBtn = new ChoicesButton(choiceText, 10, 10);
             choicesPanel.add(choiceBtn);
         }
     }
