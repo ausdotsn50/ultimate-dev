@@ -14,7 +14,7 @@ import java.util.List;
 public class DesignQuiz {
     // Utilities
     static Random rand = new Random();
-    static Timer timer;
+    public static Timer timer;
 
     // Panels - question and choice
     static JPanel questionPanel;

@@ -16,4 +16,6 @@ public class UDColors {
     // Correct and incorrect
     public static Color udCorrect = new Color(0x00c951);
     public static Color udIncorrect = new Color(0xF64900);
+
+    // To do: Add colors for game over and game won
 }

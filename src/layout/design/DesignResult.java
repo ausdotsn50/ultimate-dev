@@ -75,5 +75,8 @@ public class DesignResult {
 
     public static void gameWon(JPanel centerPanel, GridBagConstraints gbc) {
         // Game won screen here
+        JLabel gameWonMsg = new JLabel("You are the Ultimate Dev!");
+        gameWonMsg.setFont(Design.loadCustomFont(Design.subTitleSize + 10));
+        centerPanel.add(gameWonMsg, gbc);
     }
 }

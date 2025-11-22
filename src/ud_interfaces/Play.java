@@ -11,8 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Play extends UltDevScreen{
-    // Temporary conditions for showing screens
-    // public static int categoryCnt = 7;
     public static boolean categorySelect = true;
     public static Toml toml;
 
@@ -21,8 +19,7 @@ public class Play extends UltDevScreen{
 
     // Might move this
     public static int currPoints = 30;
-    public static int save = 1;
-    public static int copy = 1;
+    public static int save = 1; public static int copy = 1;
     public Play(){
         this.setLayout(new BorderLayout());
 
@@ -55,11 +52,13 @@ public class Play extends UltDevScreen{
     @Override
     public void displayBottom(JPanel mainPanel, String leftHd, String rightHd) {
         Design.footerDesign(mainPanel, "CoDev Calls: Copy [" + copy + "]" +
-                " | Save [" + save + "]", "Points: " + currPoints);
+                " | Save [" + save + "]", "Points: " + currPoints + " | Timer: 00:00");
     }
 
-    // Override displayBottom
+    public void startCountdown() {
+        final int TOTAL_TIME = 5;
 
+    }
 
     @Override
     public void paintComponent(Graphics g) {
