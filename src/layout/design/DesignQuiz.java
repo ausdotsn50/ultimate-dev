@@ -54,6 +54,12 @@ public class DesignQuiz {
             parsedTOML = true;
         }
 
+        if (questions.isEmpty()) {
+            System.out.println("No questions available.");
+            endQuizAndReturn();
+            return; // STOP executing this method
+        }
+
         // Timer logic
         ActionListener taskPerformer = evt -> displayQuestion();
         int delay = 5000;
@@ -74,12 +80,6 @@ public class DesignQuiz {
     }
 
     public static void displayQuestion() {
-        if(questions.isEmpty()) {
-            if(timer != null) { timer.stop(); }
-            System.out.println("This round has ended.");
-            endQuizAndReturn(); clearPanel(); return;
-        }
-
         // Extract random question
         int randIndex =  rand.nextInt(questions.size());
         Map<String, Object> randQ = questions.get(randIndex);
@@ -163,19 +163,17 @@ public class DesignQuiz {
     private static void showCorrespondingResult() {
         Play.showResult = true;
 
-        if(playScreen != null) {
-            playScreen.refreshCenter();
-        }
+        if(playScreen != null) { playScreen.refreshCenter(); }
     }
 
     // Helper method for screen switching
     private static void endQuizAndReturn() {
-        Play.categorySelect = true; // Update the boolean
+        if (timer != null) { timer.stop(); }
 
-        // Crucial: Tell the Play screen to rebuild itself!
-        if (playScreen != null) {
-            playScreen.refreshCenter();
-        }
+        Play.categorySelect = true;
+        parsedTOML = false;
+        if (questions != null) { questions.clear(); }
+
+        if (playScreen != null) { playScreen.refreshCenter(); }
     }
-
 }
