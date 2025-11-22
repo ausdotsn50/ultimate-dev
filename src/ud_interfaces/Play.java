@@ -5,6 +5,7 @@ import layout.design.Design;
 import layout.design.DesignCategory;
 import layout.constants.UDImages;
 import layout.design.DesignQuiz;
+import layout.design.DesignResult;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,8 @@ public class Play extends UltDevScreen{
     public static int categoryCnt = 7;
     public static boolean categorySelect = true;
     public static Toml toml;
+
+    public static boolean showResult = false;
 
     // Might move this
     public static int currPoints = 30;
@@ -34,8 +37,11 @@ public class Play extends UltDevScreen{
 
         Design.centerDefault(this, centerPanel);
 
-        if(categorySelect){
+        if(categorySelect && !showResult){
             DesignCategory.showCategories(centerPanel, gbc);
+        }
+        else if(!categorySelect && showResult){
+            DesignResult.showResult(centerPanel, gbc);
         }
         else {
             // Else if not selecting a category --> show quiz questions
@@ -44,6 +50,9 @@ public class Play extends UltDevScreen{
             // Addition: recommended to pass a reference of Play
             DesignQuiz.showQuiz(this, centerPanel, gbc, toml);
         }
+
+
+
     }
 
     @Override

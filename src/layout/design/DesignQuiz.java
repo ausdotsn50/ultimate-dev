@@ -12,19 +12,26 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class DesignQuiz {
+    // Utilities
     static Random rand = new Random();
     static Timer timer;
 
+    // Panels - question and choice
     static JPanel questionPanel;
     static JPanel choicesPanel;
 
-    // Note that this are static objects
-    static boolean parsedTOML = false;
+    // TOML file parsing
+    static boolean parsedTOML = false; // Might be used later on
     static List<Map<String, Object>> questions;
     static List<String> combinedChoices = new ArrayList<>();
-
     static String answer;
+
+    // reference to the original PlayScreen
     static Play playScreen; // reference to Play
+
+    // Quiz navigation
+    public static boolean isCorrect; // isCorrect -> manipulates DesignResult.showResult screen
+
     public static void showQuiz(Play play, JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
         playScreen = play;
 
@@ -46,6 +53,7 @@ public class DesignQuiz {
             questions = new ArrayList<>(qDotTOML.getList("questions"));
         }
 
+        // Timer logic
         ActionListener taskPerformer = evt -> displayQuestion();
         int delay = 5000;
         timer = new Timer(delay, taskPerformer);
@@ -67,67 +75,36 @@ public class DesignQuiz {
     public static void displayQuestion() {
         if(questions.isEmpty()) {
             if(timer != null) { timer.stop(); }
-            System.out.println("This round has ended.");
-            endQuizAndReturn();
-            // clearPanel();
-            return;
+            // System.out.println("This round has ended.");
+            endQuizAndReturn(); clearPanel(); return;
         }
 
+        // Extract random question
         int randIndex =  rand.nextInt(questions.size());
         Map<String, Object> randQ = questions.get(randIndex);
         Object questionObj = randQ.get("question");
+        String questionString = (questionObj instanceof String) ? (String) questionObj : "";
 
         // Populate choices
-        combinedChoices.clear();
-
+        // combinedChoices.clear(); // Clean before populating
         Object alternativesObj = randQ.get("alternatives");
         if (alternativesObj instanceof List<?> alts) {
             for (Object alt : alts) {
                 combinedChoices.add(alt.toString());
             }
         }
-
         answer = randQ.get("answer").toString();
         combinedChoices.add(answer);
-        java.util.Collections.shuffle(combinedChoices);
-
-        String questionString = (questionObj instanceof String) ? (String) questionObj : "";
+        java.util.Collections.shuffle(combinedChoices); // Shuffle combines choices
 
         // Load the font object using existing method
         int questionFSize = Design.subTitleSize; // int choicesFSize = Design.regularSize;
         Font myFont = Design.loadCustomFont(questionFSize);
 
-        // 2. REGISTER the font with the OS/JVM so HTML can "see" it
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(myFont);
+        // JTextPane for the formatted question
+        JTextPane questionPane = getJTextPane(myFont, questionFSize, questionString);
 
-        // 3. Get the actual internal name (likely "Fira Code")
-        String fontName = myFont.getFamily();
-
-        // 4. Create the JTextPane
-        JTextPane questionPane = new JTextPane();
-        questionPane.setContentType("text/html");
-        questionPane.setEditable(false);
-        questionPane.setOpaque(false);
-        questionPane.setFocusable(false);
-
-        // 5. Inject the variable 'fontName' into the HTML CSS
-        // Note the single quotes around the font name in CSS: font-family: 'Fira Code';
-        // Assuming questionFSize is an int (e.g., 14)
-        // System.out.print(fontName);
-        String formattedText = "<html><body style='font-family: \"" + fontName + "\"; color: white; font-size: " + questionFSize + "px;'>"
-                + questionString
-                + "</body></html>";
-        questionPane.setText(formattedText);
-
-        /*
-        JLabel questionLabel = new JLabel(questionString);
-        questionLabel.setFont(Design.loadCustomFont(Design.regularSize));
-        questionLabel.setForeground(UDColors.udWhite);
-        questionLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        */
-
-        // UI update
+        // UI update: clear, display stuff, refresh, remove what needs be
         clearPanel();
         questionPanel.add(questionPane);
         displayChoices();
@@ -135,20 +112,34 @@ public class DesignQuiz {
         questions.remove(randQ);
     }
 
+    private static JTextPane getJTextPane(Font myFont, int questionFSize, String questionString) {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(myFont);
+        String fontName = myFont.getFamily();
+
+        JTextPane questionPane = new JTextPane();
+        questionPane.setContentType("text/html");
+        questionPane.setEditable(false);
+        questionPane.setOpaque(false);
+        questionPane.setFocusable(false);
+
+        String formattedText = "<html><body style='font-family: \"" + fontName + "\"; color: white; font-size: " + questionFSize + "px;'>"
+                + questionString
+                + "</body></html>";
+        questionPane.setText(formattedText);
+        return questionPane;
+    }
+
     public static void displayChoices() {
         for(String choiceText : combinedChoices) {
             ChoicesButton choiceBtn = new ChoicesButton(choiceText, 10, 10);
             choiceBtn.setPreferredSize(new Dimension(500, choiceBtn.getPreferredSize().height));
 
-            // anonymous class [?]
+            // Lambda for button behavior
             choiceBtn.addActionListener(e -> {
-                if(Objects.equals(answer, choiceBtn.getUnformattedText())) {
-                    // Show a different card layout
-                    // This different card layout has a 'continue button'
-                    System.out.println("Correct!");
-                    timer.stop();
-                    endQuizAndReturn();
-                };
+                isCorrect = Objects.equals(answer, choiceBtn.getUnformattedText());
+                timer.stop(); // Stop timer
+                showCorrespondingResult();
             });
 
             choicesPanel.add(choiceBtn);
@@ -169,10 +160,19 @@ public class DesignQuiz {
         choicesPanel.repaint();
     }
 
-    // 5. New Helper Method to handle the switch
-    // This code should be cleaned and replaced with a "results" section
+    private static void showCorrespondingResult() {
+        Play.showResult = true;
+
+        if(playScreen != null) {
+            playScreen.refreshCenter();
+        }
+
+        combinedChoices.clear();
+    }
+
+    // Helper method for screen switching
     private static void endQuizAndReturn() {
-        Play.categorySelect = true; // Update the boolean
+        Play.categorySelect = false; // Update the boolean
 
         // Crucial: Tell the Play screen to rebuild itself!
         if (playScreen != null) {
