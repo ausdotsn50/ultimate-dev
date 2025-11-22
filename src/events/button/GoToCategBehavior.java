@@ -7,6 +7,7 @@
 */
 package events.button;
 import com.moandjiezana.toml.Toml;
+import layout.design.DesignCategory;
 import ud_interfaces.Play;
 
 import javax.swing.*;
@@ -39,6 +40,8 @@ public class GoToCategBehavior implements ButtonBehavior {
             }
             parent = parent.getParent();
         }
+
+        DesignCategory.categories.remove(button.getText());
 
         // Calling the refresh method that was 'generated'
         if (playScreen != null) { playScreen.refreshCenter(); }

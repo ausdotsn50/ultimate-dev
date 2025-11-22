@@ -8,17 +8,20 @@ import ud_interfaces.Play;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DesignCategory {
-
-    public static String[] categories = {
+    public static ArrayList<String> categories = new ArrayList<>(Arrays.asList(
             "Introduction to the Paradigms", "Procedural Programming",
             "Functional Programming", "Object-Oriented Programming",
             "Imperative vs Declarative", "Event-Driven Programming",
-            "Component Mappings between Paradigms",
-    };
+            "Component Mappings between Paradigms"
+    ));
 
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(new GoToCategBehavior(), null);
+    // Note: showCategories will be called again after round end
+    // Add an update of which categories are finished
     public static void showCategories(JPanel centerPanel, GridBagConstraints gbc) {
         int tbInsets = 20;
 
@@ -54,7 +57,7 @@ public class DesignCategory {
 
     public static void addCategoryButtons(JPanel buttonPanel, GridBagConstraints buttonGbc) {
         int fontSize = Design.regularSize + 2;
-        for (int i = 0; i < Play.categoryCnt; i++) {
+        for (int i = 0; i < categories.size(); i++) {
             buttonGbc.gridx += 1;
 
             if(i % 3 == 0){
@@ -64,7 +67,7 @@ public class DesignCategory {
             }
 
             // Replace with custom buttons
-            CustomButton category = new CustomButton(categories[i], 10, 10);
+            CustomButton category = new CustomButton(categories.get(i), 10, 10);
             category.setPreferredSize(new Dimension(320, fontSize  * 3));
             category.doLayout();
             category.setFont(Design.loadCustomFont(fontSize - 3));

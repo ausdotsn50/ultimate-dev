@@ -12,11 +12,12 @@ import java.awt.*;
 
 public class Play extends UltDevScreen{
     // Temporary conditions for showing screens
-    public static int categoryCnt = 7;
+    // public static int categoryCnt = 7;
     public static boolean categorySelect = true;
     public static Toml toml;
 
     public static boolean showResult = false;
+    public static int attemptsLeft = 3;
 
     // Might move this
     public static int currPoints = 30;
@@ -50,9 +51,6 @@ public class Play extends UltDevScreen{
             // Addition: recommended to pass a reference of Play
             DesignQuiz.showQuiz(this, centerPanel, gbc, toml);
         }
-
-
-
     }
 
     @Override

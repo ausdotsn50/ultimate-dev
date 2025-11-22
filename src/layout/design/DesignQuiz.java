@@ -67,8 +67,7 @@ public class DesignQuiz {
         timer.setRepeats(true);
 
         // GridBag config
-        gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridx = 0; gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
         centerPanel.add(questionPanel, gbc);
 
@@ -80,6 +79,16 @@ public class DesignQuiz {
     }
 
     public static void displayQuestion() {
+        // questions empty w/ timer finished
+        if(questions.isEmpty()) {
+            if(timer != null) { timer.stop(); }
+            System.out.println("This round has ended.");
+
+            endQuizAndReturn();
+            clearPanel();
+            return;
+        }
+
         // Extract random question
         int randIndex =  rand.nextInt(questions.size());
         Map<String, Object> randQ = questions.get(randIndex);
@@ -162,18 +171,14 @@ public class DesignQuiz {
 
     private static void showCorrespondingResult() {
         Play.showResult = true;
-
         if(playScreen != null) { playScreen.refreshCenter(); }
     }
 
     // Helper method for screen switching
     private static void endQuizAndReturn() {
         if (timer != null) { timer.stop(); }
-
         Play.categorySelect = true;
         parsedTOML = false;
-        if (questions != null) { questions.clear(); }
-
-        if (playScreen != null) { playScreen.refreshCenter(); }
+        if (questions != null) { questions.clear(); } if (playScreen != null) { playScreen.refreshCenter(); }
     }
 }

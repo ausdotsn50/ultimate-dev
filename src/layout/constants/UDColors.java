@@ -12,4 +12,8 @@ public class UDColors {
     public static Color udGrayDark = new Color(0x2d2d30);
     public static Color udGrayLight = new Color(0x787882);
     public static Color udMint = new Color(0xC8FFEA);
+
+    // Correct and incorrect
+    public static Color udCorrect = new Color(0x00c951);
+    public static Color udIncorrect = new Color(0xF64900);
 }
