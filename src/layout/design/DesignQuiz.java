@@ -36,7 +36,7 @@ public class DesignQuiz {
 
     // Quiz navigation
     public static boolean isCorrect; // isCorrect -> manipulates DesignResult.showResult screen
-    static String itemAnswer;
+    // static String itemAnswer;
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
         playScreen = play;
 
@@ -117,15 +117,10 @@ public class DesignQuiz {
 
             if (currentSeconds < 0) {
                 ((Timer)e.getSource()).stop();
-                // Handle Timeout: Mark incorrect or just move to next
-                System.out.println("Time's up!");
-                displayQuestion(); // Moves to next question automatically
+                // Timeout: Mark incorrect or just move to next
+                isCorrect = false;
+                showCorrespondingResult();
                 timerLabel.setForeground(UDColors.udCorrect);
-
-                if(!Objects.equals(itemAnswer, "")) {
-                    isCorrect = false;
-                    showCorrespondingResult();
-                }
             }
         });
         timer.setRepeats(true);
