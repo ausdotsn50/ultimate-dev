@@ -17,6 +17,7 @@ public class DesignQuiz {
     public static Timer timer;
 
     // Panels - question and choice
+    static JPanel timerPanel;
     static JPanel questionPanel;
     static JPanel choicesPanel;
 
@@ -34,10 +35,13 @@ public class DesignQuiz {
     public static void showQuiz(Play play, JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
         playScreen = play;
 
+        timerPanel = new JPanel();
+        timerPanel.setOpaque(false);
+
         // Question panel setup
         questionPanel = new JPanel();
         // questionPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80 * 0.60)));
-        questionPanel.setBackground(Color.red);
+        // questionPanel.setBackground(Color.red);
         questionPanel.setOpaque(false);
 
         // Choices panel setup
@@ -68,9 +72,11 @@ public class DesignQuiz {
         // GridBag config
         gbc.gridx = 0; gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 10, 10);
-        centerPanel.add(questionPanel, gbc);
+        centerPanel.add(timerPanel, gbc);
 
         gbc.gridy = 1;
+        centerPanel.add(questionPanel, gbc);
+        gbc.gridy = 2;
         centerPanel.add(choicesPanel, gbc);
 
         displayQuestion();
@@ -105,7 +111,7 @@ public class DesignQuiz {
         java.util.Collections.shuffle(combinedChoices); // Shuffle combines choices
 
         // Load the font object using existing method
-        int questionFSize = Design.subTitleSize; // int choicesFSize = Design.regularSize;
+        int questionFSize = Design.subTitleSize - 3; // int choicesFSize = Design.regularSize;
         Font myFont = Design.loadCustomFont(questionFSize);
 
         // JTextPane for the formatted question
@@ -140,7 +146,7 @@ public class DesignQuiz {
     public static void displayChoices() {
         for(String choiceText : combinedChoices) {
             ChoicesButton choiceBtn = new ChoicesButton(choiceText, 10, 10);
-            choiceBtn.setPreferredSize(new Dimension(500, choiceBtn.getPreferredSize().height));
+            choiceBtn.setPreferredSize(new Dimension(400, choiceBtn.getPreferredSize().height));
 
             // Lambda for button behavior
             choiceBtn.addActionListener(e -> {

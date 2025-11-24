@@ -55,7 +55,7 @@ public class DesignResult {
         gbc.gridy = 1;
         int fontSize = Design.regularSize + 5;
         CustomButton nextBtn = new CustomButton("Next Question!", 10, 10);
-        nextBtn.setPreferredSize(new Dimension(500, fontSize  * 3));
+        nextBtn.setPreferredSize(new Dimension(400, fontSize  * 3));
         nextBtn.setFont(Design.loadCustomFont(fontSize));
         nextBtn.addActionListener(e -> {
             Play.showResult = false;
