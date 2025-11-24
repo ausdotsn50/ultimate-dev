@@ -17,9 +17,11 @@ public class Play extends UltDevScreen{
     public static boolean showResult = false;
     public static int attemptsLeft = 3;
 
-    // Might move this
     public static int currPoints = 30;
     public static int save = 1; public static int copy = 1;
+
+    // public static boolean isRoundOver = false;
+    // Add here array of point system
     public Play(){
         this.setLayout(new BorderLayout());
 
@@ -43,21 +45,15 @@ public class Play extends UltDevScreen{
         else {
             // Else if not selecting a category --> show quiz questions
             // Parsing the appropriate TOML file
-
             // Addition: recommended to pass a reference of Play
-            DesignQuiz.showQuiz(this, centerPanel, gbc, toml);
+            DesignQuiz.showQuiz(this, centerPanel, toml);
         }
     }
 
     @Override
     public void displayBottom(JPanel mainPanel, String leftHd, String rightHd) {
         Design.footerDesign(mainPanel, "CoDev Calls: Copy [" + copy + "]" +
-                " | Save [" + save + "]", "Points: " + currPoints + " | Timer: 00:00");
-    }
-
-    public void startCountdown() {
-        final int TOTAL_TIME = 5;
-
+                " | Save [" + save + "]", "Points: " + currPoints);
     }
 
     @Override

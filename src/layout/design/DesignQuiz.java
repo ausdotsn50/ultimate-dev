@@ -2,10 +2,12 @@ package layout.design;
 
 import com.moandjiezana.toml.Toml;
 import layout.constants.ChoicesButton;
+import layout.constants.UDColors;
 import ud_interfaces.Play;
 
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionListener;
@@ -14,10 +16,12 @@ import java.util.List;
 public class DesignQuiz {
     // Utilities
     static Random rand = new Random();
-    public static Timer timer;
+    static Timer timer;
+    static int currentSeconds;
 
     // Panels - question and choice
     static JPanel timerPanel;
+    static JLabel timerLabel;
     static JPanel questionPanel;
     static JPanel choicesPanel;
 
@@ -32,11 +36,24 @@ public class DesignQuiz {
 
     // Quiz navigation
     public static boolean isCorrect; // isCorrect -> manipulates DesignResult.showResult screen
-    public static void showQuiz(Play play, JPanel centerPanel, GridBagConstraints gbc, Toml qDotTOML) {
+    static String itemAnswer;
+    public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
         playScreen = play;
 
+        centerPanel.setLayout(new BorderLayout());
+        JPanel itemPanel = new JPanel(new GridBagLayout());
+        itemPanel.setOpaque(false);
+        GridBagConstraints itemGbc = new GridBagConstraints();
+
         timerPanel = new JPanel();
+        // timerPanel.setBackground(Color.ORANGE);
         timerPanel.setOpaque(false);
+        timerPanel.setBorder(new EmptyBorder(20,0,0,0));
+
+        timerLabel = new JLabel();
+        timerLabel.setFont(Design.loadCustomFont(Design.subTitleSize + 10));
+        timerLabel.setForeground(UDColors.udCorrect);
+        timerPanel.add(timerLabel);
 
         // Question panel setup
         questionPanel = new JPanel();
@@ -63,21 +80,15 @@ public class DesignQuiz {
             return; // STOP executing this method
         }
 
-        // Timer logic
-        ActionListener taskPerformer = evt -> displayQuestion();
-        int delay = 5000;
-        timer = new Timer(delay, taskPerformer);
-        timer.setRepeats(true);
+        itemGbc.insets = new Insets(10, 10, 10, 10);
+        itemGbc.gridx = 0;
+        itemGbc.gridy = 0;
+        itemPanel.add(questionPanel, itemGbc);
+        itemGbc.gridy = 1;
+        itemPanel.add(choicesPanel, itemGbc);
 
-        // GridBag config
-        gbc.gridx = 0; gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10);
-        centerPanel.add(timerPanel, gbc);
-
-        gbc.gridy = 1;
-        centerPanel.add(questionPanel, gbc);
-        gbc.gridy = 2;
-        centerPanel.add(choicesPanel, gbc);
+        centerPanel.add(timerPanel, BorderLayout.NORTH);
+        centerPanel.add(itemPanel, BorderLayout.CENTER);
 
         displayQuestion();
         timer.start();
@@ -91,6 +102,34 @@ public class DesignQuiz {
 
             endQuizAndReturn(); clearPanel(); return;
         }
+
+        // Revised timer logic
+        currentSeconds = 10;
+        updateTimerLabel();
+
+        // Ticks 1000ms
+        timer = new Timer(1000, e -> {
+            currentSeconds--;
+            updateTimerLabel();
+            if(currentSeconds <= 4) {
+                timerLabel.setForeground(UDColors.udIncorrect);
+            }
+
+            if (currentSeconds < 0) {
+                ((Timer)e.getSource()).stop();
+                // Handle Timeout: Mark incorrect or just move to next
+                System.out.println("Time's up!");
+                displayQuestion(); // Moves to next question automatically
+                timerLabel.setForeground(UDColors.udCorrect);
+
+                if(!Objects.equals(itemAnswer, "")) {
+                    isCorrect = false;
+                    showCorrespondingResult();
+                }
+            }
+        });
+        timer.setRepeats(true);
+        timer.start();
 
         // Extract random question
         int randIndex =  rand.nextInt(questions.size());
@@ -123,6 +162,12 @@ public class DesignQuiz {
         questionPanel.add(questionPane);
         displayChoices();
         refreshPanels();
+    }
+
+    // Separate method to update just the text of the existing label
+    private static void updateTimerLabel() {
+        String secondsFormatted = (currentSeconds < 10 ? "0" : "") + currentSeconds + " }";
+        timerLabel.setText("{ 00:" + secondsFormatted);
     }
 
     private static JTextPane getJTextPane(Font myFont, int questionFSize, String questionString) {
