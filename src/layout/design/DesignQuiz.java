@@ -37,6 +37,7 @@ public class DesignQuiz {
     public static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
         playScreen = play;
+        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "hello");
 
         centerPanel.setLayout(new BorderLayout());
         JPanel itemPanel = new JPanel(new GridBagLayout()); itemPanel.setOpaque(false);

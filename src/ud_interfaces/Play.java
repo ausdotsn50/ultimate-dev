@@ -50,16 +50,15 @@ public class Play extends UltDevScreen{
             currPoints += addtlPoints[roundCtr];
             if (roundCtr < 8) { roundCtr++; }
             else { roundCtr = 0; } // Reset for forced new game or quit
-            DesignCategory.showCategories(centerPanel, gbc);
-            displayBottom(this, "Points: " + currPoints, "2");
+            DesignCategory.showCategories(this, centerPanel, gbc);
         }
         else if(!categorySelect && showResult) { // Adding display bottom overrides for each Play-DesignScreen
-            DesignResult.showResult(centerPanel, gbc);
-            displayBottom(this, "The Ultimate Dev Gameshow", "hello");
+            DesignResult.showResult(this, centerPanel, gbc);
+            // displayBottom(this, "The Ultimate Dev Gameshow", "hello");
         }
         else {
             DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
-            displayBottom(this, "The Ultimate Dev Gameshow", "hi");
+            // displayBottom(this, "The Ultimate Dev Gameshow", "hi");
         }
     }
 

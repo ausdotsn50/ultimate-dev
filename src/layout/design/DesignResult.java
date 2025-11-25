@@ -11,7 +11,11 @@ import java.util.Random;
 public class DesignResult {
     static Random rand = new Random();
     // Reference to play here
-    public static void showResult(JPanel centerPanel, GridBagConstraints gbc) {
+    public static Play playScreen;
+    public static void showResult(Play play, JPanel centerPanel, GridBagConstraints gbc) {
+        playScreen = play;
+        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "hi");
+
         // Pool of words to choose from
         String[] correctPool = {
                 "Correct! Keep the streak going!",
