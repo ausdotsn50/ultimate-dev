@@ -1,28 +1,27 @@
 package ud_interfaces;
 
-import layout.design.Design;
-import layout.design.DesignSettings;
 import layout.constants.UDImages;
+import layout.design.Design;
+import layout.design.DesignHowToPlay;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Settings extends UltDevScreen{
-    public Settings(){
+public class Surrender extends UltDevScreen{
+    public Surrender(){
         this.setLayout(new BorderLayout());
 
-        displayTop(this, "settings.html");
+        displayTop(this, "surrender.html");
         displayCenter();
         displayBottom(this, "The Ultimate Dev Gameshow", "1");
     }
 
     public void displayCenter(){
-        // Choose your custom layout
         JPanel centerPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-        DesignSettings.centerDesign(centerPanel, gbc);
+        DesignHowToPlay.displayIns(this, centerPanel, gbc);
     }
 
     @Override

@@ -85,11 +85,6 @@ public class DesignMenu {
 
         gbc.gridy = gridYCoord;
         buttonPanel.add(button, gbc);
-
-        /*
-            Each button in MainMenu is given the CustomButton look
-            and SwitchScreen behavior
-         */
         button.addMouseListener(mouseEVHandler);
     }
 }

@@ -19,11 +19,16 @@ public class Design {
     public static int regularSize = subTitleSize - 5;
 
     // Icon path in Design
-    public final static String[] iconPath =  new String[] {
+    public final static String[] iconPathMenu =  new String[] {
             "/Main_Menu.png",
             "/How_To_Play.png",
             "/Settings.png",
             "/Quit.png",
+    };
+
+    public final static String[] iconPathPlay =  new String[] {
+            "/Main_Menu.png",
+            "/Surrender.png",
     };
 
     // 'static' - belongs to the class itself, not to any instance (object)
@@ -33,6 +38,7 @@ public class Design {
     public static int screenWidth = (int)(1920 * res_factor);
     public static int screenHeight = (int)(1080 * res_factor);
 
+    public static JPanel fRightIcons;
     public static void headerDesign(JPanel mainPanel, String leftHd) {
         JPanel headerPanel = new JPanel(new GridLayout(1,2));
 
@@ -73,14 +79,28 @@ public class Design {
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
         footerCol(footerPanel, leftFt);
 
-        if(rightFt != null) { footerCol(footerPanel, rightFt); }
-        else { footerIcons(footerPanel, "Some str"); }
-
+        fRightIcons = new JPanel();
+        fRightIcons.setOpaque(false);
+        if (Objects.equals(rightFt, "1")) {
+            footerIconsMenu(footerPanel);
+        }
+        else if (Objects.equals(rightFt, "2")) {
+            footerIconsPlay(footerPanel);
+        }
+        else if (rightFt != null) {
+            footerCol(footerPanel, rightFt);
+        }
         footerPanel.setOpaque(false);
 
         // Bottom panel components
         bottomPanel.add(footerPanel, BorderLayout.SOUTH);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    public static void footerIconsPlay(JPanel footerPanel) {
+        fRightIcons.setLayout(new GridLayout(1,2));
+        // To do: Add looping of icons here
+        displayFtIcons(footerPanel, iconPathPlay);
     }
 
     public static void footerCol(JPanel footerPanel, String myStr) {
@@ -90,12 +110,13 @@ public class Design {
         footerPanel.add(fRight);
     }
 
-    public static void footerIcons(JPanel footerPanel, String someStr) {
-        JPanel fRightIcons = new JPanel(new GridLayout(1,4));
-        fRightIcons.setOpaque(false);
+    public static void footerIconsMenu(JPanel footerPanel) {
+        fRightIcons.setLayout(new GridLayout(1,4));
+        displayFtIcons(footerPanel, iconPathMenu);
+    }
 
-        // To do: Add looping of icons here
-        for (String s : iconPath) {
+    private static void displayFtIcons(JPanel footerPanel, String[] iconPathMenu) {
+        for (String s : iconPathMenu) {
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons/" + s)));
             Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Extract Image from ImageIcon and --scale smooth--
 

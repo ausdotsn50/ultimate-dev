@@ -26,6 +26,7 @@ public class Play extends UltDevScreen{
 
     public static Toml toml; // parser
 
+    // Rounds system
     public static int roundCtr = 0;
     public static int[] addtlPoints = {
             0, 100, 150,
@@ -37,7 +38,7 @@ public class Play extends UltDevScreen{
 
         displayTop(this, "play.html");
         displayCenter();
-        displayBottom(this, "The Ultimate Dev Gameshow", null);
+        // displayBottom(this, "The Ultimate Dev Gameshow", "2");
     }
 
     public void displayCenter(){
@@ -45,33 +46,29 @@ public class Play extends UltDevScreen{
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-        // Switching panel shows logic here
-        // If play round over and there are still attempts - give pts
-        if(categorySelect && !showResult){
+        if(categorySelect && !showResult) {
             currPoints += addtlPoints[roundCtr];
             if (roundCtr < 8) { roundCtr++; }
             else { roundCtr = 0; } // Reset for forced new game or quit
             DesignCategory.showCategories(centerPanel, gbc);
+            displayBottom(this, "Points: " + currPoints, "2");
         }
-        else if(!categorySelect && showResult){
+        else if(!categorySelect && showResult) { // Adding display bottom overrides for each Play-DesignScreen
             DesignResult.showResult(centerPanel, gbc);
+            displayBottom(this, "The Ultimate Dev Gameshow", "hello");
         }
         else {
             DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
+            displayBottom(this, "The Ultimate Dev Gameshow", "hi");
         }
     }
 
-    @Override // Overrides the existing footer from MainMenu
-    public void displayBottom(JPanel mainPanel, String leftHd, String rightHd) {
-        Design.footerDesign(mainPanel, "CoDev Calls: Copy [" + copy + "]" +
-                " | Save [" + save + "]", "Points: " + currPoints); // Left and right footers
-    }
 
     public void refreshCenter() {
         this.removeAll();              // clear everything
         displayTop(this, "play.html");
         displayCenter();               // rebuild center panel
-        displayBottom(this, "The Ultimate Dev Gameshow", null);
+        // displayBottom(this, "The Ultimate Dev Gameshow", null);
         this.revalidate();             // re-layout components
         this.repaint();                // re-render graphics
     }

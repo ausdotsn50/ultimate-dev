@@ -13,7 +13,7 @@ public class HowToPlay extends UltDevScreen{
 
         displayTop(this, "how_to_play.html");
         displayCenter();
-        displayBottom(this, "The Ultimate Dev Gameshow", null);
+        displayBottom(this, "The Ultimate Dev Gameshow", "1");
     }
 
     public void displayCenter(){

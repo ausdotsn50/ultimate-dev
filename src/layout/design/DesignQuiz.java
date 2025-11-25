@@ -33,7 +33,6 @@ public class DesignQuiz {
 
     // reference to the original PlayScreen
     public static Play playScreen; // reference to Play
-
     // Quiz navigation
     public static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {

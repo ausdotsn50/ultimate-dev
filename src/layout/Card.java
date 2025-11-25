@@ -47,15 +47,15 @@ public class Card extends JFrame {
         Settings settings = new Settings();
         container.add(settings, "Settings");
 
-        cardLayout.show(container, "Play");
+        Surrender surrender = new Surrender();
+        container.add(surrender, "Surrender");
     }
 
     public static void screenChoice(String cardPage) {
         System.out.println("Trying to switch from " + currentPage + " to " + cardPage);
 
         if(cardPage == null || cardPage.isEmpty() || cardPage.equals(currentPage)) {
-            // return early
-            return;
+            return; // return early
         }
         cardLayout.show(container, cardPage);
     }
