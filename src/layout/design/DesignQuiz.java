@@ -19,7 +19,7 @@ public class DesignQuiz {
     static Timer timer;
     static int currentSeconds;
 
-    // Panels - question and choice
+    // Panels - timer, question, and choice
     static JPanel timerPanel;
     static JLabel timerLabel;
     static JPanel questionPanel;
@@ -35,19 +35,15 @@ public class DesignQuiz {
     public static Play playScreen; // reference to Play
 
     // Quiz navigation
-    public static boolean isCorrect; // isCorrect -> manipulates DesignResult.showResult screen
-    // static String itemAnswer;
+    public static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
         playScreen = play;
 
         centerPanel.setLayout(new BorderLayout());
-        JPanel itemPanel = new JPanel(new GridBagLayout());
-        itemPanel.setOpaque(false);
+        JPanel itemPanel = new JPanel(new GridBagLayout()); itemPanel.setOpaque(false);
         GridBagConstraints itemGbc = new GridBagConstraints();
 
-        timerPanel = new JPanel();
-        // timerPanel.setBackground(Color.ORANGE);
-        timerPanel.setOpaque(false);
+        timerPanel = new JPanel(); timerPanel.setOpaque(false);
         timerPanel.setBorder(new EmptyBorder(20,0,0,0));
 
         timerLabel = new JLabel();
@@ -56,75 +52,57 @@ public class DesignQuiz {
         timerPanel.add(timerLabel);
 
         // Question panel setup
-        questionPanel = new JPanel();
-        // questionPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80 * 0.60)));
-        // questionPanel.setBackground(Color.red);
-        questionPanel.setOpaque(false);
+        questionPanel = new JPanel(); questionPanel.setOpaque(false);
 
         // Choices panel setup
-        choicesPanel = new JPanel();
-        choicesPanel.setOpaque(false);
-
-        // 2 row, 2 col button display layout
+        choicesPanel = new JPanel(); choicesPanel.setOpaque(false);
         choicesPanel.setLayout(new GridLayout(2, 2, 20, 20));
 
         // Parse questions table to ArrayList
-        if(!parsedTOML) {
-            questions = new ArrayList<>(qDotTOML.getList("questions"));
-            parsedTOML = true;
-        }
+        if(!parsedTOML) { questions = new ArrayList<>(qDotTOML.getList("questions")); parsedTOML = true; }
 
         if (questions.isEmpty()) {
-            System.out.println("No questions available.");
-            endQuizAndReturn();
+            System.out.println("No questions available."); endQuizAndReturn();
             return; // STOP executing this method
         }
 
         itemGbc.insets = new Insets(10, 10, 10, 10);
-        itemGbc.gridx = 0;
-        itemGbc.gridy = 0;
+        itemGbc.gridx = 0; itemGbc.gridy = 0;
         itemPanel.add(questionPanel, itemGbc);
         itemGbc.gridy = 1;
         itemPanel.add(choicesPanel, itemGbc);
 
-        centerPanel.add(timerPanel, BorderLayout.NORTH);
-        centerPanel.add(itemPanel, BorderLayout.CENTER);
-
+        centerPanel.add(timerPanel, BorderLayout.NORTH); centerPanel.add(itemPanel, BorderLayout.CENTER);
         displayQuestion();
         timer.start();
     }
 
-    public static void displayQuestion() {
-        // questions empty w/ timer finished
-        if(questions.isEmpty()) {
-            if(timer != null) { timer.stop(); }
-            System.out.println("This round has ended.");
+    // Separate method to update just the text of the existing label
+    private static void updateTimerLabel() {
+        String secondsFormatted = (currentSeconds < 10 ? "0" : "") + currentSeconds + " }";
+        timerLabel.setText("{ 00:" + secondsFormatted);
+    }
 
+    public static void displayQuestion() {
+        if(questions.isEmpty()) { // Questions empty, timer finished
+            if(timer != null) { timer.stop(); }
+            // System.out.println("This round has ended.");
             endQuizAndReturn(); clearPanel(); return;
         }
 
-        // Revised timer logic
-        currentSeconds = 10;
-        updateTimerLabel();
-
-        // Ticks 1000ms
-        timer = new Timer(1000, e -> {
-            currentSeconds--;
-            updateTimerLabel();
-            if(currentSeconds <= 4) {
-                timerLabel.setForeground(UDColors.udIncorrect);
-            }
-
+        // The revised timer logic
+        currentSeconds = 10; updateTimerLabel();
+        timer = new Timer(1000, e -> { // 1000ms tick
+            currentSeconds--; updateTimerLabel();
+            if(currentSeconds <= 4) { timerLabel.setForeground(UDColors.udIncorrect); }
             if (currentSeconds < 0) {
                 ((Timer)e.getSource()).stop();
-                // Timeout: Mark incorrect or just move to next
-                isCorrect = false;
+                isCorrect = false; // Timeout: Mark incorrect
                 showCorrespondingResult();
                 timerLabel.setForeground(UDColors.udCorrect);
             }
         });
-        timer.setRepeats(true);
-        timer.start();
+        timer.setRepeats(true); timer.start();
 
         // Extract random question
         int randIndex =  rand.nextInt(questions.size());
@@ -157,12 +135,6 @@ public class DesignQuiz {
         questionPanel.add(questionPane);
         displayChoices();
         refreshPanels();
-    }
-
-    // Separate method to update just the text of the existing label
-    private static void updateTimerLabel() {
-        String secondsFormatted = (currentSeconds < 10 ? "0" : "") + currentSeconds + " }";
-        timerLabel.setText("{ 00:" + secondsFormatted);
     }
 
     private static JTextPane getJTextPane(Font myFont, int questionFSize, String questionString) {

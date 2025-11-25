@@ -20,8 +20,6 @@ public class DesignCategory {
     ));
 
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(new GoToCategBehavior(), null);
-    // Note: showCategories will be called again after round end
-    // Add an update of which categories are finished
     public static void showCategories(JPanel centerPanel, GridBagConstraints gbc) {
         int tbInsets = 20;
 

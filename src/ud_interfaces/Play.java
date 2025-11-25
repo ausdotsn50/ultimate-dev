@@ -10,18 +10,22 @@ import layout.design.DesignResult;
 import javax.swing.*;
 import java.awt.*;
 
+// Main file for the Play pages/interfaces
 public class Play extends UltDevScreen{
-    public static boolean categorySelect = true;
-    public static Toml toml;
-
-    public static boolean showResult = false;
-    public static int attemptsLeft = 3;
-
-    public static int currPoints = 30;
-    public static int save = 1; public static int copy = 1;
-
+    // Conditions that manipulate page display
+    public static boolean categorySelect = true; // Category selection from introduction to comp mapping
+    public static boolean showResult = false; // Shows if correct/incorrect response to question
     // public static boolean isRoundOver = false;
-    // Add here array of point system
+
+    // Life system
+    public static int attemptsLeft = 3;
+    // Point system
+    public static int currPoints = 30;
+    // Hint system
+    public static int save = 1;
+    public static int copy = 1;
+
+    public static Toml toml; // parser
     public Play(){
         this.setLayout(new BorderLayout());
 
@@ -30,12 +34,12 @@ public class Play extends UltDevScreen{
         displayBottom(this, "The Ultimate Dev Gameshow", null);
     }
 
-    // To do: Implement a changing displayCenter() for Play page
     public void displayCenter(){
         JPanel centerPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
+        // Switching panel shows logic here
         if(categorySelect && !showResult){
             DesignCategory.showCategories(centerPanel, gbc);
         }
@@ -43,24 +47,14 @@ public class Play extends UltDevScreen{
             DesignResult.showResult(centerPanel, gbc);
         }
         else {
-            // Else if not selecting a category --> show quiz questions
-            // Parsing the appropriate TOML file
-            // Addition: recommended to pass a reference of Play
-            DesignQuiz.showQuiz(this, centerPanel, toml);
+            DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
         }
     }
 
-    @Override
+    @Override // Overrides the existing footer from MainMenu
     public void displayBottom(JPanel mainPanel, String leftHd, String rightHd) {
         Design.footerDesign(mainPanel, "CoDev Calls: Copy [" + copy + "]" +
-                " | Save [" + save + "]", "Points: " + currPoints);
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.drawImage(UDImages.bgId1, 0, 0, getWidth(), getHeight(), this);
+                " | Save [" + save + "]", "Points: " + currPoints); // Left and right footers
     }
 
     public void refreshCenter() {
@@ -72,4 +66,10 @@ public class Play extends UltDevScreen{
         this.repaint();                // re-render graphics
     }
 
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.drawImage(UDImages.bgId1, 0, 0, getWidth(), getHeight(), this);
+    }
 }
