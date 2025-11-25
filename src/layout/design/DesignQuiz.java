@@ -62,7 +62,8 @@ public class DesignQuiz {
         if(!parsedTOML) { questions = new ArrayList<>(qDotTOML.getList("questions")); parsedTOML = true; }
 
         if (questions.isEmpty()) {
-            System.out.println("No questions available."); endQuizAndReturn();
+            System.out.println("No questions available.");
+            endQuizAndReturn();
             return; // STOP executing this method
         }
 
@@ -94,7 +95,7 @@ public class DesignQuiz {
         currentSeconds = 10; updateTimerLabel();
         timer = new Timer(1000, e -> { // 1000ms tick
             currentSeconds--; updateTimerLabel();
-            if(currentSeconds <= 4) { timerLabel.setForeground(UDColors.udIncorrect); }
+            if(currentSeconds <= 3) { timerLabel.setForeground(UDColors.udIncorrect); }
             if (currentSeconds < 0) {
                 ((Timer)e.getSource()).stop();
                 isCorrect = false; // Timeout: Mark incorrect

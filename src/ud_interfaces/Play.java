@@ -13,19 +13,25 @@ import java.awt.*;
 // Main file for the Play pages/interfaces
 public class Play extends UltDevScreen{
     // Conditions that manipulate page display
-    public static boolean categorySelect = true; // Category selection from introduction to comp mapping
+    public static boolean categorySelect = true; // Category selection from introduction to comp mapping + equiv to round over
     public static boolean showResult = false; // Shows if correct/incorrect response to question
-    // public static boolean isRoundOver = false;
 
     // Life system
     public static int attemptsLeft = 3;
     // Point system
-    public static int currPoints = 30;
+    public static int currPoints = 0;
     // Hint system
     public static int save = 1;
     public static int copy = 1;
 
     public static Toml toml; // parser
+
+    public static int roundCtr = 0;
+    public static int[] addtlPoints = {
+            0, 100, 150,
+            250, 400, 600,
+            850, 1150
+    };
     public Play(){
         this.setLayout(new BorderLayout());
 
@@ -40,7 +46,11 @@ public class Play extends UltDevScreen{
 
         Design.centerDefault(this, centerPanel);
         // Switching panel shows logic here
+        // If play round over and there are still attempts - give pts
         if(categorySelect && !showResult){
+            currPoints += addtlPoints[roundCtr];
+            if (roundCtr < 8) { roundCtr++; }
+            else { roundCtr = 0; } // Reset for forced new game or quit
             DesignCategory.showCategories(centerPanel, gbc);
         }
         else if(!categorySelect && showResult){
