@@ -73,6 +73,7 @@ public class DesignResult {
 
     public static void gameOver(JPanel centerPanel, GridBagConstraints gbc) {
         JLabel gameOverMsg = new JLabel("Game Over!");
+        gameOverMsg.setForeground(UDColors.udWhite);
         gameOverMsg.setFont(Design.loadCustomFont(Design.subTitleSize + 10));
         centerPanel.add(gameOverMsg, gbc);
     }
