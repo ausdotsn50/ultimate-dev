@@ -9,36 +9,29 @@ import layout.design.DesignResult;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-// Main file for the Play pages/interfaces
 public class Play extends UltDevScreen{
-    // Conditions that manipulate page display
-    public static boolean categorySelect = true; // Category selection from introduction to comp mapping + equiv to round over
-    public static boolean showResult = false; // Shows if correct/incorrect response to question
+    public static boolean categorySelect; // Category selection from introduction to comp mapping + equiv to round over
+    public static boolean showResult; // Shows if correct/incorrect response to question
 
     // Life system
-    public static int attemptsLeft = 3;
+    public static int attemptsLeft;
     // Point system
-    public static int currPoints = 0;
+    public static int currPoints;
+    public static int[] addtlPoints = { 0, 100, 150, 250, 400, 600, 850, 1150 };
     // Hint system
-    public static int save = 1;
-    public static int copy = 1;
-
-    public static Toml toml; // parser
+    public static int save; public static int copy;
 
     // Rounds system
-    public static int roundCtr = 0;
-    public static int[] addtlPoints = {
-            0, 100, 150,
-            250, 400, 600,
-            850, 1150
-    };
+    public static int roundCtr;
+    public static Toml toml; // parser
     public Play(){
+        init();
         this.setLayout(new BorderLayout());
-
         displayTop(this, "play.html");
         displayCenter();
-        // displayBottom(this, "The Ultimate Dev Gameshow", "2");
     }
 
     public void displayCenter(){
@@ -54,22 +47,32 @@ public class Play extends UltDevScreen{
         }
         else if(!categorySelect && showResult) { // Adding display bottom overrides for each Play-DesignScreen
             DesignResult.showResult(this, centerPanel, gbc);
-            // displayBottom(this, "The Ultimate Dev Gameshow", "hello");
         }
         else {
             DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
-            // displayBottom(this, "The Ultimate Dev Gameshow", "hi");
         }
     }
-
 
     public void refreshCenter() {
         this.removeAll();              // clear everything
         displayTop(this, "play.html");
         displayCenter();               // rebuild center panel
-        // displayBottom(this, "The Ultimate Dev Gameshow", null);
         this.revalidate();             // re-layout components
         this.repaint();                // re-render graphics
+    }
+
+    // todo: modify this into a cleaner init function
+    public void init() {
+        categorySelect = true; showResult = false;
+        attemptsLeft = 3; currPoints = 0;
+        save = 1; copy = 1;
+        roundCtr = 0;
+        DesignCategory.categories = new ArrayList<>(Arrays.asList( // Repopulate the array
+                "Introduction to the Paradigms", "Procedural Programming",
+                "Functional Programming", "Object-Oriented Programming",
+                "Imperative vs Declarative", "Event-Driven Programming",
+                "Component Mappings between Paradigms"
+        )); DesignQuiz.endQuizAndReturn();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package ud_interfaces;
 
-import events.KeyEVHandler;
+import events.MenuKeyHandler;
 import layout.design.Design;
 import layout.design.DesignLoading;
 import layout.constants.UDImages;
@@ -10,7 +10,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class LoadScreen extends UltDevScreen {
-    KeyEVHandler keyEVHandler = new KeyEVHandler();
+    MenuKeyHandler menuKeyHandler = new MenuKeyHandler();
     public LoadScreen(){
         this.setLayout(new BorderLayout());
 
@@ -19,7 +19,7 @@ public class LoadScreen extends UltDevScreen {
         displayBottom(this, "The Ultimate Dev Gameshow", "(c) Group Pink");
 
         this.setFocusable(true);
-        this.addKeyListener(keyEVHandler);
+        this.addKeyListener(menuKeyHandler);
     }
 
     @Override

@@ -49,6 +49,8 @@ public class Card extends JFrame {
 
         Surrender surrender = new Surrender();
         container.add(surrender, "Surrender");
+
+        cardLayout.show(container, "Play");
     }
 
     public static void screenChoice(String cardPage) {

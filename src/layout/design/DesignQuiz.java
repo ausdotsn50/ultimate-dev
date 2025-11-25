@@ -16,7 +16,7 @@ import java.util.List;
 public class DesignQuiz {
     // Utilities
     static Random rand = new Random();
-    static Timer timer;
+    public static Timer timer;
     static int currentSeconds;
 
     // Panels - timer, question, and choice
@@ -26,18 +26,17 @@ public class DesignQuiz {
     static JPanel choicesPanel;
 
     // TOML file parsing
-    static boolean parsedTOML = false; // Might be used later on
-    static List<Map<String, Object>> questions;
+    public static boolean parsedTOML = false; // Might be used later on
+    public static List<Map<String, Object>> questions;
     static List<String> combinedChoices = new ArrayList<>();
     static String answer;
 
-    // reference to the original PlayScreen
+    static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
     public static Play playScreen; // reference to Play
-    // Quiz navigation
-    public static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
         playScreen = play;
-        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "hello");
+        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "Copy [" + Play.copy +"] " +
+                "| Save [" + Play.save + "]");
 
         centerPanel.setLayout(new BorderLayout());
         JPanel itemPanel = new JPanel(new GridBagLayout()); itemPanel.setOpaque(false);
@@ -61,7 +60,7 @@ public class DesignQuiz {
         // Parse questions table to ArrayList
         if(!parsedTOML) { questions = new ArrayList<>(qDotTOML.getList("questions")); parsedTOML = true; }
 
-        if (questions.isEmpty()) {
+        if (questions.isEmpty()) { // Failed TOML parse?
             System.out.println("No questions available.");
             endQuizAndReturn();
             return; // STOP executing this method
@@ -87,7 +86,6 @@ public class DesignQuiz {
     public static void displayQuestion() {
         if(questions.isEmpty()) { // Questions empty, timer finished
             if(timer != null) { timer.stop(); }
-            // System.out.println("This round has ended.");
             endQuizAndReturn(); clearPanel(); return;
         }
 
@@ -191,7 +189,7 @@ public class DesignQuiz {
     }
 
     // Helper method for screen switching
-    private static void endQuizAndReturn() {
+    public static void endQuizAndReturn() {
         if (timer != null) { timer.stop(); }
         Play.categorySelect = true;
         parsedTOML = false;
