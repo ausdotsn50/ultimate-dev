@@ -80,7 +80,7 @@ alternatives = [
 
 # Item 9
 [[questions]]
-question = "Which of the following is a common <br>data structure in functional programming?"
+question = "Which of the following is a common data <br>structure in functional programming?"
 answer = "Immutable list"
 alternatives = [
 "Mutable array",

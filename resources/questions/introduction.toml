@@ -123,7 +123,7 @@ alternatives = ["5", "3", "53"]
 # Item 14
 [[questions]]
 question = """
-Given the expected output: Product = 20 <br>Which of the following procedures <br>will produce it?
+Given the expected output: Product = 20 <br>Which of the following procedures will produce it?
 """
 answer = """
 void multiply() {

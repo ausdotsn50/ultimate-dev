@@ -54,6 +54,6 @@ alternatives = ["A reactive event-driven model", "A declarative, non-sequential 
 
 # Item 10
 [[questions]]
-question = "Which of the following best distinguishes <br>procedural programming from functional programming?"
+question = "Which of the following best distinguishes procedural <br>programming from functional programming?"
 answer = "Functional programming uses pure functions, <br>while procedural programming relies on <br>changing state through procedures"
 alternatives = ["Procedural programming <br>avoids mutable data", "Both use recursion exclusively <br>instead of loops", "Procedural programming is based <br>on logical inference"]
