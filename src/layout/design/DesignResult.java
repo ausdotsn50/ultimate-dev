@@ -25,15 +25,15 @@ public class DesignResult {
                 "Remaining Round Qs: " + DesignQuiz.questions.size());
         boolean isFinished = DesignQuiz.questions.isEmpty();
 
-        String responseStr; Color txtColor; String buttonText;
-        if(DesignQuiz.isCorrect) {
+        String responseStr = ""; Color txtColor = null; String buttonText = "";
+        if(DesignQuiz.isCorrect) { // correct
             responseStr = correctPool[rand.nextInt(correctPool.length)];
             buttonText = "Next Question!";
             txtColor = UDColors.udCorrect;
         } else if(Play.attemptsLeft == 0) {
             gameOver(centerPanel, gbc);
             return;
-        } else {
+        } else { // incorrect
             Play.attemptsLeft--;
             responseStr = wrongPool[rand.nextInt(wrongPool.length)];
             txtColor = UDColors.udIncorrect;
@@ -104,17 +104,10 @@ public class DesignResult {
         retryBtn.setFont(Design.loadCustomFont(fontSize));
         retryBtn.addActionListener(e -> {
             // Add your configurations here
-            playScreen.init();
-            // Other screen configurations from DesignQuiz
+            playScreen.init(); // Other screen configurations from DesignQuiz
         });
         centerPanel.add(retryBtn, gbc);
 
         playScreen.displayBottom(playScreen, "The Ultimate Dev Gameshow", "1");
-    }
-
-    public static void gameWon(JPanel centerPanel, GridBagConstraints gbc) {
-        JLabel gameWonMsg = new JLabel("You are the Ultimate Dev!");
-        gameWonMsg.setFont(Design.loadCustomFont(Design.subTitleSize + 10));
-        centerPanel.add(gameWonMsg, gbc);
     }
 }

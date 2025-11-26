@@ -9,16 +9,9 @@ import ud_interfaces.Play;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DesignCategory {
-    public static ArrayList<String> categories = new ArrayList<>(Arrays.asList(
-            "Introduction to the Paradigms", "Procedural Programming",
-            "Functional Programming", "Object-Oriented Programming",
-            "Imperative vs Declarative", "Event-Driven Programming",
-            "Component Mappings between Paradigms"
-    ));
-
+    public static ArrayList<String> categories;
     public static Play playScreen;
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(new GoToCategBehavior(), null);
     public static void showCategories(Play play, JPanel centerPanel, GridBagConstraints gbc) {
