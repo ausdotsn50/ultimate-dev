@@ -47,6 +47,9 @@ public class Card extends JFrame {
         Settings settings = new Settings();
         container.add(settings, "Settings");
 
+        Surrender surrender = new Surrender();
+        container.add(surrender, "Surrender");
+
         cardLayout.show(container, "Play");
     }
 
@@ -54,8 +57,7 @@ public class Card extends JFrame {
         System.out.println("Trying to switch from " + currentPage + " to " + cardPage);
 
         if(cardPage == null || cardPage.isEmpty() || cardPage.equals(currentPage)) {
-            // return early
-            return;
+            return; // return early
         }
         cardLayout.show(container, cardPage);
     }

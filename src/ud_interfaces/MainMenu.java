@@ -14,7 +14,7 @@ public class MainMenu extends UltDevScreen {
 
         displayTop(this, "main_menu.html");
         displayCenter();
-        displayBottom(this, "The Ultimate Dev Gameshow", "Points: 0");
+        displayBottom(this, "The Ultimate Dev Gameshow", "1");
     }
 
     public void displayCenter(){

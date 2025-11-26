@@ -10,8 +10,6 @@ import java.io.InputStream;
 import java.util.Objects;
 
 public class Design {
-    static MouseEVHandler mouseEVHandler = new MouseEVHandler(null, new GrowSwitchBehavior(10));
-
     // Font size constants
     public static int mainTitleSize = 100;
     public static int titleSize = 50;
@@ -19,24 +17,20 @@ public class Design {
     public static int regularSize = subTitleSize - 5;
 
     // Icon path in Design
-    public final static String[] iconPath =  new String[] {
-            "/Main_Menu.png",
-            "/How_To_Play.png",
-            "/Settings.png",
-            "/Quit.png",
-    };
+    public final static String[] iconPathMenu =  new String[] {
+            "/Main_Menu.png", "/How_To_Play.png", "/Settings.png", "/Quit.png", };
+    public final static String[] iconPathPlay =  new String[] {
+            "/Main_Menu.png", "/Surrender.png", };
 
-    // 'static' - belongs to the class itself, not to any instance (object)
     static double res_factor = 0.60;
-
-    // Immutable dimension size
     public static int screenWidth = (int)(1920 * res_factor);
     public static int screenHeight = (int)(1080 * res_factor);
 
+    public static JPanel fRightIcons;
+
+    static MouseEVHandler mouseEVHandler = new MouseEVHandler(null, new GrowSwitchBehavior(10));
     public static void headerDesign(JPanel mainPanel, String leftHd) {
         JPanel headerPanel = new JPanel(new GridLayout(1,2));
-
-        // Changed to a more dynamic panel placing
         headerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.10) ));
         headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         headerPanel.setOpaque(false);
@@ -67,20 +61,31 @@ public class Design {
         JPanel bottomPanel = new JPanel(new BorderLayout());
 
         bottomPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.10) ));
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         bottomPanel.setOpaque(false);
 
         JPanel footerPanel = new JPanel(new GridLayout(1,2));
         footerCol(footerPanel, leftFt);
 
-        if(rightFt != null) { footerCol(footerPanel, rightFt); }
-        else { footerIcons(footerPanel, "Some str"); }
-
+        fRightIcons = new JPanel();
+        fRightIcons.setOpaque(false);
+        if (Objects.equals(rightFt, "1")) {
+            footerIconsMenu(footerPanel);
+        }
+        else if (Objects.equals(rightFt, "2")) {
+            footerIconsPlay(footerPanel);
+        }
+        else if (rightFt != null) {
+            footerCol(footerPanel, rightFt);
+        }
         footerPanel.setOpaque(false);
-
-        // Bottom panel components
-        bottomPanel.add(footerPanel, BorderLayout.SOUTH);
+        bottomPanel.add(footerPanel, BorderLayout.CENTER);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+    }
+
+    public static void footerIconsPlay(JPanel footerPanel) {
+        fRightIcons.setLayout(new GridLayout(1,2));
+        displayFtIcons(footerPanel, iconPathPlay);
     }
 
     public static void footerCol(JPanel footerPanel, String myStr) {
@@ -90,12 +95,13 @@ public class Design {
         footerPanel.add(fRight);
     }
 
-    public static void footerIcons(JPanel footerPanel, String someStr) {
-        JPanel fRightIcons = new JPanel(new GridLayout(1,4));
-        fRightIcons.setOpaque(false);
+    public static void footerIconsMenu(JPanel footerPanel) {
+        fRightIcons.setLayout(new GridLayout(1,4));
+        displayFtIcons(footerPanel, iconPathMenu);
+    }
 
-        // To do: Add looping of icons here
-        for (String s : iconPath) {
+    private static void displayFtIcons(JPanel footerPanel, String[] iconPathMenu) {
+        for (String s : iconPathMenu) {
             ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons/" + s)));
             Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Extract Image from ImageIcon and --scale smooth--
 
@@ -113,16 +119,10 @@ public class Design {
     // default design for center-part, 80 percent cover
     public static void centerDefault(JPanel mainPanel, JPanel centerPanel) {
         centerPanel.setPreferredSize(new Dimension(Design.screenWidth, (int) (Design.screenHeight * 0.80)));
-
-        // Note on this constant border
-        // centerPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
         centerPanel.setOpaque(false);
-
         mainPanel.add(centerPanel, BorderLayout.CENTER);
     }
 
-    // --- Abstracting away fx/design methods ---
-    // fade fx
     public static void startFadeEffect(JLabel label) {
         final float[] alpha = {1.0f};
         final boolean[] fadingOut = {true};
@@ -145,19 +145,13 @@ public class Design {
                 }
             }
 
-            // Apply alpha transparency
-            Color base = UDColors.udCyan;
+            Color base = UDColors.udCyan; // Apply alpha transparency
             label.setForeground(new Color(
-                    base.getRed(),
-                    base.getGreen(),
-                    base.getBlue(),
-                    (int) (alpha[0] * 255) // opacity
-            ));
-            label.repaint();
+                    base.getRed(), base.getGreen(), base.getBlue(), (int) (alpha[0] * 255) // opacity
+            )); label.repaint();
         });
 
-        timer.setInitialDelay(0);
-        timer.start();
+        timer.setInitialDelay(0); timer.start();
     }
 
     // Review method
@@ -166,10 +160,8 @@ public class Design {
             if (is == null) {
                 throw new RuntimeException("Font file not found!");
             }
-
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, is);
             return customFont.deriveFont(Font.PLAIN, fontSize);
-
         } catch (Exception e) {
             // Add catch statement
             return new Font("SansSerif", Font.PLAIN, fontSize);

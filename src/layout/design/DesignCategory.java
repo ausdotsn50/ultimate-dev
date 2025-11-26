@@ -19,8 +19,12 @@ public class DesignCategory {
             "Component Mappings between Paradigms"
     ));
 
+    public static Play playScreen;
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(new GoToCategBehavior(), null);
-    public static void showCategories(JPanel centerPanel, GridBagConstraints gbc) {
+    public static void showCategories(Play play, JPanel centerPanel, GridBagConstraints gbc) {
+        playScreen = play;
+        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "2");
+
         int tbInsets = 20;
 
         gbc.gridx = 0; gbc.gridy = 0;
