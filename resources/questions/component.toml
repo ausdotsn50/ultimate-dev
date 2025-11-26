@@ -1,0 +1,99 @@
+# Item 1
+[[questions]]
+question = "Which of the following best describes a programming paradigm?"
+answer = "a style or model for solving problems using specific programming concepts"
+alternatives = [
+"a method for compiling code into machine language",
+"a system for organizing files and folders",
+"a type of software license"
+]
+
+# Item 2
+[[questions]]
+question = "How does declarative programming differ from imperative programming?"
+answer = "declarative describes what to achieve, imperative describes how to achieve it"
+alternatives = [
+"imperative programs do not use loops",
+"declarative programming does not use functions",
+"both focus only on control flow"
+]
+
+# Item 3
+[[questions]]
+question = "Which of the following paradigms focuses on the use of facts, rules, and queries?"
+answer = "logic"
+alternatives = [
+"object-oriented",
+"functional",
+"procedural"
+]
+
+# Item 4
+[[questions]]
+question = "Which of the following paradigms centers on data abstraction and encapsulation?"
+answer = "Object-oriented"
+alternatives = [
+"Procedural",
+"Declarative",
+"Functional"
+]
+
+# Item 5
+[[questions]]
+question = "What is a key similarity between procedural and functional paradigms?"
+answer = "Both decompose programs into smaller callable units"
+alternatives = [
+"Both rely on global variables",
+"Both use classes for all data manipulation",
+"Both avoid function calls"
+]
+
+# Item 6
+[[questions]]
+question = "Which paradigm does Java primarily follow, while also supporting features from others?"
+answer = "object-oriented with imperative and event-driven features"
+alternatives = [
+"functional",
+"declarative",
+"purely logical"
+]
+
+# Item 7
+[[questions]]
+question = "Which of the following is a defining feature of event-driven programming?"
+answer = "execution depends on event occurrences such as user interaction"
+alternatives = [
+"programs execute sequentially from start to end",
+"state never changes during runtime",
+"code cannot use functions"
+]
+
+# Item 8
+[[questions]]
+question = "What characteristic distinguishes functional languages like Haskell from imperative languages like C?"
+answer = "use of immutable data and pure functions"
+alternatives = [
+"extensive use of variable reassignment",
+"dependency on loops",
+"requirement for class-based design"
+]
+
+# Item 9
+[[questions]]
+question = "Which paradigm best supports reactive systems that respond to inputs as they occur?"
+answer = "event-driven"
+alternatives = [
+"procedural",
+"functional",
+"logic"
+]
+
+# Item 10
+[[questions]]
+question = "How can different paradigms be related or mapped together in modern languages like JavaScript or Python?"
+answer = "by combining imperative control flow with functional expressions"
+alternatives = [
+"by enforcing a single programming model",
+"by avoiding reuse across paradigms",
+"by disabling object-oriented features"
+]

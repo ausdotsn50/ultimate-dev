@@ -1,0 +1,99 @@
+# Item 1
+[[questions]]
+question = "Which statement best captures the core principle of the imperative paradigm?"
+answer = "Programs specify a sequence of operations that change the program’s state."
+alternatives = [
+"Programs describe relationships between inputs and outputs.",
+"Programs express computation as evaluation of mathematical functions.",
+"Programs are composed of rules and logical inferences."
+]
+
+# Item 2
+[[questions]]
+question = "In imperative programming, what does state mutability imply?"
+answer = "Variables can change values during execution, altering program state."
+alternatives = [
+"Variables can only be assigned once.",
+"Functions must return new states instead of modifying existing ones.",
+"The program cannot have side effects."
+]
+
+# Item 3
+[[questions]]
+question = "Which of the following correctly differentiates procedural programming from object-oriented programming under the imperative paradigm?"
+answer = "Procedural organizes code into functions; OOP organizes code into classes and objects."
+alternatives = [
+"Procedural focuses on state, while OOP focuses on behavior.",
+"Procedural uses classes, while OOP avoids them.",
+"There is no difference; both are declarative."
+]
+
+# Item 4
+[[questions]]
+question = "What is a major drawback of the imperative approach compared to the declarative one?"
+answer = "It requires explicitly managing control flow and state changes."
+alternatives = [
+"It is less efficient in execution.",
+"It cannot handle user-defined data types.",
+"It cannot perform recursion."
+]
+
+# Item 5
+[[questions]]
+question = "The statement 'The same operation performed in two different parts of an imperative program may produce different results' illustrates which property?"
+answer = "Side effects"
+alternatives = [
+"Determinism",
+"Immutability",
+"Referential transparency"
+]
+
+# Item 6
+[[questions]]
+question = "What is a central idea behind logic programming as introduced in Lecture 8A?"
+answer = "Computation is performed by stating facts and rules, and letting the system infer answers."
+alternatives = [
+"Programs explicitly list the step-by-step control flow.",
+"All programs are purely functional, with no side effects.",
+"Data and functions are merged into objects with methods."
+]
+
+# Item 7
+[[questions]]
+question = "In the context of logic programming, which of the following is not typically a component of a logic program?"
+answer = "Explicit loops"
+alternatives = [
+"Facts",
+"Rules",
+"Queries"
+]
+
+# Item 8
+[[questions]]
+question = "The query system in logic programming works by:"
+answer = "Matching queries against facts and attempting to satisfy conditions via backtracking."
+alternatives = [
+"Executing statements in a fixed sequence.",
+"Translating logic programs to imperative machine code only.",
+"Disallowing recursion to avoid infinite loops."
+]
+
+# Item 9
+[[questions]]
+question = "Which statement best captures the difference between logic programming and imperative programming?"
+answer = "Logic programming separates what from how, while imperative programming tends to combine both."
+alternatives = [
+"Imperative programming uses facts and rules; logic programming uses assignments and loops.",
+"Logic programming cannot express nondeterminism, while imperative can.",
+"In logic programming, state mutation is the norm."
+]
+
+# Item 10
+[[questions]]
+question = "According to the lecture, logic programming systems often incorporate backtracking. Backtracking means:"
+answer = "Reversing decisions when they lead to failure and trying alternative paths."
+alternatives = [
+"Progressing forward in a fixed linear order.",
+"Caching previous results to speed up queries.",
+"Disallowing recursion."
+]

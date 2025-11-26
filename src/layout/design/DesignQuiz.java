@@ -121,7 +121,7 @@ public class DesignQuiz {
         combinedChoices.add(answer);
         java.util.Collections.shuffle(combinedChoices); // Shuffle combines choices
 
-        // Load the font object.toml using existing method
+        // Load the font object-oriented.toml using existing method
         int questionFSize = Design.subTitleSize - 3; // int choicesFSize = Design.regularSize;
         Font myFont = Design.loadCustomFont(questionFSize);
 
