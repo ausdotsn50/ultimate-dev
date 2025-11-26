@@ -64,7 +64,7 @@ public class Play extends UltDevScreen{
     // todo: modify this into a cleaner init function
     public void init() {
         categorySelect = true; showResult = false;
-        attemptsLeft = 3; currPoints = 0;
+        attemptsLeft = 100; currPoints = 0;
         save = 1; copy = 1;
         roundCtr = 0;
         DesignCategory.categories = new ArrayList<>(Arrays.asList( // Repopulate the array

@@ -120,7 +120,6 @@ answer = "8"
 alternatives = ["5", "3", "53"]
 
 
-
 # Item 14
 [[questions]]
 question = """

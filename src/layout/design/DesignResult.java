@@ -10,16 +10,16 @@ import java.util.Random;
 
 public class DesignResult {
     static Random rand = new Random();
-    static String[] correctPool = { "Correct! Keep the streak going!", "Nice one! You’re on a roll!",
-            "Spot on! Let’s keep the momentum!", "You nailed it! Next question!",
-    };
-    static String noun = (Play.attemptsLeft == 1) ? "attempt" : "attempts";
-    static String[] wrongPool = {
-            "Not quite. You have " + Play.attemptsLeft + " " + noun + " left, try again!", "Almost! Still " + Play.attemptsLeft + " " + noun +  " remaining.",
-            "Incorrect, but you’re still in the game with " + Play.attemptsLeft + " " + noun + "!", "Close miss. You’ve got " + Play.attemptsLeft + " " + noun + " to turn it around."
-    };
     public static Play playScreen;
     public static void showResult(Play play, JPanel centerPanel, GridBagConstraints gbc) {
+        String[] correctPool = { "Correct! Keep the streak going!", "Nice one! You’re on a roll!",
+                "Spot on! Let’s keep the momentum!", "You nailed it! Next question!",
+        };
+        String noun = (Play.attemptsLeft == 1) ? "attempt" : "attempts";
+        String[] wrongPool = {
+                "Not quite. You have " + Play.attemptsLeft + " " + noun + " left, try again!", "Almost! Still " + Play.attemptsLeft + " " + noun +  " remaining.",
+                "Incorrect, but you’re still in the game with " + Play.attemptsLeft + " " + noun + "!", "Close miss. You’ve got " + Play.attemptsLeft + " " + noun + " to turn it around."
+        };
         playScreen = play;
         playScreen.displayBottom(playScreen, "Points: " + Play.currPoints,
                 "Remaining Round Qs: " + DesignQuiz.questions.size());
@@ -34,16 +34,16 @@ public class DesignResult {
             gameOver(centerPanel, gbc);
             return;
         } else {
+            Play.attemptsLeft--;
             responseStr = wrongPool[rand.nextInt(wrongPool.length)];
             txtColor = UDColors.udIncorrect;
-            Play.attemptsLeft--;
+            System.out.println("incorrect. here are the attempts left: " + Play.attemptsLeft);
             buttonText = "Continue";
         }
 
         if(isFinished) {
             responseStr = "That's all for this round. Round COMPLETE!";
-            buttonText = "Click to select new round";
-            txtColor = UDColors.udCyan;
+            buttonText = "Click to select new round"; txtColor = UDColors.udCyan;
         }
 
         JLabel response = new JLabel(responseStr);

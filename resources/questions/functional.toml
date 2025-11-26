@@ -1,0 +1,99 @@
+# Item 1
+[[questions]]
+question = "Which of the following best describes functional programming?"
+answer = "A paradigm that treats computation as <br>the evaluation of mathematical functions"
+alternatives = [
+"A paradigm focused on step-by-step procedures",
+"A paradigm based on objects and inheritance",
+"A paradigm that manipulates hardware directly"
+]
+
+# Item 2
+[[questions]]
+question = "What is the main characteristic of pure functions?"
+answer = "They always return the same <br>output for the same input"
+alternatives = [
+"They modify global variables",
+"They have side effects",
+"They depend on random values"
+]
+
+# Item 3
+[[questions]]
+question = "Which of the following is a benefit of <br>immutability in functional programming?"
+answer = "Easier debugging and testing"
+alternatives = [
+"Direct memory manipulation",
+"Faster I/O operations",
+"Increased side effects"
+]
+
+# Item 4
+[[questions]]
+question = "In functional programming, recursion is often used instead of:"
+answer = "Loops"
+alternatives = [
+"Functions",
+"Variables",
+"Classes"
+]
+
+# Item 5
+[[questions]]
+question = "Which of the following languages is known for <br>supporting functional programming?"
+answer = "Haskell"
+alternatives = [
+"Java",
+"C++",
+"Assembly"
+]
+
+# Item 6
+[[questions]]
+question = "What is referential transparency?"
+answer = "When expressions can be replaced <br>by their values without changing <br>the program’s behavior"
+alternatives = [
+"The ability to reference other functions",
+"When all functions are named",
+"When variables can be reassigned freely"
+]
+
+# Item 7
+[[questions]]
+question = "Which concept allows functions to take other functions <br>as parameters or return them as results?"
+answer = "Higher-order functions"
+alternatives = [
+"Encapsulation",
+"Overloading",
+"Polymorphism"
+]
+
+# Item 8
+[[questions]]
+question = "What is lazy evaluation in functional programming?"
+answer = "Deferring computation until <br>the result is required"
+alternatives = [
+"Evaluating expressions immediately",
+"Using loops instead of recursion",
+"Running functions in parallel"
+]
+
+# Item 9
+[[questions]]
+question = "Which of the following is a common <br>data structure in functional programming?"
+answer = "Immutable list"
+alternatives = [
+"Mutable array",
+"Linked list",
+"Hash map"
+]
+
+# Item 10
+[[questions]]
+question = "What is the purpose of the map function?"
+answer = "Apply a function to each element <br>of a list and return a new list"
+alternatives = [
+"Modify variables",
+"Create loops",
+"Merge two lists"
+]
