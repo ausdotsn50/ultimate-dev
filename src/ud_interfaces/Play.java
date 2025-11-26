@@ -1,11 +1,8 @@
 package ud_interfaces;
 
 import com.moandjiezana.toml.Toml;
-import layout.design.Design;
-import layout.design.DesignCategory;
+import layout.design.*;
 import layout.constants.UDImages;
-import layout.design.DesignQuiz;
-import layout.design.DesignResult;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,18 +36,26 @@ public class Play extends UltDevScreen{
     public void displayCenter(){
         centerPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
         Design.centerDefault(this, centerPanel);
-        if(categorySelect && !showResult) {
+
+        if(DesignCategory.categories.isEmpty() && attemptsLeft != 0){
+            currPoints += addtlPoints[roundCtr];
+            attemptsLeft += 1;
+            copy += 1;
+
+            DesignUltDev.showUltDev(this, centerPanel, gbc); // Show ultimate dev screen
+            displayBottom(playScreen, "Points: " + Play.currPoints, "Copy [" + Play.copy +"] " +
+                    "| Save [" + Play.save + "]");
+            System.out.println(currPoints);
+        } else if(categorySelect && !showResult) {
             currPoints += addtlPoints[roundCtr];
             if (roundCtr < 8) { roundCtr++; }
             else { roundCtr = 0; } // Reset for forced new game or quit
+            //DesignUltDev.showUltDev(this, centerPanel, gbc); -- @Elizah if you want to design the ult dev screen, do it here
             DesignCategory.showCategories(this, centerPanel, gbc);
-        }
-        else if(!categorySelect && showResult) { // Adding display bottom overrides for each Play-DesignScreen
+        } else if(!categorySelect && showResult) { // Adding display bottom overrides for each Play-DesignScreen
             DesignResult.showResult(this, centerPanel, gbc);
-        }
-        else {
+        } else {
             DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
         }
     }
@@ -78,9 +83,8 @@ public class Play extends UltDevScreen{
     }
 
     public JPanel getCenterPanel() {
-        return centerPanel; // the panel used in displayCenter()
+        return centerPanel;
     }
-
 
     @Override
     public void paintComponent(Graphics g) {
