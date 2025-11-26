@@ -11,7 +11,7 @@ public class SoundUtils {
             clip.open(bgStream);
 
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-10.0f); // lowered by 10 db
+            gainControl.setValue(-2.0f); // lowered by 2 db
 
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
