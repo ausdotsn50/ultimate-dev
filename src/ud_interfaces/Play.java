@@ -22,7 +22,7 @@ public class Play extends UltDevScreen{
     public static int currPoints;
     public static int[] addtlPoints = { 0, 100, 150, 250, 400, 600, 850, 1150 };
     // Hint system
-    public static int save; public static int copy;
+    public static int copy;
 
     // Rounds system
     public static int roundCtr;
@@ -67,7 +67,7 @@ public class Play extends UltDevScreen{
     public void init() {
         categorySelect = true; showResult = false;
         attemptsLeft = 100; currPoints = 0;
-        save = 1; copy = 1;
+        copy = 2;
         roundCtr = 0;
         DesignCategory.categories = new ArrayList<>(Arrays.asList( // Repopulate the array
                 "Introduction to the Paradigms", "Procedural Programming",

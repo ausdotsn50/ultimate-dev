@@ -38,8 +38,7 @@ public class DesignQuiz {
     public static Play playScreen; // reference to Play
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
         playScreen = play;
-        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "Copy [" + Play.copy +"] " +
-                "| Save [" + Play.save + "]");
+        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "Copy [" + Play.copy +"]");
 
         centerPanel.setLayout(new BorderLayout());
         JPanel itemPanel = new JPanel(new GridBagLayout()); itemPanel.setOpaque(false);
@@ -198,6 +197,8 @@ public class DesignQuiz {
     }
 
     public static void useCoDev() {
+
+        if(Play.copy >= 0 ){
             
         coDevActive = true;
         if (timer != null) timer.stop();
@@ -222,6 +223,8 @@ public class DesignQuiz {
         centerPanel.repaint();
 
         SwingUtilities.invokeLater(d::startCoDevRandomizer);
+        }
+        
     }
 
     // Helper method for screen switching
