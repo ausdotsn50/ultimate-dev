@@ -3,3 +3,57 @@
 question = "What does encapsulation refer to in OOP?"
 answer = "Combining data and methods <br>into a single unit"
 alternatives = ["Hiding data in global variables", "Inheriting attributes from a superclass", "Overriding methods"]
+
+# Item 2
+[[questions]]
+question = "Which of the following best defines inheritance?"
+answer = "A class deriving properties <br>from another class"
+alternatives = ["A function calling itself", "Encapsulating multiple objects", "Declaring private attributes"]
+
+# Item 3
+[[questions]]
+question = "What is polymorphism in OOP?"
+answer = "The ability of different classes to be <br>treated as instances of the same interface"
+alternatives = ["Having multiple constructors", "Using one variable for multiple data types", "Writing multiple main functions"]
+
+# Item 4
+[[questions]]
+question = "Which of the following is an example of abstraction?"
+answer = "Hiding complex implementation details and <br>showing only essential features"
+alternatives = ["Directly accessing private data", "Writing redundant code", "Using procedural programming only"]
+
+# Item 5
+[[questions]]
+question = "Which keyword is used to create a subclass in Python?"
+answer = "class Child(Parent):"
+alternatives = ["def", "subclass", "super()"]
+
+# Item 6
+[[questions]]
+question = "What is the purpose of the __init__() <br>method in Python?"
+answer = "To act as a constructor that <br>initializes new objects"
+alternatives = ["To define class attributes", "To delete an object", "To inherit attributes <br>from another class"]
+
+# Item 7
+[[questions]]
+question = "Which concept allows an object to take many forms?"
+answer = "Polymorphism"
+alternatives = ["Encapsulation", "Abstraction", "Inheritance"]
+
+# Item 8
+[[questions]]
+question = "Which access modifier hides data from <br>being accessed outside the class?"
+answer = "private"
+alternatives = ["public", "protected", "static"]
+
+# Item 9
+[[questions]]
+question = "What is the relationship between a class and an object?"
+answer = "A class is a blueprint for <br>creating objects"
+alternatives = ["A class is an instance of an object", "An object is a blueprint of a class", "They are the same"]
+
+# Item 10
+[[questions]]
+question = "Which of the following violates encapsulation?"
+answer = "Accessing private attributes directly"
+alternatives = ["Using getter and setter methods", "Declaring attributes as private", "Using self keyword"]

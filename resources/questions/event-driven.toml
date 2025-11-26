@@ -3,3 +3,57 @@
 question = "Event-driven programming is primarily based on which concept?"
 answer = "responding to user or system-generated events"
 alternatives = ["sequential execution of commands", "performing calculations without user input", "executing code line by line without branching"]
+
+# Item 2
+[[questions]]
+question = "Which of the following best defines an event in <br>event-driven programming?"
+answer = "any action or occurrence that a <brprogram >can respond to"
+alternatives = ["a loop that runs continuously", "a syntax error in the program", "an automatic compiler process"]
+
+# Item 3
+[[questions]]
+question = "In a GUI-based Java program, which of the following <br>typically generates events?"
+answer = "user actions such as clicking or typing"
+alternatives = ["variables", "methods", "arithmetic operations"]
+
+# Item 4
+[[questions]]
+question = "What is the main role of an event handler?"
+answer = "to define how the program should <br>respond when an event occurs"
+alternatives = ["to store event objects", "to trigger multiple threads", "to generate random events"]
+
+# Item 5
+[[questions]]
+question = "Which interface in Java is commonly implemented to <br>handle button click events?"
+answer = "actionlistener"
+alternatives = ["keylistener", "windowlistener", "focuslistener"]
+
+# Item 6
+[[questions]]
+question = "In event-driven programming, what is the <br>purpose of an event loop?"
+answer = "to repeatedly check for new events <br>and dispatch them to handlers"
+alternatives = ["to control variable scope", "to compile the program", "to sort events alphabetically"]
+
+# Item 7
+[[questions]]
+question = "Which of the following is an example of a system-generated event?"
+answer = "a timer reaching a certain value"
+alternatives = ["clicking a button", "pressing a keyboard key", "moving the mouse"]
+
+# Item 8
+[[questions]]
+question = "In Java Swing, which method is executed when an <br>ActionListener detects an event?"
+answer = "actionPerformed()"
+alternatives = ["onAction()", "runEvent()", "handleEvent()"]
+
+# Item 9
+[[questions]]
+question = "What is the typical design pattern used in <br>event-driven programming?"
+answer = "observer pattern"
+alternatives = ["factory pattern", "singleton pattern", "adapter pattern"]
+
+# Item 10
+[[questions]]
+question = "Which of the following statements is true about <br>event-driven programming?"
+answer = "it allows programs to be reactive <br>instead of procedural"
+alternatives = ["it is only used for command-line applications", "it focuses on direct control <br>flow through loops", "it cannot use functions or methods"]
