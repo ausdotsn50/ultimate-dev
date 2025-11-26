@@ -9,7 +9,10 @@ import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import events.sound_utls.SoundUtils;
+
 public class Card extends JFrame {
+    static SoundUtils sound = new SoundUtils();
     static CardLayout cardLayout = new CardLayout();
     static JPanel container = new JPanel(cardLayout);
 
@@ -51,6 +54,7 @@ public class Card extends JFrame {
         container.add(surrender, "Surrender");
 
         cardLayout.show(container, "Load Screen");
+        sound.bgMusic();
     }
 
     public static void screenChoice(String cardPage) {

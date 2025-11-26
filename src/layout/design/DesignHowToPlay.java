@@ -7,125 +7,96 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DesignHowToPlay {
+
     public static void displayIns(JPanel mainPanel, JPanel centerPanel, GridBagConstraints gbc) {
-        /*
         gbc.gridx = 0;
 
         Color cardBg = UDColors.udGrayDark;
         Color headerColor = UDColors.udMint;
         Color textColor = UDColors.udWhite;
 
-        int gap = 25;
-        JPanel cardsPanel = new JPanel(new GridLayout(1, 3, gap, gap));
-        cardsPanel.setOpaque(false);
-        cardsPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.40)));
-        // cardsPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        int gap = 20;
 
-        // Adding elements
-        cardsPanel.add(createInfoCard("7 Topics",
-                "The game covers 7 main topics from the Surveys and Programming Paradigms course.",
-                cardBg, textColor, headerColor));
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+        infoPanel.setOpaque(false);
+        infoPanel.setPreferredSize(new Dimension((int)(Design.screenWidth * 0.9), (int)(Design.screenHeight * 0.5)));
 
-        cardsPanel.add(createInfoCard("140 Questions",
-                "Complete all 7 rounds with a total of 140 questions to win the game.",
-                cardBg, textColor, headerColor));
-
-        cardsPanel.add(createInfoCard("Win Points",
-                "Answer correctly to earn points and prove you're the ultimate developer.",
-                cardBg, textColor, headerColor));
-
-        JPanel rulesPanel = new JPanel();
-        rulesPanel.setOpaque(false);
-        rulesPanel.setPreferredSize(new Dimension(Design.screenWidth, (int)(Design.screenHeight * 0.40)));
-
-        rulesPanel.add(createRulesCard(cardBg, textColor, headerColor));
-
-        gbc.gridy = 0;
-        gbc.insets = new Insets(gap, gap, gap, gap);
-        centerPanel.add(cardsPanel, gbc);
-
-        gbc.gridy = 1;
-        gbc.insets = new Insets(gap, gap, gap, gap);
-        centerPanel.add(rulesPanel, gbc);
-
-         */
-    }
-
-
-    /*
-    private static JPanel createInfoCard(String title, String description, Color bgColor, Color textColor, Color accentColor) {
         RoundedPanel card = new RoundedPanel();
-        card.setBackground(bgColor);
+        card.setBackground(cardBg);
         card.setLayout(new GridBagLayout());
+        card.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        int tbInsets = 5, lrInsets = 15;
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(tbInsets, lrInsets, tbInsets, lrInsets);
-        gbc.gridx = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.weightx = 1.0;
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.anchor = GridBagConstraints.WEST;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(10, 20, 10, 20);
+        c.weightx = 1.0;
 
-        // Title
-        gbc.gridy = 0;
-        JLabel titleLabel = new JLabel(title);
-        titleLabel.setFont(Design.loadCustomFont(Design.subTitleSize));
-        titleLabel.setForeground(accentColor);
-        card.add(titleLabel, gbc);
+        int y = 0;
 
-        // Description
-        gbc.gridy = 1;
-        JTextArea desc = new JTextArea(description);
-        desc.setLineWrap(true);
-        desc.setWrapStyleWord(true);
-        desc.setFocusable(false);
-        desc.setEditable(false);
-        desc.setOpaque(false);
-        desc.setForeground(textColor);
-        desc.setFont(new Font("Consolas", Font.PLAIN, 14));
-
-        card.add(desc, gbc);
-
-        // Explicit and intentional method rather than relying on swing magic of getPreferredSize();
-        card.doLayout();
-
-        return card;
-    }
-
-
-    private static JPanel createRulesCard(Color bgColor, Color textColor, Color titleColor) {
-        RoundedPanel card = new RoundedPanel();
-        card.setLayout(new BorderLayout());
-        card.setBackground(bgColor);
-
-        JLabel title = new JLabel("Game Rules");
-        title.setFont(Design.loadCustomFont(Design.subTitleSize));
-        title.setForeground(titleColor);
-        title.setBorder(BorderFactory.createEmptyBorder(15, 20, 5, 0)); // To recheck
-
-        JTextArea rulesText = getJTextArea(textColor);
-
-        card.add(title, BorderLayout.NORTH);
-        card.add(rulesText, BorderLayout.CENTER);
-
-        card.doLayout();
-
-        return card;
-    }
-
-    private static JTextArea getJTextArea(Color textColor) {
-        JTextArea rulesText = new JTextArea(
-                "- Answer each question within the time limit\n" +
-                "- Earn points for correct answers\n" +
-                "- Progress through all 7 rounds to complete the game\n"
+        JTextArea descriptionText = createTextArea(
+                "Ultimate Dev is a quiz-style gameshow designed to determine who truly deserves the title of Ultimate Developer.",
+                textColor
         );
-        rulesText.setFont(new Font("Consolas", Font.PLAIN, 14));
-        rulesText.setForeground(textColor);
-        rulesText.setOpaque(false);
-        rulesText.setFocusable(false);
-        rulesText.setEditable(false);
-        rulesText.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25));
-        return rulesText;
+        c.gridy = y++;
+        card.add(descriptionText, c);
+
+        JLabel topicsLabel = new JLabel("7 Topics");
+        topicsLabel.setFont(Design.loadCustomFont(Design.subTitleSize - 2));
+        topicsLabel.setForeground(headerColor);
+        c.gridy = y++;
+        card.add(topicsLabel, c);
+
+        JTextArea topicsText = createTextArea(
+                "The game covers 7 main topics from the Surveys and Programming Paradigms course.",
+                textColor
+        );
+        c.gridy = y++;
+        card.add(topicsText, c);
+
+        JLabel questionsLabel = new JLabel("145 Questions");
+        questionsLabel.setFont(Design.loadCustomFont(Design.subTitleSize - 2));
+        questionsLabel.setForeground(headerColor);
+        c.gridy = y++;
+        card.add(questionsLabel, c);
+
+        JTextArea questionsText = createTextArea(
+                "Complete all 7 rounds with a total of 140 questions to win the game.",
+                textColor
+        );
+        c.gridy = y++;
+        card.add(questionsText, c);
+
+        JLabel pointsLabel = new JLabel("Win Points");
+        pointsLabel.setFont(Design.loadCustomFont(Design.subTitleSize - 2));
+        pointsLabel.setForeground(headerColor);
+        c.gridy = y++;
+        card.add(pointsLabel, c);
+
+        JTextArea pointsText = createTextArea(
+                "Answer correctly to earn points and prove you're the ultimate developer.",
+                textColor
+        );
+        c.gridy = y++;
+        card.add(pointsText, c);
+        infoPanel.add(card);
+
+        gbc.gridy = 0;
+        gbc.insets = new Insets(gap, gap, gap, gap);
+        centerPanel.add(infoPanel, gbc);
     }
-     */
+
+    private static JTextArea createTextArea(String text, Color color) {
+        JTextArea area = new JTextArea(text);
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        area.setFocusable(false);
+        area.setEditable(false);
+        area.setOpaque(false);
+        area.setForeground(color);
+        area.setFont(new Font("Consolas", Font.PLAIN, 14));
+        return area;
+    }
 }
