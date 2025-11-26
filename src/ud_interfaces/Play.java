@@ -27,6 +27,8 @@ public class Play extends UltDevScreen{
     // Rounds system
     public static int roundCtr;
     public static Toml toml; // parser
+    public static JPanel playScreen;
+    public static JPanel centerPanel;
     public Play(){
         init();
         this.setLayout(new BorderLayout());
@@ -35,7 +37,7 @@ public class Play extends UltDevScreen{
     }
 
     public void displayCenter(){
-        JPanel centerPanel = new JPanel(new GridBagLayout());
+        centerPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
@@ -74,6 +76,11 @@ public class Play extends UltDevScreen{
                 "Component Mappings between Paradigms"
         )); DesignQuiz.endQuizAndReturn();
     }
+
+    public JPanel getCenterPanel() {
+        return centerPanel; // the panel used in displayCenter()
+    }
+
 
     @Override
     public void paintComponent(Graphics g) {

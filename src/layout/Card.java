@@ -50,7 +50,7 @@ public class Card extends JFrame {
         Surrender surrender = new Surrender();
         container.add(surrender, "Surrender");
 
-        cardLayout.show(container, "Play");
+        cardLayout.show(container, "Load Screen");
     }
 
     public static void screenChoice(String cardPage) {

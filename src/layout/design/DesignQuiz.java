@@ -1,6 +1,8 @@
 package layout.design;
 
 import com.moandjiezana.toml.Toml;
+
+import events.CodevEVHandler;
 import layout.constants.ChoicesButton;
 import layout.constants.UDColors;
 import ud_interfaces.Play;
@@ -32,6 +34,7 @@ public class DesignQuiz {
     static String answer;
 
     static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
+    public static boolean coDevActive = false;
     public static Play playScreen; // reference to Play
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
         playScreen = play;
@@ -75,6 +78,10 @@ public class DesignQuiz {
         centerPanel.add(timerPanel, BorderLayout.NORTH); centerPanel.add(itemPanel, BorderLayout.CENTER);
         displayQuestion();
         timer.start();
+
+        centerPanel.addKeyListener(new CodevEVHandler());
+        centerPanel.setFocusable(true);
+        centerPanel.requestFocusInWindow();
     }
 
     // Separate method to update just the text of the existing label
@@ -108,7 +115,7 @@ public class DesignQuiz {
         Map<String, Object> randQ = questions.get(randIndex);
         Object questionObj = randQ.get("question");
         String questionString = (questionObj instanceof String) ? (String) questionObj : "";
-
+        
         // Populate choices
         combinedChoices.clear(); // Clean before populating
         Object alternativesObj = randQ.get("alternatives");
@@ -161,11 +168,13 @@ public class DesignQuiz {
 
             // Lambda for button behavior
             choiceBtn.addActionListener(e -> {
+                if (coDevActive) return; 
                 isCorrect = Objects.equals(answer, choiceBtn.getUnformattedText());
                 timer.stop(); // Stop timer
                 showCorrespondingResult();
             });
             choicesPanel.add(choiceBtn);
+            choiceBtn.setFocusable(false);
         }
     }
 
@@ -186,6 +195,33 @@ public class DesignQuiz {
     private static void showCorrespondingResult() {
         Play.showResult = true;
         if(playScreen != null) { playScreen.refreshCenter(); }
+    }
+
+    public static void useCoDev() {
+            
+        coDevActive = true;
+        if (timer != null) timer.stop();
+
+        if (playScreen == null) {
+            System.out.println("Play screen not initialized");
+            return;
+        }
+
+        DesignCoDev d = new DesignCoDev();
+
+        JPanel centerPanel = playScreen.getCenterPanel();
+        if (centerPanel == null) {
+            System.out.println("Center panel not found");
+            return;
+        }
+
+        centerPanel.removeAll();
+        centerPanel.setLayout(new BorderLayout());
+        centerPanel.add(d.getPanel(), BorderLayout.CENTER);
+        centerPanel.revalidate();
+        centerPanel.repaint();
+
+        SwingUtilities.invokeLater(d::startCoDevRandomizer);
     }
 
     // Helper method for screen switching
