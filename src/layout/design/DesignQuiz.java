@@ -168,7 +168,7 @@ public class DesignQuiz {
 
             // Lambda for button behavior
             choiceBtn.addActionListener(e -> {
-                if (playScreen.coDevActive) return;
+                if (Play.coDevActive) return;
                 isCorrect = Objects.equals(answer, choiceBtn.getUnformattedText());
                 timer.stop(); // Stop timer
                 showCorrespondingResult();
