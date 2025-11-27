@@ -40,14 +40,14 @@ public class DesignHowToPlay {
         c.gridy = y++;
         card.add(descriptionText, c);
 
-        JLabel topicsLabel = new JLabel("7 Topics");
+        JLabel topicsLabel = new JLabel("Quiz Topics");
         topicsLabel.setFont(Design.loadCustomFont(Design.subTitleSize - 2));
         topicsLabel.setForeground(headerColor);
         c.gridy = y++;
         card.add(topicsLabel, c);
 
         JTextArea topicsText = createTextArea(
-                "The game covers 7 main topics on Surveys of Programming Paradigms.",
+                "The game covers theoretical and practical topics on Surveys of Programming Paradigms.",
                 textColor
         );
         c.gridy = y++;
@@ -60,20 +60,20 @@ public class DesignHowToPlay {
         card.add(questionsLabel, c);
 
         JTextArea questionsText = createTextArea(
-                "Complete all 7 rounds with a total of 145 questions to win the game.",
+                "The quiz-show comprises 7 rounds and a total of 145 questions all in all.",
                 textColor
         );
         c.gridy = y++;
         card.add(questionsText, c);
 
-        JLabel pointsLabel = new JLabel("Win Points");
+        JLabel pointsLabel = new JLabel("Earn Points");
         pointsLabel.setFont(Design.loadCustomFont(Design.subTitleSize - 2));
         pointsLabel.setForeground(headerColor);
         c.gridy = y++;
         card.add(pointsLabel, c);
 
         JTextArea pointsText = createTextArea(
-                "Answer correctly to earn points and prove you're the ultimate developer.",
+                "Complete each round to earn points and prove you're the ultimate developer.",
                 textColor
         );
         c.gridy = y++;

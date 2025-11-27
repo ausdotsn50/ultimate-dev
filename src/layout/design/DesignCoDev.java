@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.Random;
 
 import entities.CoDev;
-import layout.constants.UDColors;
 import ud_interfaces.Play;
 
 public class DesignCoDev {
@@ -74,10 +73,11 @@ public class DesignCoDev {
             setScaledImage(finalDev.bgImage);
             accuracyLabel.setText("Accuracy: " + (int)(finalDev.accuracy * 100) + "%");
 
-            String answer = chooseAnswer(finalDev.accuracy);
-            answerLabel.setText("CoDev's Answer: " + answer);
+            // parses answer
+            int cDevAnsIndex = chooseAnswer(finalDev.accuracy);
+            answerLabel.setText("CoDev's Answer: " + DesignQuiz.letters[DesignQuiz.answerIndex].charAt(0));
 
-            finishWithAnswer(answer);
+            finishWithAnswer(cDevAnsIndex);
         });
 
         stopTimer.setRepeats(false);
@@ -91,20 +91,23 @@ public class DesignCoDev {
         devImageHolder.setIcon(new ImageIcon(scaled));
     }
 
-    private static String chooseAnswer(double accuracy) {
+    private static int chooseAnswer(double accuracy) {
         Random r = new Random();
-        boolean correct = r.nextDouble() < accuracy;
-        isCorrect = correct;
+        boolean willAnswerCorrectly = r.nextDouble() < accuracy;
 
-        if (correct) {
-            return DesignQuiz.combinedChoices.get(0);
+        if (willAnswerCorrectly) {
+            return DesignQuiz.answerIndex;
         } else {
-            return DesignQuiz.combinedChoices.get(1 + r.nextInt(DesignQuiz.combinedChoices.size() - 1));
+            int wrongIndex;
+            do {
+                wrongIndex = r.nextInt(4);
+            } while (wrongIndex == DesignQuiz.answerIndex);
+            return wrongIndex;
         }
     }
 
-    private static void finishWithAnswer(String coDevAnswer) {
-        DesignQuiz.isCorrect = Objects.equals(DesignQuiz.answer, coDevAnswer);
+    private static void finishWithAnswer(int index) {
+        DesignQuiz.isCorrect = Objects.equals(DesignQuiz.answerIndex, index);
         Play.coDevActive = false;
 
         new javax.swing.Timer(5000, e -> {
