@@ -1,10 +1,15 @@
 package layout.design;
 
+import events.sound_utls.SoundUtils;
 import layout.constants.RoundedPanel;
 import layout.constants.UDColors;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DesignSettings {
     public static void centerDesign(JPanel centerPanel, GridBagConstraints mainGbc) {
@@ -61,8 +66,22 @@ public class DesignSettings {
         gbc.fill = GridBagConstraints.NONE;
         JToggleButton toggle = createSwitch();
         panel.add(toggle, gbc);
+        toggle.setSelected(true);
 
-        // Returns JPanel object-oriented.toml
+        if (title.equals("Background Music")) {
+            toggle.addActionListener(e -> {
+                if (toggle.isSelected()) {
+                    SoundUtils.bgMusic();
+                } else {
+                    SoundUtils.stopBgMusic();
+                }
+            });
+        }
+        else if (title.equals("Sound Effects")) {
+            toggle.addActionListener(e -> {
+                SoundUtils.isSfxEnabled = toggle.isSelected();
+            });
+        }
         return panel;
     }
 
