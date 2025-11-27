@@ -9,6 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static layout.design.DesignQuiz.timer;
+
 public class Play extends UltDevScreen{
     public static boolean categorySelect; // Category selection from introduction to comp mapping + equiv to round over
     public static boolean showResult; // Shows if correct/incorrect response to question
@@ -20,11 +22,11 @@ public class Play extends UltDevScreen{
     public static int[] addtlPoints = { 0, 100, 150, 250, 400, 600, 850, 1150 };
     // Hint system
     public static int copy;
+    public static boolean coDevActive = false;
 
     // Rounds system
     public static int roundCtr;
     public static Toml toml; // parser
-    public static JPanel playScreen;
     public static JPanel centerPanel;
     public Play(){
         init();
@@ -40,22 +42,24 @@ public class Play extends UltDevScreen{
 
         if(DesignCategory.categories.isEmpty() && attemptsLeft != 0){
             currPoints += addtlPoints[roundCtr];
-            attemptsLeft += 1;
-            copy += 1;
-
             DesignUltDev.showUltDev(this, centerPanel, gbc); // Show ultimate dev screen
-            displayBottom(playScreen, "Points: " + Play.currPoints, "Copy [" + Play.copy +"] " +
-                    "| Save [" + Play.save + "]");
             System.out.println(currPoints);
         } else if(categorySelect && !showResult) {
             currPoints += addtlPoints[roundCtr];
+            if(roundCtr > 0) {
+                attemptsLeft += 1;
+                copy += 1;
+            }
             if (roundCtr < 8) { roundCtr++; }
             else { roundCtr = 0; } // Reset for forced new game or quit
             //DesignUltDev.showUltDev(this, centerPanel, gbc); -- @Elizah if you want to design the ult dev screen, do it here
             DesignCategory.showCategories(this, centerPanel, gbc);
         } else if(!categorySelect && showResult) { // Adding display bottom overrides for each Play-DesignScreen
             DesignResult.showResult(this, centerPanel, gbc);
-        } else {
+        } else if (coDevActive){
+            DesignCoDev.showCoDev(this, centerPanel);
+        }
+        else {
             DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
         }
     }
@@ -71,7 +75,7 @@ public class Play extends UltDevScreen{
     // todo: modify this into a cleaner init function
     public void init() {
         categorySelect = true; showResult = false;
-        attemptsLeft = 100; currPoints = 0;
+        attemptsLeft = 3; currPoints = 0;
         copy = 2;
         roundCtr = 0;
         DesignCategory.categories = new ArrayList<>(Arrays.asList( // Repopulate the array

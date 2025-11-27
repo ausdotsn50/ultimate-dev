@@ -10,27 +10,23 @@ import layout.constants.UDColors;
 import ud_interfaces.Play;
 
 public class DesignCoDev {
-
-    public static Play playScreen;
-    public static CoDev codev = new CoDev();
-
-    private JPanel mainPanel;
-    private JLabel devImageHolder;
-    private JLabel accuracyLabel;
-    private JLabel answerLabel;
-    private Timer flashTimer;
-    private Timer stopTimer;
-
+    public static Play playScreen; // bottom display purposes
     public static boolean isCorrect = false;
-    static Random rand = new Random();
+    public static CoDev codev = new CoDev(); // an entity
 
-    private final int IMG_WIDTH = 400;
-    private final int IMG_HEIGHT = 400;
+    private static JLabel devImageHolder;
+    private static JLabel accuracyLabel;
+    private static JLabel answerLabel;
+    private static Timer flashTimer;
+    private static Timer stopTimer;
 
-    public DesignCoDev() {
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.setOpaque(false);
+    public static void showCoDev(Play play, JPanel centerPanel) {
+        playScreen = play;
+        playScreen.displayTop(playScreen, "co_dev.html");
+        playScreen.displayBottom(playScreen, "Points: " + Play.currPoints, "Copy [" + Play.copy +"]");
+
+        centerPanel.setLayout(new BorderLayout());
+        centerPanel.setOpaque(false);
 
         devImageHolder = new JLabel();
         devImageHolder.setHorizontalAlignment(SwingConstants.CENTER);
@@ -50,15 +46,13 @@ public class DesignCoDev {
         infoPanel.add(accuracyLabel);
         infoPanel.add(answerLabel);
 
-        mainPanel.add(devImageHolder, BorderLayout.CENTER);
-        mainPanel.add(infoPanel, BorderLayout.NORTH);
+        centerPanel.add(devImageHolder, BorderLayout.CENTER);
+        centerPanel.add(infoPanel, BorderLayout.NORTH);
+
+        startCoDevRandomizer();
     }
 
-    public JPanel getPanel() {
-        return mainPanel;
-    }
-
-    public void startCoDevRandomizer() {
+    public static void startCoDevRandomizer() {
         if (DesignQuiz.combinedChoices.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No choices loaded!");
             return;
@@ -90,12 +84,14 @@ public class DesignCoDev {
         stopTimer.start();
     }
 
-    private void setScaledImage(Image img) {
+    private static void setScaledImage(Image img) {
+        int IMG_WIDTH = 400;
+        int IMG_HEIGHT = 400;
         Image scaled = img.getScaledInstance(IMG_WIDTH, IMG_HEIGHT, Image.SCALE_SMOOTH);
         devImageHolder.setIcon(new ImageIcon(scaled));
     }
 
-    private String chooseAnswer(double accuracy) {
+    private static String chooseAnswer(double accuracy) {
         Random r = new Random();
         boolean correct = r.nextDouble() < accuracy;
         isCorrect = correct;
@@ -107,12 +103,9 @@ public class DesignCoDev {
         }
     }
 
-    private void finishWithAnswer(String coDevAnswer) {
-
-        boolean coDevIsCorrect = Objects.equals(DesignQuiz.answer, coDevAnswer);
-
-        DesignQuiz.isCorrect = coDevIsCorrect;
-        DesignQuiz.coDevActive = false;
+    private static void finishWithAnswer(String coDevAnswer) {
+        DesignQuiz.isCorrect = Objects.equals(DesignQuiz.answer, coDevAnswer);
+        Play.coDevActive = false;
 
         new javax.swing.Timer(5000, e -> {
             Play.showResult = true;

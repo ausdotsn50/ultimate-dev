@@ -7,3 +7,93 @@ alternatives = [
 "a system for organizing files and folders",
 "a type of software license"
 ]
+
+# Item 2
+[[questions]]
+question = "How does declarative programming differ from <br>imperative programming?"
+answer = "declarative describes what to achieve, <br>imperative describes how to achieve it"
+alternatives = [
+"imperative programs do not use loops",
+"declarative programming <br>does not use functions",
+"both focus only on control flow"
+]
+
+# Item 3
+[[questions]]
+question = "Which of the following paradigms focuses on the <br>use of facts, rules, and queries?"
+answer = "logic"
+alternatives = [
+"object-oriented",
+"functional",
+"procedural"
+]
+
+# Item 4
+[[questions]]
+question = "Which of the following paradigms centers on data <br>abstraction and encapsulation?"
+answer = "Object-oriented"
+alternatives = [
+"Procedural",
+"Declarative",
+"Functional"
+]
+
+# Item 5
+[[questions]]
+question = "What is a key similarity between procedural <br>and functional paradigms?"
+answer = "Both decompose programs into <br>smaller callable units"
+alternatives = [
+"Both rely on global variables",
+"Both use classes for all data manipulation",
+"Both avoid function calls"
+]
+
+# Item 6
+[[questions]]
+question = "Which paradigm does Java primarily follow, while also <br>supporting features from others?"
+answer = "object-oriented with imperative <br>and event-driven features"
+alternatives = [
+"functional",
+"declarative",
+"purely logical"
+]
+
+# Item 7
+[[questions]]
+question = "Which of the following is a defining feature of e<br>vent-driven programming?"
+answer = "execution depends on event occurrences <br>such as user interaction"
+alternatives = [
+"programs execute sequentially <br>from start to end",
+"state never changes during runtime",
+"code cannot use functions"
+]
+
+# Item 8
+[[questions]]
+question = "What characteristic distinguishes functional languages <br>like Haskell from imperative languages like C?"
+answer = "use of immutable data and pure functions"
+alternatives = [
+"extensive use of variable reassignment",
+"dependency on loops",
+"requirement for class-based design"
+]
+
+# Item 9
+[[questions]]
+question = "Which paradigm best supports reactive systems that <br>respond to inputs as they occur?"
+answer = "event-driven"
+alternatives = [
+"procedural",
+"functional",
+"logic"
+]
+
+# Item 10
+[[questions]]
+question = "How can different paradigms be related or mapped together <br>in modern languages like JavaScript or Python?"
+answer = "by combining imperative control flow <br>with functional expressions"
+alternatives = [
+"by enforcing a single programming model",
+"by avoiding reuse across paradigms",
+"by disabling object-oriented features"
+]

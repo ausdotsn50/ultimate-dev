@@ -7,15 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DesignHowToPlay {
-
-    public static void displayIns(JPanel mainPanel, JPanel centerPanel, GridBagConstraints gbc) {
+    public static void displayIns(JPanel centerPanel, GridBagConstraints gbc) {
         gbc.gridx = 0;
 
         Color cardBg = UDColors.udGrayDark;
         Color headerColor = UDColors.udMint;
         Color textColor = UDColors.udWhite;
-
-        int gap = 20;
 
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
@@ -50,7 +47,7 @@ public class DesignHowToPlay {
         card.add(topicsLabel, c);
 
         JTextArea topicsText = createTextArea(
-                "The game covers 7 main topics from the Surveys and Programming Paradigms course.",
+                "The game covers 7 main topics on Surveys of Programming Paradigms.",
                 textColor
         );
         c.gridy = y++;
@@ -63,7 +60,7 @@ public class DesignHowToPlay {
         card.add(questionsLabel, c);
 
         JTextArea questionsText = createTextArea(
-                "Complete all 7 rounds with a total of 140 questions to win the game.",
+                "Complete all 7 rounds with a total of 145 questions to win the game.",
                 textColor
         );
         c.gridy = y++;
@@ -82,9 +79,6 @@ public class DesignHowToPlay {
         c.gridy = y++;
         card.add(pointsText, c);
         infoPanel.add(card);
-
-        gbc.gridy = 0;
-        gbc.insets = new Insets(gap, gap, gap, gap);
         centerPanel.add(infoPanel, gbc);
     }
 

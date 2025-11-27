@@ -21,7 +21,7 @@ public class Surrender extends UltDevScreen{
         GridBagConstraints gbc = new GridBagConstraints();
 
         Design.centerDefault(this, centerPanel);
-        DesignHowToPlay.displayIns(this, centerPanel, gbc);
+        DesignHowToPlay.displayIns(centerPanel, gbc);
     }
 
     @Override

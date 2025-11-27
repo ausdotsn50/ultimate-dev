@@ -2,12 +2,15 @@ package layout.design;
 
 import events.MouseEVHandler;
 import events.button.SwitchScreenBehavior;
+import events.sound_utls.SoundUtils;
 import layout.constants.CustomButton;
 import layout.constants.UDColors;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DesignMenu {
     static MouseEVHandler mouseEVHandler = new MouseEVHandler(new SwitchScreenBehavior(), null);
@@ -82,6 +85,13 @@ public class DesignMenu {
         CustomButton button = new CustomButton(buttonStr, 10, 10);
         button.setPreferredSize(new Dimension(250, fontSize * 2));
         button.setFont(Design.loadCustomFont(fontSize));
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                SoundUtils.playClickSound();
+            }
+        });
 
         gbc.gridy = gridYCoord;
         buttonPanel.add(button, gbc);

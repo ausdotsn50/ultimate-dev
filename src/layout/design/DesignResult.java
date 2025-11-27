@@ -21,6 +21,7 @@ public class DesignResult {
                 "Incorrect, but you’re still in the game with " + Play.attemptsLeft + " " + noun + "!", "Close miss. You’ve got " + Play.attemptsLeft + " " + noun + " to turn it around."
         };
         playScreen = play;
+        playScreen.displayTop(playScreen, "result.html");
         playScreen.displayBottom(playScreen, "Points: " + Play.currPoints,
                 "Remaining Round Qs: " + DesignQuiz.questions.size());
         boolean isFinished = DesignQuiz.questions.isEmpty();

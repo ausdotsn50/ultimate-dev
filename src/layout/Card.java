@@ -54,7 +54,7 @@ public class Card extends JFrame {
         container.add(surrender, "Surrender");
 
         cardLayout.show(container, "Load Screen");
-        sound.bgMusic();
+        SoundUtils.bgMusic();
     }
 
     public static void screenChoice(String cardPage) {
