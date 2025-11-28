@@ -25,7 +25,7 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>    
         <resources>
             <resource>
                 <directory>resources</directory>
@@ -43,7 +43,6 @@
                 </configuration>
             </plugin>
 
-            <!-- JAR plugin (runnable JAR + splash screen) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
