@@ -10,8 +10,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static layout.design.DesignQuiz.timer;
-
 public class Play extends UltDevScreen{
     public static boolean categorySelect; // Category selection from introduction to comp mapping + equiv to round over
     public static boolean showResult; // Shows if correct/incorrect response to question
@@ -62,6 +60,7 @@ public class Play extends UltDevScreen{
         }
         else {
             DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
+           
         }
     }
 

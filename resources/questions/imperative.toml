@@ -50,7 +50,7 @@ alternatives = [
 
 # Item 6
 [[questions]]
-question = "What is a central idea behind logic programming <br>as introduced in Lecture 8A?"
+question = "What is a central idea behind logic programming?"
 answer = "Computation is performed by stating <br>facts and rules, and letting the <br>system infer answers."
 alternatives = [
 "Programs explicitly list the <br>step-by-step control flow.",
@@ -90,10 +90,202 @@ alternatives = [
 
 # Item 10
 [[questions]]
-question = "According to the lecture, logic programming <br>systems often incorporate backtracking. <br>Backtracking means:"
+question = "Logic programming <br>systems often incorporate backtracking. <br>Backtracking means:"
 answer = "Reversing decisions when they lead to failure <br>and trying alternative paths."
 alternatives = [
 "Progressing forward in a fixed linear order.",
 "Caching previous results to speed up queries.",
 "Disallowing recursion."
 ]
+
+
+# Item 11
+[[questions]]
+question = """
+Given the expected output: Even number detected
+Which condition correctly completes the code?
+
+<pre>
+void checkEven(int num) {
+    if (____)
+        printf("Even number detected");
+    else
+        printf("Odd number detected");
+}
+</pre>
+"""
+answer = "num % 2 == 0"
+alternatives = ["num == 2", "num / 2 == 0", "num % 2 != 0"]
+
+# Item 12
+[[questions]]
+question = """
+What is the output of the printed statement?
+
+<pre>
+int x = 3, y = 5;
+y = y++ + ++x;
+printf("%d %d", x, y);
+</pre>
+"""
+answer = "Undefined behavior"
+alternatives = ["3 9", "4 9", "4 10"]
+
+# Item 13
+[[questions]]
+question = """
+What is the output of this code segment?
+
+<pre>
+int a = 10;
+int b = (a++, ++a, a + 5);
+printf("%d", b);
+</pre>
+"""
+answer = "18"
+alternatives = ["15", "16", "17"]
+
+# Item 14
+[[questions]]
+question = """
+Consider this program:
+
+<pre>
+void mystery(int n) {
+    if (n == 0) return;
+    printf("%d ", n); mystery(n - 2);
+    printf("%d ", n);
+}
+int main() {
+    mystery(4); return 0;
+}
+</pre>
+
+What will it print?
+"""
+answer = "4 2 2 4"
+alternatives = ["4 2 0 2 4", "4 2 2 4 4", "4 2 2 4 4"]
+
+# Item 15
+[[questions]]
+question = """
+What does the following C function return?
+
+<pre>
+int compute(int a, int b) {
+    return (b == 0) ? a : compute(b, a % b);
+}
+</pre>
+"""
+answer = "Greatest common divisor (GCD) of a and b"
+alternatives = ["Sum of a and b", "Product of a and b", "Least common multiple (LCM) of a and b"]
+
+# Item 16
+[[questions]]
+question = """
+Given the expected output when querying <br>`?- parent(pam, X).`:
+
+<pre>
+X = bob
+</pre>
+
+Which missing line correctly establishes <br> a basic declarative fact in the knowledge base?
+
+<pre>
+% MISSING LINE
+parent(tom, bob).
+parent(tom, liz).
+</pre>
+"""
+answer = "parent(pam, bob)."
+alternatives = ["parent(X, Y).", "parent(pam, bob)", "parent(bob, pam)."]
+
+# Item 17
+[[questions]]
+question = """
+Given the expected output when querying <br> `?- print_numbers(3).`:
+
+<pre>
+3
+2
+1
+true.
+</pre>
+
+Which missing line implements the <br> imperative control flow (decrement and recursion) <br> to print the countdown?
+
+<pre>
+print_numbers(0).
+print_numbers(N) :-
+    N > 0,
+    write(N), nl,
+    N1 is N - 1,
+    // MISSING LINE
+.
+</pre>
+"""
+answer = "print_numbers(N1)"
+alternatives = ["write(N1)", "print_numbers(N)", "N is N - 1"]
+
+# Item 18
+[[questions]]
+question = """
+Given the expected output when querying <br> `?- double_list([1, 2, 3], X).`:
+
+<pre>
+X = [2, 4, 6]
+</pre>
+
+Which missing line uses the declarative <br> `maplist/3` predicate (or its equivalent component) <br> to transform the list elements?
+
+<pre>
+double(A, B) :- B is A * 2.
+
+double_list(List, DoubledList) :-
+    // MISSING LINE
+.
+</pre>
+"""
+answer = "maplist(double, List, DoubledList)"
+alternatives = ["double(List, DoubledList).", "member(double, List).", "append(List, List, DoubledList)."]
+
+# Item 19
+[[questions]]
+question = """
+Given the expected output when querying <br> `?- list_length([a, b, c], 3).`:
+
+<pre>
+true.
+</pre>
+
+Which missing line provides the declarative <br> base case for calculating the length of a list?
+
+<pre>
+% MISSING LINE
+list_length([_|T], L) :- list_length(T, L1), L is L1 + 1.
+</pre>
+"""
+answer = "list_length([], 0)."
+alternatives = ["list_length(L, 0).", "list_length([H|_], 1).", "list_length([], L)."]
+
+# Item 20
+[[questions]]
+question = """
+Given the expected output when querying <br> `?- even_list([1, 2, 3, 4], X).`:
+
+<pre>
+X = [2, 4]
+</pre>
+
+Which missing line uses the declarative `include/3` predicate (or its equivalent component) to filter the list?
+
+<pre>
+is_even(N) :- 0 is N mod 2.
+
+even_list(List, EvenList) :-
+    // MISSING LINE
+.
+</pre>
+"""
+answer = "include(is_even, List, EvenList)"
+alternatives = ["is_even(List).", "maplist(is_even, List, EvenList).", "EvenList = List."]

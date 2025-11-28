@@ -3,6 +3,7 @@ package layout.design;
 import com.moandjiezana.toml.Toml;
 
 import events.CoDevEVHandler;
+import events.sound_utls.SoundUtils;
 import layout.constants.ChoicesButton;
 import layout.constants.UDColors;
 import ud_interfaces.Play;
@@ -10,6 +11,11 @@ import ud_interfaces.Play;
 import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
+
+import org.w3c.dom.events.MouseEvent;
+import java.awt.event.MouseAdapter;
+
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -178,7 +184,20 @@ public class DesignQuiz {
             });
             choicesPanel.add(choiceBtn);
             choiceBtn.setFocusable(false);
+
+            choiceBtn.addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent e) {
+                    SoundUtils.playClickSound();
+                }
+            });
+
         }
+
+
+
+
+
+        
     }
 
     // Clears both panels

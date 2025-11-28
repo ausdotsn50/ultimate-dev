@@ -31,7 +31,7 @@ public class DesignCoDev {
         devImageHolder.setHorizontalAlignment(SwingConstants.CENTER);
 
         JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(2, 1)); // no timer row
+        infoPanel.setLayout(new GridLayout(2, 1)); 
         infoPanel.setOpaque(false);
 
         accuracyLabel = new JLabel("Accuracy: ---", SwingConstants.CENTER);
