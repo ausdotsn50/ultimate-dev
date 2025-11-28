@@ -9,14 +9,14 @@ import java.util.WeakHashMap;
 
 public record GrowSwitchBehavior(int sizeIncrease) implements LabelBehavior {
     static final WeakHashMap<JLabel, BufferedImage> originalImages = new WeakHashMap<>();
-    // Cache for resized images - keyed by "label_width_height"
+    // Cache for resized hover images and normal icons by JLabel instance
     static final WeakHashMap<JLabel, BufferedImage> hoverImages = new WeakHashMap<>();
     static final WeakHashMap<JLabel, ImageIcon> normalIcons = new WeakHashMap<>();
 
     @Override
     public void onEnter(JLabel label) {
-        // Cache the normal icon if not already cached
-        if (!normalIcons.containsKey(label)) {
+        // Cache the normal icon if not already cached and it's an ImageIcon
+        if (!normalIcons.containsKey(label) && label.getIcon() instanceof ImageIcon) {
             normalIcons.put(label, (ImageIcon) label.getIcon());
         }
 
@@ -66,8 +66,7 @@ public record GrowSwitchBehavior(int sizeIncrease) implements LabelBehavior {
     private BufferedImage getOriginalImage(JLabel label) {
         // Take from the WeakHashMap
         BufferedImage img = originalImages.get(label);
-        if (img == null) {
-            ImageIcon icon = (ImageIcon) label.getIcon(); // get icon
+        if (img == null && label.getIcon() instanceof ImageIcon icon) {
             img = toBufferedImage(icon.getImage()); // get img, convert to buffered img
             originalImages.put(label, img); // put in weak hashmap
         }

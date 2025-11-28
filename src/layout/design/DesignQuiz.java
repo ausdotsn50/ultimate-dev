@@ -156,7 +156,8 @@ public class DesignQuiz {
     }
 
     private static JTextPane getJTextPane(Font myFont, int questionFSize, String questionString) {
-        // Register font only once
+        // Register font with GraphicsEnvironment only once.
+        // This method always receives the same font from Design.loadCustomFont() which is cached.
         if (!fontRegistered) {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(myFont);

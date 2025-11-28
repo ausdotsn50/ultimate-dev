@@ -6,6 +6,7 @@ import layout.constants.UDColors;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
@@ -171,11 +172,14 @@ public class Design {
         if (baseCustomFont == null) {
             try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
                 if (is == null) {
-                    throw new RuntimeException("Font file not found!");
+                    throw new IOException("Font file not found!");
                 }
                 baseCustomFont = Font.createFont(Font.TRUETYPE_FONT, is);
-            } catch (Exception e) {
-                // Fallback to system font
+            } catch (FontFormatException e) {
+                System.err.println("Invalid font format: " + e.getMessage());
+                baseCustomFont = new Font("SansSerif", Font.PLAIN, 12);
+            } catch (IOException e) {
+                System.err.println("Error loading font file: " + e.getMessage());
                 baseCustomFont = new Font("SansSerif", Font.PLAIN, 12);
             }
         }
