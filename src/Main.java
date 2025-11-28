@@ -1,5 +1,4 @@
 import layout.Card;
-import misc.UDSplashScreen;
 
 public class Main {
     public static void main(String[] args) {

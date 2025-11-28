@@ -4,8 +4,6 @@ import layout.Card;
 
 import javax.swing.*;
 
-import events.sound_utls.SoundUtils;
-
 public class SwitchScreenBehavior implements ButtonBehavior {
     @Override
     public void onClick(JButton button) {

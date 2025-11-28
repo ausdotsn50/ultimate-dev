@@ -97,3 +97,175 @@ alternatives = [
 "by avoiding reuse across paradigms",
 "by disabling object-oriented features"
 ]
+
+# Item 11
+[[questions]]
+question = """
+Given the expected output:
+
+<pre>
+30
+</pre>
+
+Which missing line correctly accesses the third element in the array?
+
+<pre>
+public class Question3 {
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40};
+        // MISSING LINE
+    }
+}
+</pre>
+"""
+answer = "System.out.println(numbers[2]);"
+alternatives = ["System.out.println(numbers[3]);", "System.out.println(numbers[4]);", "System.out.println(numbers.length);"]
+
+# Item 12
+[[questions]]
+question = """
+Given the expected output:
+
+<pre>
+15
+</pre>
+
+Which missing line correctly computes the running sum of the loop variable i?
+
+<pre>
+public class Question4 {
+    public static void main(String[] args) {
+        int sum = 0;
+        for (int i = 1; i <= 5; i++) {
+            // MISSING LINE
+        }
+        System.out.println(sum);
+    }
+}
+</pre>
+"""
+answer = "sum += i;"
+alternatives = ["sum = i;", "sum = sum + 1;", "sum++;"]
+
+# Item 13
+[[questions]]
+question = """
+Given the expected output:
+
+<pre>
+B
+</pre>
+
+Which missing line ensures the correct grade is assigned when score is 85?
+
+<pre>
+public class Question5 {
+    public static void main(String[] args) {
+        int score = 85;
+        String result = "";
+        if (score > 90) {
+            result = "A";
+        } else if (score > 80) {
+            // MISSING LINE
+        } else {
+            result = "C";
+        }
+        System.out.println(result);
+    }
+}
+</pre>
+"""
+answer = "result = \"B\";"
+alternatives = ["result = \"A\";", "score = 90;", "result = \"C\";"]
+
+# Item 14
+[[questions]]
+question = """
+Given the expected output:
+
+<pre>
+Hello World
+</pre>
+
+Which missing line correctly creates an instance of Greeter and prints the result?
+
+<pre>
+class Greeter {
+    public String getGreeting() {
+        return "Hello World";
+    }
+}
+public class Question6 {
+    public static void main(String[] args) {
+        Greeter g = new Greeter();
+        // MISSING LINE
+    }
+}
+</pre>
+"""
+answer = "System.out.println(g.getGreeting());"
+alternatives = ["System.out.println(g.Greeter());", "g.getGreeting();", "String s = g.getGreeting();"]
+
+# Item 15
+[[questions]]
+question = """
+Given the expected output:
+
+<pre>
+ABC
+</pre>
+
+Which missing line correctly prints the concatenated string?
+
+<pre>
+public class Question7 {
+    public static void main(String[] args) {
+        String[] names = {"Alice", "Bob", "Charlie"};
+        String output = "";
+        for (String name : names) {
+            output += name.charAt(0);
+        }
+        // MISSING LINE
+    }
+}
+</pre>
+"""
+answer = "System.out.println(output);"
+alternatives = ["System.out.println(names[0]);", "System.out.println(names.length);", "System.out.println(output.length());"]
+
+# Item 16
+[[question]]
+id = "C_18"
+prompt = "Given the expected output when querying `?- ancestor(pam, X).`:\n\nX = bob\nX = ann\n\nWhich missing line completes the declarative rule for a transitive relationship (grandparent/ancestor)?\n\nparent(pam, bob).\nparent(bob, ann).\n\nancestor(A, D) :- parent(A, D).\nancestor(A, D) :- \n    parent(A, C),\n    // MISSING LINE\n\n."
+choices = { a = "parent(C, D)", b = "ancestor(C, D)", c = "ancestor(A, C)", d = "A = D" }
+answer = "b"
+
+# Item 17
+[[question]]
+id = "C_19"
+prompt = "Given the expected output when querying `?- check_number(5, X).`:\n\nX = small\n\nWhich missing line uses the cut operator (`!`) to ensure that once a number is classified as 'small', Prolog does not backtrack and try the 'medium' rule?\n\ncheck_number(N, small) :- N < 10, // MISSING LINE.\ncheck_number(N, medium) :- N < 20.\ncheck_number(_, large)."
+choices = { a = "true", b = "fail", c = "\\+ N = 10", d = "!" }
+answer = "d"
+
+# Item 18
+[[question]]
+id = "C_20"
+prompt = "Given the expected output when querying `?- sum_list([10, 20, 30], Sum).`:\n\nSum = 60\n\nWhich missing line uses the declarative aggregation component `foldl/4` to reduce the list to a single sum?\n\nadd(A, B, C) :- C is A + B.\n\nsum_list(List, Sum) :-\n    // MISSING LINE\n\n."
+choices = { a = "member(Sum, List).", b = "Sum is List * 2.", c = "foldl(add, List, 0, Sum)", d = "append(List, List, Sum)." }
+answer = "c"
+
+# Item 19
+[[question]]
+id = "C_21"
+prompt = "Given the expected output when querying `?- sibling(X, Y).`:\n\nX = ann,\nY = joe\n\nWhich missing line correctly uses declarative conjunction (`,`) to define a sibling relationship?\n\nparent(pam, ann).\nparent(pam, joe).\n\nsibling(X, Y) :-\n    parent(P, X),\n    parent(P, Y),\n    // MISSING LINE\n\n."
+choices = { a = "X = Y", b = "\\+ X = Y", c = "X, Y", d = "X == Y" }
+answer = "b"
+
+# Item 20s
+[[question]]
+id = "C_22"
+prompt = "Given the expected output when querying `?- stop_at_b.`:\n\na\nb\nfalse.\n\nWhich missing line uses the imperative `fail` predicate to force Prolog to stop executing and backtrack immediately after printing 'b'?\n\nitem(a).\nitem(b).\nitem(c).\n\nstop_at_b :-\n    item(X),\n    write(X), nl,\n    (X = b, // MISSING LINE ; true)."
+choices = { a = "write(X)", b = "X = c", c = "fail", d = "\\+ X = b" }
+answer = "c"
+
+ 

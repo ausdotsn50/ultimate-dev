@@ -97,3 +97,129 @@ alternatives = [
 "Create loops",
 "Merge two lists"
 ]
+
+# Item 11
+[[questions]]
+question = """
+Given the output:
+
+<pre>
+add a b = a + b
+main = print (add 5 (add 2 3))
+</pre>
+
+What is the expected output?
+"""
+answer = "10"
+alternatives = ["5", "7", "8"]
+
+# Item 12
+[[questions]]
+question = """
+Complete the function to compute the factorial:
+
+<pre>
+factorial n =
+  if n == 0 then 1 else ____
+</pre>
+"""
+answer = "n * factorial (n - 1)"
+alternatives = ["factorial n * n", "n + factorial (n - 1)", "factorial (n + 1)"]
+
+# Item 13
+[[questions]]
+question = """
+What will be printed?
+
+<pre>
+factorial n = if n == 0 then 1 else n * factorial (n - 1)
+main = print (factorial 4)
+</pre>
+"""
+answer = "24"
+alternatives = ["8", "12", "16"]
+
+# Item 14
+[[questions]]
+question = """
+Which function filters even numbers from a list?
+"""
+answer = "filter even [1,2,3,4]"
+alternatives = ["map even [1,2,3,4]", "filter (x % 2) [1,2,3,4]", "[x | x <- [1,2,3,4], x % 2 == 0]"]
+
+# Item 15
+[[questions]]
+question = """
+Given the source code:
+
+<pre>
+compose f g = \\x -> f (g x)
+inc x = x + 1
+double x = x * 2
+h = compose double inc
+main = print (h 3)
+</pre>
+
+What is the expected output?
+"""
+answer = "8"
+alternatives = ["6", "7", "9"]
+
+# Item 16
+[[questions]]
+question = """
+What is the output of the following list comprehension?
+
+<pre>
+main = print [x^2 | x <- [1..5]]
+</pre>
+"""
+answer = "[1,4,9,16,25]"
+alternatives = ["[2,4,6,8,10]", "[1,2,3,4,5]", "15"]
+
+# Item 17
+[[questions]]
+question = """
+Which expression returns the length of the list [10,20,30,40]?
+"""
+answer = "length [10,20,30,40]"
+alternatives = ["size [10,20,30,40]", "count [10,20,30,40]", "len [10,20,30,40]"]
+
+# Item 18
+[[questions]]
+question = """
+Given:
+
+<pre>
+doubleList xs = map (*2) xs
+main = print (doubleList [3,4,5])
+</pre>
+
+What is printed?
+"""
+answer = "[6,8,10]"
+alternatives = ["[3,4,5]", "[9,16,25]", "Error"]
+
+# Item 19
+[[questions]]
+question = """
+What will this expression produce?
+
+<pre>
+zip [1,2,3] ['a','b','c']
+</pre>
+"""
+answer = "[(1,'a'),(2,'b'),(3,'c')]"
+alternatives = ["[(1,2,3,'a','b','c')]", "[(1->'a'),(2->'b'),(3->'c')]", "['a','b','c']"]
+
+# Item 20
+[[questions]]
+question = """
+What is the output of this function call?
+
+<pre>
+take 3 [10,20,30,40,50]
+</pre>
+"""
+answer = "[10,20,30]"
+alternatives = ["[10,20,30,40,50]", "[20,30,40]", "[30,40,50]"]
