@@ -97,7 +97,7 @@ public class DesignQuiz {
         }
 
         // The revised timer logic
-        currentSeconds = 10; updateTimerLabel();
+        currentSeconds = 30; updateTimerLabel();
         timer = new Timer(1000, e -> { // 1000ms tick
             currentSeconds--; updateTimerLabel();
             if(currentSeconds <= 3) { timerLabel.setForeground(UDColors.udIncorrect); }
@@ -166,7 +166,7 @@ public class DesignQuiz {
     public static void displayChoices() {
         for(int i = 0; i < combinedChoices.size(); i++) {
             ChoicesButton choiceBtn = new ChoicesButton(letters[i] + combinedChoices.get(i), 10, 10);
-            choiceBtn.setPreferredSize(new Dimension(400, choiceBtn.getPreferredSize().height));
+            choiceBtn.setPreferredSize(new Dimension(450, choiceBtn.getPreferredSize().height));
 
             // Lambda for button behavior
             int currentIndex = i;

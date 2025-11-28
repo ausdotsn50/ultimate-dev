@@ -57,3 +57,251 @@ alternatives = ["A class is an instance of an object", "An object is a blueprint
 question = "Which of the following violates encapsulation?"
 answer = "Accessing private attributes directly"
 alternatives = ["Using getter and setter methods", "Declaring attributes as private", "Using self keyword"]
+
+# Item 11
+[[questions]]
+question = """
+Given the output: 14 <br>Which Java code outputs it?
+"""
+answer = """
+int a = 6, b = 8;
+System.out.println(a + b);
+"""
+alternatives = [
+"""
+int a = 21, b = 7;
+System.out.println(a - b);
+""",
+"""
+int a = 3;
+System.out.println(a * 4);
+""",
+"""
+System.out.println("15");
+"""
+]
+
+# Item 12
+[[questions]]
+question = """
+Given the expected output: Jv
+"""
+answer = """
+String s = "Java";
+System.out.println("" + s.charAt(0) +
+s.charAt(2));
+"""
+alternatives = [
+"""
+String s = "Java";
+System.out.println(s.substring(1,3));
+""",
+"""
+String s = "Java";
+System.out.println(s.substring(0,2));
+""",
+"""
+System.out.println("Jv");
+"""
+]
+
+# Item 13
+[[questions]]
+question = """
+Given the expected output: 1 4 9 16 <br>Which Java code outputs it?
+"""
+answer = """
+for (int i = 1; i <= 4; i++)
+    System.out.print(i * i + " ");
+"""
+alternatives = [
+"""
+int[] a = {1,4,9,16};
+for (int x : a)
+    System.out.print(x + " ");
+""",
+"""
+System.out.print("1 4 9 15");
+""",
+"""
+for (int i = 1; i <= 16; i += 3)
+    System.out.print(i + " ");
+"""
+]
+
+# Item 14
+[[questions]]
+question = """
+Given the expected output: HelloJava <br>Which Java code outputs it?
+"""
+answer = """
+String a = "Hello ";
+String b = "Java";
+System.out.println(a + b);
+"""
+alternatives = [
+"""
+String s = "HelloJava";
+System.out.println(s);
+""",
+"""
+System.out.println("Hello " + "Java");
+""",
+"""
+System.out.println("Hello Java");
+"""
+]
+
+# Item 15
+[[questions]]
+question = """
+Given the expected output: 4 <br>Which Java code outputs it?
+"""
+answer = """
+String s = "Test";
+System.out.println(s.length());
+"""
+alternatives = [
+"""
+int[] x = {1,2,3,4};
+System.out.println(x.length);
+""",
+"""
+System.out.println(Integer.parseInt("4"));
+""",
+"""
+System.out.println(8/2);
+"""
+]
+
+# Item 16
+[[questions]]
+question = """
+Given the output: 20 <br>Which Java code outputs it?
+"""
+answer = """
+int x = 5;
+// x *= 4;
+System.out.println(x);
+"""
+alternatives = [
+"""
+int x = 5;
+// x += 10;
+System.out.println(x);
+""",
+"""
+int x = 5;
+// x = x + 5;
+System.out.println(x);
+""",
+"""
+int x = 5;
+// x = 20 / x;
+System.out.println(x);
+"""
+]
+
+# Item 17
+[[questions]]
+question = """
+Given the output: ava<br>Which Java code outputs it?
+"""
+answer = """
+String s = "Java";
+System.out.println(s.substring(1));
+"""
+alternatives = [
+"""
+String s = "Java";
+System.out.println(s.substring(0,3));
+""",
+"""
+String s = "Java";
+System.out.println(s.substring(2));
+""",
+"""
+String s = "Java";
+System.out.println(s.substring(3,4));
+"""
+]
+
+# Item 18
+[[questions]]
+question = """
+Given the output: 6 3 0 <br>Which Java code outputs it?
+"""
+answer = """
+for(int i = 6; i >= 0; i -= 3)
+    System.out.print(i + " ");
+"""
+alternatives = [
+"""
+for(int i = 6; i > 0; i -= 3)
+    System.out.print(i + " ");
+""",
+"""
+for(int i = 6; i >= 3; i -= 3)
+    System.out.print(i + " ");
+""",
+"""
+for(int i = 6; i > 1; i -= 3)
+    System.out.print(i + " ");
+"""
+]
+
+# Item 19
+[[questions]]
+question = """
+Given the output: true <br>Which Java code outputs it?
+"""
+answer = """
+boolean b = false;
+b = !b;
+System.out.println(b);
+"""
+alternatives = [
+"""
+boolean b = false;
+b = (10 < 5);
+System.out.println(b);
+""",
+"""
+boolean b = false;
+b = false || false;
+System.out.println(b);
+""",
+"""
+boolean b = false;
+b = (5 > 10);
+System.out.println(b);
+"""
+]
+
+# Item 20
+[[questions]]
+question = """
+Given the output: XYZ <br>Which Java code outputs it?
+"""
+answer = """
+char[] c = {'X','Y','Z'};
+String out = new String(c);
+System.out.println(out);
+"""
+alternatives = [
+"""
+char[] c = {'X','Y','Z'};
+String out = c.toString();
+System.out.println(out);
+""",
+"""
+char[] c = {'X','Y','Z'};
+String out = String.valueOf(c[1]);
+System.out.println(out);
+""",
+"""
+char[] c = {'X','Y','Z'};
+String out = "" + c[0];
+System.out.println(out);
+"""
+]

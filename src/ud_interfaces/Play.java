@@ -78,7 +78,7 @@ public class Play extends UltDevScreen{
         SoundUtils.stopBgMusic();
         SoundUtils.bgMusic();
         categorySelect = true; showResult = false;
-        attemptsLeft = 3; currPoints = 0;
+        attemptsLeft = 100; currPoints = 0;
         copy = 2;
         roundCtr = 0;
         DesignCategory.categories = new ArrayList<>(Arrays.asList( // Repopulate the array
