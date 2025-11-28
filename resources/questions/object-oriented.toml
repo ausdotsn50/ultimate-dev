@@ -88,7 +88,8 @@ Given the expected output: Jv
 """
 answer = """
 String s = "Java";
-System.out.println("" + s.charAt(0) + s.charAt(2));
+System.out.println("" + s.charAt(0) +
+s.charAt(2));
 """
 alternatives = [
 """
@@ -116,13 +117,15 @@ for (int i = 1; i <= 4; i++)
 alternatives = [
 """
 int[] a = {1,4,9,16};
-for (int x : a) System.out.print(x + " ");
+for (int x : a)
+    System.out.print(x + " ");
 """,
 """
 System.out.print("1 4 9 15");
 """,
 """
-for (int i = 1; i <= 16; i += 3) System.out.print(i + " ");
+for (int i = 1; i <= 16; i += 3)
+    System.out.print(i + " ");
 """
 ]
 

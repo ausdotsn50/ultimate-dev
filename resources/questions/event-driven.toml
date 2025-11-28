@@ -57,3 +57,226 @@ alternatives = ["factory pattern", "singleton pattern", "adapter pattern"]
 question = "Which of the following statements is true about <br>event-driven programming?"
 answer = "it allows programs to be reactive <br>instead of procedural"
 alternatives = ["it is only used for command-line applications", "it focuses on direct control <br>flow through loops", "it cannot use functions or methods"]
+
+# Item 11
+[[questions]]
+question = """
+Given the expected output (on button click): Button Clicked!
+"""
+answer = """
+button.addActionListener(e -> System.out.println("Button Clicked!"));
+"""
+alternatives = [
+"""
+System.out.println("Button Clicked!");
+""",
+"""
+button.addActionListener(null);
+""",
+"""
+button.addActionListener(e -> {});
+"""
+]
+
+# Item 12
+[[questions]]
+question = """
+Given the GUI output: A window titled “My App”
+"""
+answer = """
+JFrame f = new JFrame("My App");
+f.setSize(300,200);
+f.setVisible(true);
+"""
+alternatives = [
+"""
+Window w = new Window("My App");
+""",
+"""
+JFrame f = new JFrame();
+System.out.println("My App");
+""",
+"""
+new JFrame().setVisible(true);
+"""
+]
+
+# Item 13
+[[questions]]
+question = """
+Given the expected output when text field contains “Hi”: You typed: Hi
+"""
+answer = """
+button.addActionListener(e -> {
+    System.out.println("You typed: " + field.getText());
+});
+"""
+alternatives = [
+"""
+System.out.println("You typed: Hi");
+""",
+"""
+field.addActionListener(e -> field.setText(""));
+""",
+"""
+button.addActionListener(e -> System.out.println(field));
+"""
+]
+
+# Item 14
+[[questions]]
+question = """
+Given the expected output when window closes: Closing Window...
+"""
+answer = """
+frame.addWindowListener(new WindowAdapter() {
+    public void windowClosing(WindowEvent e){
+        System.out.println("Closing Window...");
+    }
+});
+"""
+alternatives = [
+"""
+frame.dispose();
+""",
+"""
+System.out.println("Closing Window...");
+""",
+"""
+addActionListener(e -> System.out.println("Closing Window..."));
+"""
+]
+
+# Item 15
+[[questions]]
+question = """
+Given the expected output upon pressing Enter in a text field: Enter pressed!
+"""
+answer = """
+field.addActionListener(e -> System.out.println("Enter pressed!"));
+"""
+alternatives = [
+"""
+field.addKeyListener(null);
+""",
+"""
+System.out.println("Enter pressed!");
+""",
+"""
+button.addActionListener(e -> {});
+"""
+]
+
+# Item 16
+[[questions]]
+question = """
+Given the output: Clicked!
+"""
+answer = """
+JButton b = new JButton("Click");
+b.addActionListener(e -> System.out.println("Clicked!"));
+"""
+alternatives = [
+"""
+JButton b = new JButton("Click");
+b.addActionListener(() -> System.out.println("Clicked!"));
+""",
+"""
+JButton b = new JButton("Click");
+b.addActionListener(System.out.println("Clicked!"));
+""",
+"""
+JButton b = new JButton("Click");
+b.addActionListener(e -> {});
+"""
+]
+
+# Item 17
+[[questions]]
+question = """
+Given the output: Hello John
+"""
+answer = """
+JTextField t = new JTextField("John");
+button.addActionListener(e -> {
+    System.out.println("Hello " + t.getText());
+});
+"""
+alternatives = [
+"""
+JTextField t = new JTextField("John");
+button.addActionListener(e -> {
+    System.out.println(t);
+});
+""",
+"""
+JTextField t = new JTextField("John");
+button.addActionListener(e -> {
+    System.out.println("Hello John");
+});
+""",
+"""
+JTextField t = new JTextField("John");
+button.addActionListener(e -> {
+    System.out.println(t.toString());
+});
+"""
+]
+
+# Item 18
+[[questions]]
+question = """
+Given the output (Label text becomes): Pressed
+"""
+answer = """
+JLabel lbl = new JLabel("Start");
+button.addActionListener(e -> {
+    lbl.setText("Pressed");
+});
+"""
+alternatives = [
+"""
+JLabel lbl = new JLabel("Start");
+button.addActionListener(e -> {
+    System.out.println("Pressed");
+});
+""",
+"""
+JLabel lbl = new JLabel("Start");
+button.addActionListener(e -> {
+    lbl = "Pressed";
+});
+""",
+"""
+JLabel lbl = new JLabel("Start");
+button.addActionListener(e -> {
+    lbl.toString();
+});
+"""
+]
+
+# Item 19
+[[questions]]
+question = """
+Given the expected output: 15.5
+Which missing line correctly prints the sum of the two variables?
+"""
+answer = "System.out.println(x + y);"
+alternatives = [
+"System.out.println(\"x + y\");",
+"System.out.println(x * y);",
+"System.out.println(x + \" \" + y);"
+]
+
+# Item 20
+[[questions]]
+question = """
+Given the expected output: Programming
+Which missing line uses the correct method to extract the desired part of the string?
+"""
+answer = "System.out.println(str.substring(5));"
+alternatives = [
+"System.out.println(str.substring(0, 4));",
+"System.out.println(str.charAt(5));",
+"System.out.println(str.substring(5, 10));"
+]
