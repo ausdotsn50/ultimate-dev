@@ -1,70 +1,11 @@
-# Item 1
-[[questions]]
-question = "Event-driven programming is primarily based on which concept?"
-answer = "responding to user or system-generated events"
-alternatives = ["sequential execution of commands", "performing calculations without user input", "executing code line by line without branching"]
-
-# Item 2
-[[questions]]
-question = "Which of the following best defines an event in <br>event-driven programming?"
-answer = "any action or occurrence that a <brprogram >can respond to"
-alternatives = ["a loop that runs continuously", "a syntax error in the program", "an automatic compiler process"]
-
-# Item 3
-[[questions]]
-question = "In a GUI-based Java program, which of the following <br>typically generates events?"
-answer = "user actions such as clicking or typing"
-alternatives = ["variables", "methods", "arithmetic operations"]
-
-# Item 4
-[[questions]]
-question = "What is the main role of an event handler?"
-answer = "to define how the program should <br>respond when an event occurs"
-alternatives = ["to store event objects", "to trigger multiple threads", "to generate random events"]
-
-# Item 5
-[[questions]]
-question = "Which interface in Java is commonly implemented to <br>handle button click events?"
-answer = "actionlistener"
-alternatives = ["keylistener", "windowlistener", "focuslistener"]
-
-# Item 6
-[[questions]]
-question = "In event-driven programming, what is the <br>purpose of an event loop?"
-answer = "to repeatedly check for new events <br>and dispatch them to handlers"
-alternatives = ["to control variable scope", "to compile the program", "to sort events alphabetically"]
-
-# Item 7
-[[questions]]
-question = "Which of the following is an example of a system-generated event?"
-answer = "a timer reaching a certain value"
-alternatives = ["clicking a button", "pressing a keyboard key", "moving the mouse"]
-
-# Item 8
-[[questions]]
-question = "In Java Swing, which method is executed when an <br>ActionListener detects an event?"
-answer = "actionPerformed()"
-alternatives = ["onAction()", "runEvent()", "handleEvent()"]
-
-# Item 9
-[[questions]]
-question = "What is the typical design pattern used in <br>event-driven programming?"
-answer = "observer pattern"
-alternatives = ["factory pattern", "singleton pattern", "adapter pattern"]
-
-# Item 10
-[[questions]]
-question = "Which of the following statements is true about <br>event-driven programming?"
-answer = "it allows programs to be reactive <br>instead of procedural"
-alternatives = ["it is only used for command-line applications", "it focuses on direct control <br>flow through loops", "it cannot use functions or methods"]
-
 # Item 11
 [[questions]]
 question = """
 Given the expected output (on button click): Button Clicked!
 """
 answer = """
-button.addActionListener(e -> System.out.println("Button Clicked!"));
+button.addActionListener
+    (e -> System.out.println("Button Clicked!"));
 """
 alternatives = [
 """
@@ -104,11 +45,12 @@ new JFrame().setVisible(true);
 # Item 13
 [[questions]]
 question = """
-Given the expected output when text field contains “Hi”: You typed: Hi
+Given the expected output when text <br>field contains “Hi”: You typed: Hi
 """
 answer = """
 button.addActionListener(e -> {
-    System.out.println("You typed: " + field.getText());
+    System.out.println("You typed: " +
+    field.getText());
 });
 """
 alternatives = [
@@ -116,22 +58,24 @@ alternatives = [
 System.out.println("You typed: Hi");
 """,
 """
-field.addActionListener(e -> field.setText(""));
+field.addActionListener
+    (e -> field.setText(""));
 """,
 """
-button.addActionListener(e -> System.out.println(field));
+button.addActionListener
+    (e -> System.out.println(field));
 """
 ]
 
 # Item 14
 [[questions]]
 question = """
-Given the expected output when window closes: Closing Window...
+Given the expected output when window closes: Closing Window
 """
 answer = """
 frame.addWindowListener(new WindowAdapter() {
     public void windowClosing(WindowEvent e){
-        System.out.println("Closing Window...");
+        System.out.println("Closing Window");
     }
 });
 """
@@ -140,20 +84,22 @@ alternatives = [
 frame.dispose();
 """,
 """
-System.out.println("Closing Window...");
+System.out.println("Closing Window");
 """,
 """
-addActionListener(e -> System.out.println("Closing Window..."));
+addActionListener
+    (e -> System.out.println("Closing Window"));
 """
 ]
 
 # Item 15
 [[questions]]
 question = """
-Given the expected output upon pressing Enter in a text field: Enter pressed!
+Given the expected output upon pressing Enter <br>in a text field: Enter pressed!
 """
 answer = """
-field.addActionListener(e -> System.out.println("Enter pressed!"));
+field.addActionListener
+    (e -> System.out.println("Enter pressed!"));
 """
 alternatives = [
 """
@@ -174,16 +120,19 @@ Given the output: Clicked!
 """
 answer = """
 JButton b = new JButton("Click");
-b.addActionListener(e -> System.out.println("Clicked!"));
+b.addActionListener
+    (e -> System.out.println("Clicked!"));
 """
 alternatives = [
 """
 JButton b = new JButton("Click");
-b.addActionListener(() -> System.out.println("Clicked!"));
+b.addActionListener
+    (() -> System.out.println("Clicked!"));
 """,
 """
 JButton b = new JButton("Click");
-b.addActionListener(System.out.println("Clicked!"));
+b.addActionListener
+    (System.out.println("Clicked!"));
 """,
 """
 JButton b = new JButton("Click");
@@ -258,8 +207,14 @@ button.addActionListener(e -> {
 # Item 19
 [[questions]]
 question = """
-Given the expected output: 15.5
-Which missing line correctly prints the sum of the two variables?
+Given the expected output: 15.5 <br>Which missing line correctly prints <br>the sum of the two variables?
+<pre>
+public static void main(String[] args) {
+    int x = 10;
+    double y = 5.5;
+    // MISSING LINE
+}
+</pre>
 """
 answer = "System.out.println(x + y);"
 alternatives = [
@@ -271,8 +226,13 @@ alternatives = [
 # Item 20
 [[questions]]
 question = """
-Given the expected output: Programming
-Which missing line uses the correct method to extract the desired part of the string?
+Given the expected output: Programming <br>Which missing line uses the correct method to extract <br>the desired part of the string?
+<pre>
+public static void main(String[] args) {
+    String str = "Java Programming";
+    // MISSING LINE
+}
+</pre>
 """
 answer = "System.out.println(str.substring(5));"
 alternatives = [
