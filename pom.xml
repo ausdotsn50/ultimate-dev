@@ -43,7 +43,6 @@
                 </configuration>
             </plugin>
 
-            <!-- JAR plugin to make app runnable -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -53,8 +52,12 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>misc.UDSplashScreen</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
+
+                        <manifestEntries>
+                            <SplashScreen-Image>image/splash-inverted.gif</SplashScreen-Image>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
