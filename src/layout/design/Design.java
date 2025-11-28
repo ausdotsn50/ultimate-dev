@@ -7,9 +7,14 @@ import layout.constants.UDColors;
 import javax.swing.*;
 import java.awt.*;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Design {
+    // Font cache to avoid re-reading font file on each call
+    private static Font baseCustomFont = null;
+    private static final Map<Integer, Font> fontSizeCache = new ConcurrentHashMap<>();
     // Font size constants
     public static int mainTitleSize = 100;
     public static int titleSize = 50;
@@ -156,15 +161,28 @@ public class Design {
 
     // Review method
     public static Font loadCustomFont(int fontSize) {
-        try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
-            if (is == null) {
-                throw new RuntimeException("Font file not found!");
-            }
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, is);
-            return customFont.deriveFont(Font.PLAIN, fontSize);
-        } catch (Exception e) {
-            // Add catch statement
-            return new Font("SansSerif", Font.PLAIN, fontSize);
+        // Check cache first for the requested size
+        Font cached = fontSizeCache.get(fontSize);
+        if (cached != null) {
+            return cached;
         }
+
+        // Load base font from file if not yet loaded
+        if (baseCustomFont == null) {
+            try (InputStream is = Design.class.getResourceAsStream("/font/FiraCode.ttf")) {
+                if (is == null) {
+                    throw new RuntimeException("Font file not found!");
+                }
+                baseCustomFont = Font.createFont(Font.TRUETYPE_FONT, is);
+            } catch (Exception e) {
+                // Fallback to system font
+                baseCustomFont = new Font("SansSerif", Font.PLAIN, 12);
+            }
+        }
+
+        // Derive font at requested size and cache it
+        Font derivedFont = baseCustomFont.deriveFont(Font.PLAIN, fontSize);
+        fontSizeCache.put(fontSize, derivedFont);
+        return derivedFont;
     }
 }

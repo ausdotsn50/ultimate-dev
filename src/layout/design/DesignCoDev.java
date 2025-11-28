@@ -13,6 +13,14 @@ public class DesignCoDev {
     public static boolean isCorrect = false;
     public static CoDev codev = new CoDev(); // an entity
 
+    // Reusable Random instance
+    private static final Random rand = new Random();
+
+    // Cache for scaled images (same size always: 400x400)
+    private static final java.util.Map<Image, ImageIcon> scaledImageCache = new java.util.WeakHashMap<>();
+    private static final int IMG_WIDTH = 400;
+    private static final int IMG_HEIGHT = 400;
+
     private static JLabel devImageHolder;
     private static JLabel accuracyLabel;
     private static JLabel answerLabel;
@@ -85,22 +93,25 @@ public class DesignCoDev {
     }
 
     private static void setScaledImage(Image img) {
-        int IMG_WIDTH = 400;
-        int IMG_HEIGHT = 400;
-        Image scaled = img.getScaledInstance(IMG_WIDTH, IMG_HEIGHT, Image.SCALE_SMOOTH);
-        devImageHolder.setIcon(new ImageIcon(scaled));
+        // Check cache first
+        ImageIcon cachedIcon = scaledImageCache.get(img);
+        if (cachedIcon == null) {
+            Image scaled = img.getScaledInstance(IMG_WIDTH, IMG_HEIGHT, Image.SCALE_SMOOTH);
+            cachedIcon = new ImageIcon(scaled);
+            scaledImageCache.put(img, cachedIcon);
+        }
+        devImageHolder.setIcon(cachedIcon);
     }
 
     private static int chooseAnswer(double accuracy) {
-        Random r = new Random();
-        boolean willAnswerCorrectly = r.nextDouble() < accuracy;
+        boolean willAnswerCorrectly = rand.nextDouble() < accuracy;
 
         if (willAnswerCorrectly) {
             return DesignQuiz.answerIndex;
         } else {
             int wrongIndex;
             do {
-                wrongIndex = r.nextInt(4);
+                wrongIndex = rand.nextInt(4);
             } while (wrongIndex == DesignQuiz.answerIndex);
             return wrongIndex;
         }

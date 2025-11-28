@@ -9,23 +9,40 @@ import java.util.WeakHashMap;
 
 public record GrowSwitchBehavior(int sizeIncrease) implements LabelBehavior {
     static final WeakHashMap<JLabel, BufferedImage> originalImages = new WeakHashMap<>();
+    // Cache for resized images - keyed by "label_width_height"
+    static final WeakHashMap<JLabel, BufferedImage> hoverImages = new WeakHashMap<>();
+    static final WeakHashMap<JLabel, ImageIcon> normalIcons = new WeakHashMap<>();
 
     @Override
     public void onEnter(JLabel label) {
-        BufferedImage original = getOriginalImage(label);
-        int newWidth = label.getIcon().getIconWidth() + sizeIncrease;
-        int newHeight = label.getIcon().getIconHeight() + sizeIncrease;
+        // Cache the normal icon if not already cached
+        if (!normalIcons.containsKey(label)) {
+            normalIcons.put(label, (ImageIcon) label.getIcon());
+        }
 
-        label.setIcon(new ImageIcon(resizeImage(original, newWidth, newHeight)));
+        // Check if hover image is cached
+        BufferedImage hoverImg = hoverImages.get(label);
+        if (hoverImg == null) {
+            BufferedImage original = getOriginalImage(label);
+            int newWidth = original.getWidth() + sizeIncrease;
+            int newHeight = original.getHeight() + sizeIncrease;
+            hoverImg = resizeImage(original, newWidth, newHeight);
+            hoverImages.put(label, hoverImg);
+        }
+        label.setIcon(new ImageIcon(hoverImg));
     }
 
     @Override
     public void onExit(JLabel label) {
-        BufferedImage original = getOriginalImage(label);
-        int newWidth = label.getIcon().getIconWidth() - sizeIncrease;
-        int newHeight = label.getIcon().getIconHeight() - sizeIncrease;
-
-        label.setIcon(new ImageIcon(resizeImage(original, newWidth, newHeight)));
+        // Restore cached normal icon
+        ImageIcon normalIcon = normalIcons.get(label);
+        if (normalIcon != null) {
+            label.setIcon(normalIcon);
+        } else {
+            // Fallback: resize back to original
+            BufferedImage original = getOriginalImage(label);
+            label.setIcon(new ImageIcon(original));
+        }
     }
 
     @Override

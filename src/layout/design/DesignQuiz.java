@@ -40,6 +40,10 @@ public class DesignQuiz {
     public static int answerIndex;
     public static String[] letters = {"A. ", "B. ", "C. ", "D. "};
 
+    // Font registration cache - only register once
+    private static boolean fontRegistered = false;
+    private static String registeredFontName = null;
+
     static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
     public static Play playScreen; // reference to Play
     public static void showQuiz(Play play, JPanel centerPanel, Toml qDotTOML) {
@@ -152,9 +156,14 @@ public class DesignQuiz {
     }
 
     private static JTextPane getJTextPane(Font myFont, int questionFSize, String questionString) {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(myFont);
-        String fontName = myFont.getFamily();
+        // Register font only once
+        if (!fontRegistered) {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(myFont);
+            registeredFontName = myFont.getFamily();
+            fontRegistered = true;
+        }
+        String fontName = registeredFontName != null ? registeredFontName : myFont.getFamily();
 
         JTextPane questionPane = new JTextPane();
         questionPane.setContentType("text/html");
