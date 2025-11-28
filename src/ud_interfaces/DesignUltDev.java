@@ -1,5 +1,7 @@
 package ud_interfaces;
 
+import layout.design.Design;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -8,12 +10,11 @@ public class DesignUltDev {
     public static Play playScreen;
 
     public static void showUltDev(Play play, JPanel centerPanel, GridBagConstraints gbc) {
-
         playScreen = play;
         playScreen.displayTop(playScreen, "ult_dev.html");
         playScreen.displayBottom(playScreen, "The Ultimate Dev Gameshow", "1");
 
-        playScreen.centerPanel.setLayout(new BorderLayout());
+        Play.centerPanel.setLayout(new BorderLayout());
 
         JLabel ultimateDevImg;
 
@@ -26,19 +27,19 @@ public class DesignUltDev {
 
 
             Image scaled = rawIcon.getImage().getScaledInstance(
-                    750, 550, Image.SCALE_DEFAULT);
+                    Design.screenWidth, Design.screenHeight, Image.SCALE_DEFAULT);
 
             ultimateDevImg = new JLabel(new ImageIcon(scaled));
 
         } catch (Exception e) {
             System.out.println("Ultimate Dev image not found");
-            e.printStackTrace();
+            // e.printStackTrace();
             ultimateDevImg = new JLabel("Image not found");
         }
 
         ultimateDevImg.setHorizontalAlignment(SwingConstants.CENTER);
         ultimateDevImg.setVerticalAlignment(SwingConstants.CENTER);
 
-        playScreen.centerPanel.add(ultimateDevImg, BorderLayout.CENTER);
+        Play.centerPanel.add(ultimateDevImg, BorderLayout.CENTER);
     }
 }

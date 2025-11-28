@@ -24,7 +24,7 @@ public class Design {
 
     static double res_factor = 0.60;
     public static int screenWidth = (int)(1920 * res_factor);
-    public static int screenHeight = (int)(1080 * res_factor);
+    public static int screenHeight = (int)(1200 * res_factor);
 
     public static JPanel fRightIcons;
 

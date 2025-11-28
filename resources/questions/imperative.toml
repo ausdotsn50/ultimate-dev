@@ -1,109 +1,10 @@
-# Item 1
-[[questions]]
-question = "Which statement best captures the core <br>principle of the imperative paradigm?"
-answer = "Programs specify a sequence of operations <br>that change the program’s state."
-alternatives = [
-"Programs describe relationships <br>between inputs and outputs.",
-"Programs express computation as evaluation <br>of mathematical functions.",
-"Programs are composed of rules <br>and logical inferences."
-]
 
-# Item 2
-[[questions]]
-question = "In imperative programming, what does state mutability imply?"
-answer = "Variables can change values during <br>execution, altering program state."
-alternatives = [
-"Variables can only be assigned once.",
-"Functions must return new states <br>instead of modifying existing ones.",
-"The program cannot have side effects."
-]
-
-# Item 3
-[[questions]]
-question = "Which of the following correctly differentiates <br>procedural programming from object-oriented <br>programming under the imperative paradigm?"
-answer = "Procedural organizes code into functions; OOP <br>organizes code into classes and objects."
-alternatives = [
-"Procedural focuses on state, while <br>OOP focuses on behavior.",
-"Procedural uses classes, <br>while OOP avoids them.",
-"There is no difference; <br>both are declarative."
-]
-
-# Item 4
-[[questions]]
-question = "What is a major drawback of the imperative <br>approach compared to the declarative one?"
-answer = "It requires explicitly managing <br>control flow and state changes."
-alternatives = [
-"It is less efficient in execution.",
-"It cannot handle user-defined data types.",
-"It cannot perform recursion."
-]
-
-# Item 5
-[[questions]]
-question = "Which property is shown when the same operation in different <br>parts of an imperative program produces different results?"
-answer = "Side effects"
-alternatives = [
-"Determinism",
-"Immutability",
-"Referential transparency"
-]
-
-# Item 6
-[[questions]]
-question = "What is a central idea behind logic programming?"
-answer = "Computation is performed by stating <br>facts and rules, and letting the <br>system infer answers."
-alternatives = [
-"Programs explicitly list the <br>step-by-step control flow.",
-"All programs are purely functional, <br>with no side effects.",
-"Data and functions are merged <br>into objects with methods."
-]
-
-# Item 7
-[[questions]]
-question = "In the context of logic programming, which of the <br>following is not typically a component <br>of a logic program?"
-answer = "Explicit loops"
-alternatives = [
-"Facts",
-"Rules",
-"Queries"
-]
-
-# Item 8
-[[questions]]
-question = "The query system in logic programming works by:"
-answer = "Matching queries against facts and <br>attempting to satisfy conditions <br>via backtracking."
-alternatives = [
-"Executing statements in a <br>fixed sequence.",
-"Translating logic programs to <br>imperative machine code only.",
-"Disallowing recursion to avoid <br>infinite loops."
-]
-
-# Item 9
-[[questions]]
-question = "Which statement best captures the difference between <br>logic programming and imperative programming?"
-answer = "Logic programming separates what from <br>how, while imperative programming <br>tends to combine both."
-alternatives = [
-"Imperative programming uses facts <br>and rules; logic programming <br>uses assignments and loops.",
-"Logic programming cannot express nondeterminism, <br>while imperative can.",
-"In logic programming, state <br>mutation is the norm."
-]
-
-# Item 10
-[[questions]]
-question = "Logic programming <br>systems often incorporate backtracking. <br>Backtracking means:"
-answer = "Reversing decisions when they lead to failure <br>and trying alternative paths."
-alternatives = [
-"Progressing forward in a fixed linear order.",
-"Caching previous results to speed up queries.",
-"Disallowing recursion."
-]
 
 
 # Item 11
 [[questions]]
 question = """
-Given the expected output: Even number detected
-Which condition correctly completes the code?
+Given the expected output: Even number detected <br>Which condition correctly completes the code?
 
 <pre>
 void checkEven(int num) {
@@ -148,20 +49,16 @@ alternatives = ["15", "16", "17"]
 # Item 14
 [[questions]]
 question = """
-Consider this program:
-
+What is the output of this code?
 <pre>
 void mystery(int n) {
     if (n == 0) return;
-    printf("%d ", n); mystery(n - 2);
-    printf("%d ", n);
+    printf("%d ", n); mystery(n - 2); printf("%d ", n);
 }
 int main() {
     mystery(4); return 0;
 }
 </pre>
-
-What will it print?
 """
 answer = "4 2 2 4"
 alternatives = ["4 2 0 2 4", "4 2 2 4 4", "4 2 2 4 4"]
@@ -183,19 +80,16 @@ alternatives = ["Sum of a and b", "Product of a and b", "Least common multiple (
 # Item 16
 [[questions]]
 question = """
-Given the expected output when querying <br>`?- parent(pam, X).`:
-
 <pre>
 X = bob
-</pre>
+parent(pam, X).
 
-Which missing line correctly establishes <br> a basic declarative fact in the knowledge base?
-
-<pre>
 % MISSING LINE
 parent(tom, bob).
 parent(tom, liz).
 </pre>
+
+Which missing line correctly establishes <br>a basic declarative fact in the knowledge base?
 """
 answer = "parent(pam, bob)."
 alternatives = ["parent(X, Y).", "parent(pam, bob)", "parent(bob, pam)."]
@@ -203,26 +97,17 @@ alternatives = ["parent(X, Y).", "parent(pam, bob)", "parent(bob, pam)."]
 # Item 17
 [[questions]]
 question = """
-Given the expected output when querying <br> `?- print_numbers(3).`:
-
 <pre>
-3
-2
-1
+print_numbers(3).
+3nL 2nL 1nL
 true.
-</pre>
 
-Which missing line implements the <br> imperative control flow (decrement and recursion) <br> to print the countdown?
-
-<pre>
 print_numbers(0).
 print_numbers(N) :-
-    N > 0,
-    write(N), nl,
-    N1 is N - 1,
-    // MISSING LINE
-.
+    N > 0, write(N), nl, N1 is N - 1, // MISSING LINE
 </pre>
+
+Which missing line implements the imperative control <br>flow to print the countdown?
 """
 answer = "print_numbers(N1)"
 alternatives = ["write(N1)", "print_numbers(N)", "N is N - 1"]
@@ -230,21 +115,16 @@ alternatives = ["write(N1)", "print_numbers(N)", "N is N - 1"]
 # Item 18
 [[questions]]
 question = """
-Given the expected output when querying <br> `?- double_list([1, 2, 3], X).`:
-
 <pre>
 X = [2, 4, 6]
-</pre>
+double_list([1, 2, 3], X).
 
-Which missing line uses the declarative <br> `maplist/3` predicate (or its equivalent component) <br> to transform the list elements?
-
-<pre>
 double(A, B) :- B is A * 2.
-
 double_list(List, DoubledList) :-
     // MISSING LINE
-.
 </pre>
+
+Which missing line uses the declarative `maplist/3` <br>predicate (or its equivalent component) <br>to transform the list elements?
 """
 answer = "maplist(double, List, DoubledList)"
 alternatives = ["double(List, DoubledList).", "member(double, List).", "append(List, List, DoubledList)."]
@@ -252,18 +132,16 @@ alternatives = ["double(List, DoubledList).", "member(double, List).", "append(L
 # Item 19
 [[questions]]
 question = """
-Given the expected output when querying <br> `?- list_length([a, b, c], 3).`:
-
 <pre>
+list_length([a, b, c], 3).
 true.
-</pre>
 
-Which missing line provides the declarative <br> base case for calculating the length of a list?
-
-<pre>
 % MISSING LINE
-list_length([_|T], L) :- list_length(T, L1), L is L1 + 1.
+list_length([_|T], L) :-
+list_length(T, L1), L is L1 + 1.
 </pre>
+
+Which missing line provides the declarative <br>base case for calculating the length of a list?
 """
 answer = "list_length([], 0)."
 alternatives = ["list_length(L, 0).", "list_length([H|_], 1).", "list_length([], L)."]
@@ -271,21 +149,16 @@ alternatives = ["list_length(L, 0).", "list_length([H|_], 1).", "list_length([],
 # Item 20
 [[questions]]
 question = """
-Given the expected output when querying <br> `?- even_list([1, 2, 3, 4], X).`:
-
 <pre>
 X = [2, 4]
-</pre>
+even_list([1, 2, 3, 4], X).
 
-Which missing line uses the declarative `include/3` predicate (or its equivalent component) to filter the list?
-
-<pre>
 is_even(N) :- 0 is N mod 2.
-
 even_list(List, EvenList) :-
     // MISSING LINE
-.
 </pre>
+
+Which missing line uses the declarative `include/3` <br>predicate (or its equivalent component) to filter the list?
 """
 answer = "include(is_even, List, EvenList)"
 alternatives = ["is_even(List).", "maplist(is_even, List, EvenList).", "EvenList = List."]

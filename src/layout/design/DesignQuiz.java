@@ -192,12 +192,6 @@ public class DesignQuiz {
             });
 
         }
-
-
-
-
-
-        
     }
 
     // Clears both panels
