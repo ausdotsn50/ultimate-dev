@@ -25,7 +25,7 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>    
+        <sourceDirectory>src</sourceDirectory>
         <resources>
             <resource>
                 <directory>resources</directory>
@@ -43,7 +43,7 @@
                 </configuration>
             </plugin>
 
-            <!-- JAR plugin to make app runnable -->
+            <!-- JAR plugin (runnable JAR + splash screen) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -53,8 +53,12 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>misc.UDSplashScreen</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
+
+                        <manifestEntries>
+                            <SplashScreen-Image>image/splash-inverted.gif</SplashScreen-Image>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
