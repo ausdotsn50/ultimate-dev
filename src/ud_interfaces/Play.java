@@ -1,6 +1,7 @@
 package ud_interfaces;
 
 import com.moandjiezana.toml.Toml;
+import events.sound_utls.SoundUtils;
 import layout.design.*;
 import layout.constants.UDImages;
 
@@ -74,6 +75,8 @@ public class Play extends UltDevScreen{
 
     // todo: modify this into a cleaner init function
     public void init() {
+        SoundUtils.stopBgMusic();
+        SoundUtils.bgMusic();
         categorySelect = true; showResult = false;
         attemptsLeft = 3; currPoints = 0;
         copy = 2;

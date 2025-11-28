@@ -14,8 +14,6 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-import static ud_interfaces.Play.centerPanel;
-
 public class DesignQuiz {
     // Utilities
     static Random rand = new Random();
@@ -33,6 +31,8 @@ public class DesignQuiz {
     public static List<Map<String, Object>> questions;
     static List<String> combinedChoices = new ArrayList<>();
     static String answer;
+    public static int answerIndex;
+    public static String[] letters = {"A. ", "B. ", "C. ", "D. "};
 
     static boolean isCorrect = false; // isCorrect -> manipulates DesignResult.showResult screen
     public static Play playScreen; // reference to Play
@@ -115,7 +115,7 @@ public class DesignQuiz {
         Map<String, Object> randQ = questions.get(randIndex);
         Object questionObj = randQ.get("question");
         String questionString = (questionObj instanceof String) ? (String) questionObj : "";
-        
+
         // Populate choices
         combinedChoices.clear(); // Clean before populating
         Object alternativesObj = randQ.get("alternatives");
@@ -127,6 +127,8 @@ public class DesignQuiz {
         answer = randQ.get("answer").toString();
         combinedChoices.add(answer);
         java.util.Collections.shuffle(combinedChoices); // Shuffle combines choices
+        answerIndex = combinedChoices.indexOf(answer);
+
 
         // Load the font object-oriented.toml using existing method
         int questionFSize = Design.subTitleSize - 3; // int choicesFSize = Design.regularSize;
@@ -162,14 +164,15 @@ public class DesignQuiz {
     }
 
     public static void displayChoices() {
-        for(String choiceText : combinedChoices) {
-            ChoicesButton choiceBtn = new ChoicesButton(choiceText, 10, 10);
+        for(int i = 0; i < combinedChoices.size(); i++) {
+            ChoicesButton choiceBtn = new ChoicesButton(letters[i] + combinedChoices.get(i), 10, 10);
             choiceBtn.setPreferredSize(new Dimension(400, choiceBtn.getPreferredSize().height));
 
             // Lambda for button behavior
+            int currentIndex = i;
             choiceBtn.addActionListener(e -> {
                 if (Play.coDevActive) return;
-                isCorrect = Objects.equals(answer, choiceBtn.getUnformattedText());
+                isCorrect = (currentIndex == answerIndex);
                 timer.stop(); // Stop timer
                 showCorrespondingResult();
             });
