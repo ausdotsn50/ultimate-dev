@@ -57,3 +57,225 @@ alternatives = ["A reactive event-driven model", "A declarative, non-sequential 
 question = "Which of the following best distinguishes procedural <br>programming from functional programming?"
 answer = "Functional programming uses pure functions, <br>while procedural programming relies on <br>changing state through procedures"
 alternatives = ["Procedural programming <br>avoids mutable data", "Both use recursion exclusively <br>instead of loops", "Procedural programming is based <br>on logical inference"]
+
+# Item 11
+[[questions]]
+question = """
+Given this C code:
+<pre>
+void greet() { printf("Hello World"); }
+
+int main() {
+    greet();
+    return 0;
+}
+</pre>
+What is the expected output?
+"""
+answer = "Hello World"
+alternatives = ["greet()", "HelloWorld", "Compilation error"]
+
+# Item 12
+[[questions]]
+question = """
+Given the expected output: The sum is 10 <br>Which missing line correctly computes the sum inside <br>the function?
+
+<pre>
+void add() {
+    int a = 4, b = 6, sum;
+    // missing line
+    printf("The sum is %d", sum);
+}
+</pre>
+"""
+answer = "sum = a + b;"
+alternatives = ["sum == a + b;", "sum = (a, b);", "sum(a, b);"]
+
+# Item 13
+[[questions]]
+question = """
+Given this program fragment:
+
+<pre>
+void test() {
+    int x = 5;
+    x += 3;
+    printf("%d", x);
+}
+</pre>
+
+What will the output be?
+"""
+answer = "8"
+alternatives = ["5", "3", "53"]
+
+# Item 14
+[[questions]]
+question = """
+Given the expected output: Product = 20 <br>Which of the following procedures will produce it?
+"""
+answer = """
+void multiply() {
+    int a = 4, b = 5;
+    printf("Product = %d", a * b);
+}
+"""
+alternatives = [
+"""
+void multiply() {
+    int a = 4, b = 5;
+    printf("Product =", a * b);
+}
+""",
+"""
+void multiply(int a, int b);
+""",
+"""
+None of the above
+"""
+]
+
+# Item 15
+[[questions]]
+question = """
+Complete the missing statement to produce “Result = 25”:
+
+<pre>
+void square() {
+    int num = 5, result;
+    // missing line
+    printf("Result = %d", result);
+}
+</pre>
+"""
+answer = "result = num * num;"
+alternatives = ["result = num ^ 2;", "result = num   2;", "result = pow(num);"]
+
+# Item 16
+[[questions]]
+question = """
+Given this procedural program:
+
+<pre>
+void showMessage(int count) {
+    for(int i = 0; i < count; i++) {
+        printf("Hi ");
+    }
+}
+</pre>
+
+What is the expected output when showMessage(3); is called?
+"""
+answer = "Hi Hi Hi"
+alternatives = ["HiHiHi", "\"Hi\" printed once", "Syntax error"]
+
+# Item 17
+[[questions]]
+question = """
+Given the expected output: Sum = 6 <br>Which function definition achieves this?
+"""
+answer = "Both a and c"
+alternatives = [
+"""
+int sum(int a, int b, int c) {
+    return a + b + c;
+}
+""",
+"""
+void sum(int a, int b, int c) {
+    a + b + c;
+}
+""",
+"""
+int sum() {
+    return (1 + 2 + 3);
+}
+"""]
+
+# Item 18
+[[questions]]
+question = """
+Given this program fragment:
+
+<pre>
+void swap(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+    printf("%d %d", a, b);
+}
+</pre>
+
+What will be printed when swap(3, 5); is executed?
+"""
+answer = "5 3"
+alternatives = ["3 5", "8", "Error"]
+
+# Item 19
+[[questions]]
+question = """
+Given this program fragment:
+
+<pre>
+void display() {
+    int x = 10;
+    printf("%d", x / 2);
+}
+</pre>
+
+What is the expected output?
+"""
+answer = "5"
+alternatives = ["2", "10", "20"]
+
+# Item 20
+[[questions]]
+question = """
+Given the expected output: The average is 4.00. <br>Which missing line correctly computes the average?
+
+<pre>
+void average() {
+    int a = 3, b = 4, c = 5;
+    float avg;
+    // missing line
+    printf("The average is %.2f", avg);
+}
+</pre>
+"""
+answer = "avg = (a + b + c) / 3.0;"
+alternatives = ["avg = (a + b + c) / 2;", "avg = a + b + c / 3;", "avg = (a * b * c) / 3;"]
+
+# Item 21
+[[questions]]
+question = """
+Given this code:
+
+<pre>
+void countdown() {
+    for (int i = 3; i > 0; i--) {
+        printf("%d ", i);
+    }
+}
+</pre>
+
+What is the expected output?
+"""
+answer = "3 2 1"
+alternatives = ["1 2 3", "0 1 2", "3 1 2"]
+
+# Item 22
+[[questions]]
+question = """
+Given the expected output: Even number detected. <br>Which condition correctly completes the code?
+
+<pre>
+void checkEven(int num) {
+    if (____)
+        printf("Even number detected");
+    else
+        printf("Odd number detected");
+}
+</pre>
+"""
+answer = "num % 2 == 0"
+alternatives = ["num == 2", "num / 2 == 0", "num % 2 != 0"]
