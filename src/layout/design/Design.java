@@ -102,7 +102,7 @@ public class Design {
 
     private static void displayFtIcons(JPanel footerPanel, String[] iconPathMenu) {
         for (String s : iconPathMenu) {
-            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons/" + s)));
+            ImageIcon icon = new ImageIcon(Objects.requireNonNull(Design.class.getResource("/image/icons" + s)));
             Image iconScaled = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Extract Image from ImageIcon and --scale smooth--
 
             JLabel iconHolder = new JLabel(new ImageIcon(iconScaled));
