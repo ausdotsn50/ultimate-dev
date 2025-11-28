@@ -1,6 +1,6 @@
 package layout.design;
 
-import events.sound_utls.SoundUtils;
+import utils.SoundUtils;
 import layout.constants.RoundedPanel;
 import layout.constants.UDColors;
 
