@@ -1,6 +1,6 @@
-package ud_interfaces;
+package layout.design;
 
-import layout.design.Design;
+import ud_interfaces.Play;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package events.sound_utls;
+package utils;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
