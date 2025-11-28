@@ -25,7 +25,6 @@ public class DesignUltDev {
                 )
             );
 
-
             Image scaled = rawIcon.getImage().getScaledInstance(
                     Design.screenWidth, Design.screenHeight, Image.SCALE_DEFAULT);
 

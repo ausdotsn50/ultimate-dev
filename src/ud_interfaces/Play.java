@@ -39,7 +39,7 @@ public class Play extends UltDevScreen{
         GridBagConstraints gbc = new GridBagConstraints();
         Design.centerDefault(this, centerPanel);
 
-        if(DesignCategory.categories.isEmpty() && attemptsLeft != 0){
+        if(DesignCategory.categories.isEmpty() && attemptsLeft != 0 && categorySelect){
             currPoints += addtlPoints[roundCtr];
             DesignUltDev.showUltDev(this, centerPanel, gbc); // Show ultimate dev screen
             System.out.println(currPoints);
@@ -60,7 +60,6 @@ public class Play extends UltDevScreen{
         }
         else {
             DesignQuiz.showQuiz(this, centerPanel, toml); // Else if not selecting a category --> show quiz questions
-           
         }
     }
 
