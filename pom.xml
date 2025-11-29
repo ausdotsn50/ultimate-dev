@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <!-- Java JDK -->
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +26,7 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>    
         <resources>
             <resource>
                 <directory>resources</directory>
@@ -33,7 +34,7 @@
         </resources>
 
         <plugins>
-            <!-- Java compiler -->
+            <!-- Java JRE -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -43,7 +44,6 @@
                 </configuration>
             </plugin>
 
-            <!-- JAR plugin (runnable JAR + splash screen) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>

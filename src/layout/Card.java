@@ -9,7 +9,7 @@ import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import events.sound_utls.SoundUtils;
+import utils.SoundUtils;
 
 public class Card extends JFrame {
     static SoundUtils sound = new SoundUtils();
