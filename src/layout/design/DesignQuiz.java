@@ -136,7 +136,7 @@ public class DesignQuiz {
         answerIndex = combinedChoices.indexOf(answer);
 
 
-        // Load the font object-oriented.toml using existing method
+        // Load the font object.toml using existing method
         int questionFSize = Design.subTitleSize - 3; // int choicesFSize = Design.regularSize;
         Font myFont = Design.loadCustomFont(questionFSize);
 

@@ -20,7 +20,7 @@ public class GoToCategBehavior implements ButtonBehavior {
     public void onClick(JButton button) {
         Play.categorySelect = false;
 
-        String[] buttonName = button.getText().split(" ");
+        String[] buttonName = button.getText().split("[ -]");
         String file = buttonName[0].substring(0, 1).toLowerCase() + buttonName[0].substring(1);
         System.out.println(file);
 

@@ -30,7 +30,7 @@ public class DesignSettings {
 
     // Creates settings card
     public static JPanel createSettingsCard(String title, String subtitle, Color color) {
-        // Rounded panel object-oriented.toml that is used in how to play, settings and play
+        // Rounded panel object.toml that is used in how to play, settings and play
         RoundedPanel panel = new RoundedPanel();
         panel.setPreferredSize(new Dimension(800, 100)); // set preferred size
         panel.setBackground(color);
