@@ -6,14 +6,21 @@ import java.util.Random;
 
 import layout.design.LoadDev;
 
+/*
+ * Represents the CoDev entity which manages a list of developer assistants
+ * each with their own accuracy levels.
+ */
+
 public class CoDev {
     private final int coDevNum = 7;
     private Random random = new Random();
     public double[] accuracy = {0.40, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75};
     public List<LoadDev> devList = new ArrayList<>();
+
     public CoDev() {
         loadDevs();
     }
+    
     public void loadDevs() {
         for (int i = 0; i < coDevNum; i++) {
             String path = "/image/codev/" + (i + 1) + ".png";

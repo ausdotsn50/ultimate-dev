@@ -2,7 +2,9 @@ package layout.design;
 
 import java.awt.*;
 import javax.swing.*;
-
+/*
+ * Represents a loading developer component with an image and accuracy attribute.
+ */
 public class LoadDev extends JLabel {
     Image bgImage;
     public double accuracy;
@@ -19,7 +21,6 @@ public class LoadDev extends JLabel {
     public Image getImage() {
     return bgImage;
 }
-
 
     @Override
     protected void paintComponent(Graphics g) {

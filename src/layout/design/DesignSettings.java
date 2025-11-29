@@ -7,6 +7,9 @@ import layout.constants.UDColors;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+ * Handles the design settings panel including music and sound effects toggles.
+ */
 
 public class DesignSettings {
     public static void centerDesign(JPanel centerPanel, GridBagConstraints mainGbc) {

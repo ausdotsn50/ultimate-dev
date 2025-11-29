@@ -8,6 +8,9 @@ import java.util.Random;
 import entities.CoDev;
 import ud_interfaces.Play;
 
+/*
+ * Handles the display and logic for the CoDev feature in the quiz.
+ */
 public class DesignCoDev {
     public static Play playScreen; // bottom display purposes
     public static boolean isCorrect = false;
