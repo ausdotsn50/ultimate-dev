@@ -46,6 +46,7 @@ public class DesignHowToPlay {
         c.gridy = y++;
         card.add(topicsLabel, c);
 
+        
         JTextArea topicsText = createTextArea(
                 "The game covers theoretical and practical topics on Surveys of Programming Paradigms.",
                 textColor
@@ -77,7 +78,21 @@ public class DesignHowToPlay {
                 textColor
         );
         c.gridy = y++;
-        card.add(pointsText, c);
+        card.add(pointsText, c); 
+
+        JLabel hintsLabel = new JLabel("Hint System");
+        hintsLabel.setFont(Design.loadCustomFont(Design.subTitleSize - 2)); 
+        hintsLabel.setForeground(headerColor); 
+        c.gridy = y++;
+        card.add(hintsLabel, c);
+
+        JTextArea hintsText = createTextArea(
+                "Press C to activate the hint system. A CoDev will be randomly selected to answer the question for you.",
+                textColor
+        );
+        c.gridy = y++;
+        card.add(hintsText, c);
+
         infoPanel.add(card);
         centerPanel.add(infoPanel, gbc);
     }
