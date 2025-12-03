@@ -27,7 +27,7 @@
 A quiz-style game show designed to determine who truly deserves the title of Ultimate Developer. 
 Developed as a Machine Problem deliverable for CMSC 13: Surveys of Programming Paradigms.
 
-### Game Description
+### Overview
 Unlike any ordinary coding task, winning this challenge requires both sharp theoretical knowledge and practical programming insight.
 
 In the game, the player must answer a series of questions drawn from the topic: Surveys of Programming Paradigm. 
@@ -60,7 +60,7 @@ Follow these steps to set up and run the project locally.
 2. Compile and Run
 - **Main.java**
 
-## Usage
+## Game Mechanics
 <!-- To add binaries -->
 ### Main Structure
 - The game covers 7 main topics on Surveys of Programming Paradigms.
