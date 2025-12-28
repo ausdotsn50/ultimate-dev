@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/ausdotsn50/ultimate-dev">
     <img src="resources/image/splash_inverted.gif" alt="Logo" width="80" height="80">
   </a>
 
